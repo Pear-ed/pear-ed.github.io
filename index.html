@@ -18,6 +18,17 @@
         width: 100vw;
         height: 100vh;
       }
+      table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 300px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 5px;
+}
     </style>
   </head>
   <body>
@@ -113,7 +124,7 @@ var Icon1 = new LeafIcon({iconUrl: 'img/1_1.png'}),
 };
 
 L.marker([-33.953949, 18.479610], {icon: Icon1}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
-L.marker([-33.932297, 18.406977], {icon: Icon2}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
+L.marker([-33.932297, 18.406977], {icon: Icon2}).addTo(map).bindPopup("<table><tr><th>Plant Name</th><td>Punica granatum</th></tr><tr><th>Field Note</th><td>Has Tendrils and should not be confused with the brither</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1_2.png style=width:120px></a></td></tr>");
 L.marker([-33.970278, 18.473158], {icon: Icon3}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
 L.marker([-29.221518, 29.938130], {icon: Icon4}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
 L.marker([-33.968500, 18.470706], {icon: Icon5}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
