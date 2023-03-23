@@ -1,49 +1,123 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>leaflet-map-simple</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Leaflet Map</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
 
-  <!-- Load Leaflet code library: see https://leafletjs.com/download.html -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
+    <script>
+      // TODO
+      // - [x] Add cycleOSM layer
+      // - [] Add strava layer (needs API key but otherwise should be easy with googling)
+      // - [] Make dots size relative to each other (clamped to between min and max)
+      // - [] and also possibly use the same method to clamp a PNG
 
-  <!-- Position the map and title with Cascading Style Sheet (CSS) -->
-  <style>
-  body { margin:0; padding:0; }
-  #map { position: absolute; top:0; bottom:0; right:0; left:0; }
-  #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }
-  </style>
-</head>
-<body>
+      // All the code for the leaflet map will come here
+      const map = L.map("map", {
+        center: [-34.000874, 18.539193],
+        zoom: 12,
+        scrollWheelZoom: true,
+      });
 
-  <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">EDIT map title</div>
-  <div id="map"></div>
+      // 2. Add layers to the map
+      const basemaps = {
+        Base: L.tileLayer(
+          "https://api.mapbox.com/styles/v1/hbmalan/cle2i1ly2002x01og9hpygnkx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig",
+          {
+            attribution:
+              '&copy; <a href="https://osm.org/copyright">\
+        Mapbox</a> contributors, &copy;\
+        <a href="https://carto.com/attribution">CARTO</a>',
+          }
+        ),
+        CycleOSM: L.tileLayer(
+          " https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b67a28b0f9574b0f913b1fc42c26882f",
+          {
+            attribution: "&copy; CycleOSM contributors",
+          }
+        ),
+        Strava: L.tileLayer(
+          "https://globalheat.strava.com/tiles/running/color3/{z}/{x}/{y}.png",
+          {
+            maxZoom: 17,
+            minZoom: 9,
+          }
+        ),
+        Places: L.tileLayer.wms("http://ows.mundialis.de/services/service?", {
+          layers: "OSM-Overlay-WMS",
+        }),
+      };
 
-  <!-- Create the interactive map content with JavaScript (.js) -->
-  <script>
+      basemaps.Base.addTo(map);
 
-  /* Set up the initial map center and zoom level */
-  var map = L.map('map', {
-    center: [41.77, -72.69], // EDIT coordinates to re-center map
-    zoom: 12,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
-    scrollWheelZoom: false
-  });
+      L.control.layers(basemaps).addTo(map);
 
-  /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
-  L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://osm.org/copyright">\
-        OpenStreetMap</a> contributors, &copy;\
-        <a href="https://carto.com/attribution">CARTO</a>'
-  }).addTo(map);
+      var greenIcon = L.icon({
+    iconUrl: '9-1.png',
+    shadowUrl: 'leaf-shadow.png',
 
-  /* Display a point marker with pop-up text */
-  L.marker([41.77, -72.69]).addTo(map) // EDIT marker coordinates
-  .bindPopup("Insert pop-up text here"); // EDIT pop-up text message
+    iconSize:     [38, 38], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
 
-  </script>
-</body>
+L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
+
+var LeafIcon = L.Icon.extend({
+    options: {
+        shadowUrl: 'leaf-shadow.png',
+        iconSize:     [38, 38],
+        shadowSize:   [50, 64],
+        iconAnchor:   [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor:  [-3, -76]
+    }
+});
+
+var greenIcon = new LeafIcon({iconUrl: '9-1.png'}),
+    redIcon = new LeafIcon({iconUrl: 'leaf-red.png'}),
+    orangeIcon = new LeafIcon({iconUrl: 'leaf-orange.png'});
+
+    L.icon = function (options) {
+    return new L.Icon(options);
+};
+
+L.marker([-34.000874, 18.539193], {icon: greenIcon}).addTo(map).bindPopup("I am a green leaf.");
+L.marker([51.495, -0.083], {icon: redIcon}).addTo(map).bindPopup("I am a red leaf.");
+L.marker([51.49, -0.1], {icon: orangeIcon}).addTo(map).bindPopup("I am an orange leaf.");
+
+
+        // greenIconMarker.addTo(map);
+
+        // greenIconMarker.bindPopup(
+        //   `<strong>${organisation.name}</strong><br>Cyclists: ${organisation.cyclistsCount}<br>Representative: ${organisation.representative}<br><a href="https://www.ciovita.co.za/">website</a>`
+        // );
+
+    </script>
+  </body>
 </html>
