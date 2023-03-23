@@ -20,14 +20,17 @@
       }
       table {
   border-collapse: collapse;
-  width: 100%;
-  max-width: 300px;
+  width: 80%;
+  
 }
 
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 5px;
+}
+tr:nth-child(1) {
+  background-color: #ebf394b4;
 }
     </style>
   </head>
@@ -48,8 +51,10 @@ td, th {
 
       // All the code for the leaflet map will come here
       const map = L.map("map", {
-        center: [-34.000874, 18.539193],
-        zoom: 12,
+        center: [18.542923, 15.743275],
+        zoom: 3,
+        maxZoom: 19,
+        minZoom: 3,
         scrollWheelZoom: true,
       });
 
@@ -64,22 +69,24 @@ td, th {
         <a href="https://carto.com/attribution">CARTO</a>',
           }
         ),
-        CycleOSM: L.tileLayer(
-          " https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b67a28b0f9574b0f913b1fc42c26882f",
+        // CycleOSM: L.tileLayer(
+        //   " https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b67a28b0f9574b0f913b1fc42c26882f",
+        //   {
+        //     attribution: "&copy; CycleOSM contributors",
+        //   }
+        // ),
+        Aerial: L.tileLayer(
+          "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/1/1/0@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGZsa3FpbHcwMnYwNDJyMnNkcHBmMHRvIn0.d_proB0WFdSJvF0pULs3mg",
           {
-            attribution: "&copy; CycleOSM contributors",
+            attribution:
+              '&copy; <a href="https://osm.org/copyright">\
+        Mapbox</a> contributors, &copy;\
+        <a href="https://carto.com/attribution">CARTO</a>',
           }
         ),
-        Strava: L.tileLayer(
-          "https://globalheat.strava.com/tiles/running/color3/{z}/{x}/{y}.png",
-          {
-            maxZoom: 17,
-            minZoom: 9,
-          }
-        ),
-        Places: L.tileLayer.wms("http://ows.mundialis.de/services/service?", {
-          layers: "OSM-Overlay-WMS",
-        }),
+        // Places: L.tileLayer.wms("https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer", {
+        //   layers: "OSM-Overlay-WMS",
+        // }),
       };
 
       basemaps.Base.addTo(map);
@@ -117,18 +124,24 @@ var Icon1 = new LeafIcon({iconUrl: 'img/1_1.png'}),
     Icon5 = new LeafIcon({iconUrl: 'img/5_1.png'}), 
     Icon6 = new LeafIcon({iconUrl: 'img/6_1.png'}),
     Icon7 = new LeafIcon({iconUrl: 'img/7_1.png'}),
-    Icon8 = new LeafIcon({iconUrl: 'img/8_1.png'});
+    Icon8 = new LeafIcon({iconUrl: 'img/8_1.png'}),
+    Icon9 = new LeafIcon({iconUrl: 'img/9_1.png'}),
+    Icon10 = new LeafIcon({iconUrl: 'img/10_1.png'});
 
     L.icon = function (options) {
     return new L.Icon(options);
 };
 
-L.marker([-33.953949, 18.479610], {icon: Icon1}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
-L.marker([-33.932297, 18.406977], {icon: Icon2}).addTo(map).bindPopup("<table><tr><th>Plant Name</th><td>Punica granatum</th></tr><tr><th>Field Note</th><td>Has Tendrils and should not be confused with the brither</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1_2.png style=width:120px></a></td></tr>");
-L.marker([-33.970278, 18.473158], {icon: Icon3}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
-L.marker([-29.221518, 29.938130], {icon: Icon4}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
-L.marker([-33.968500, 18.470706], {icon: Icon5}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
-
+L.marker([-33.953949, 18.479610], {icon: Icon1}).addTo(map).bindPopup("<table><tr><th></th><th>1</th></tr><tr><th>Plant Name</th><td>Punica granatum</th></tr><tr><th>Field Note</th><td>So bold as to start the image conversation entirely</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CobzQQhtqeA/><img src=img/1_2.png style=width:200px></a></td></tr>");
+L.marker([-33.932297, 18.406977], {icon: Icon2}).addTo(map).bindPopup("<table><tr><th></th><th>2</th></tr><tr><th>Plant Name</th><td>Hylocereus undatus</th></tr><tr><th>Field Note</th><td>An equally bold fruit to respond to the Pomegranate</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cob0HzfNmPY/><img src=img/2_2.png style=width:200px></a></td></tr>");
+L.marker([-33.970278, 18.473158], {icon: Icon3}).addTo(map).bindPopup("<table><tr><th></th><th>3</th></tr><tr><th>Plant Name</th><td>Clivia miniata</th></tr><tr><th>Field Note</th><td>Bright red colour seeds in compact form</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CoePdvAtEX7/><img src=img/3_2.png style=width:200px></a></td></tr>");
+L.marker([-29.221518, 29.938130], {icon: Icon4}).addTo(map).bindPopup("<table><tr><th></th><th>4</th></tr><tr><th>Plant Name</th><td>Cannas and Acers</th></tr><tr><th>Field Note</th><td>Seeds bulge in succulent balls near ends of branches</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CojaaxwqlE3/><img src=img/4_2.png style=width:200px></a></td></tr>");
+L.marker([-33.968500, 18.470706], {icon: Icon5}).addTo(map).bindPopup("<table><tr><th></th><th>5</th></tr><tr><th>Plant Name</th><td>Yucca aloifolia</th></tr><tr><th>Field Note</th><td>Brilliant white contrasts with any and all surroundings. Can be eaten raw or cooked!</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CorUUeVq0pQ/><img src=img/5_2.png style=width:200px></a></td></tr>");
+L.marker([-34.336568, 19.633068], {icon: Icon6}).addTo(map).bindPopup("<table><tr><th></th><th>6</th></tr><tr><th>Plant Name</th><td>Cichorium intybus</th></tr><tr><th>Field Note</th><td>A delicate plant and flower that is processed to make Chirory coffee!</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Co68g-3K1ln/><img src=img/6_2.png style=width:200px></a></td></tr>");
+L.marker([-33.964240, 18.476195], {icon: Icon7}).addTo(map).bindPopup("<table><tr><th></th><th>7</th></tr><tr><th>Plant Name</th><td>Carissa bispinosa</th></tr><tr><th>Field Note</th><td>The equally unassuming plant gives Hayden's grandmother num num berries for her homemade jelly</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CpKsOj9Kc4k/><img src=img/7_2.png style=width:200px></a></td></tr>");
+L.marker([-32.878118, 18.754549], {icon: Icon8}).addTo(map).bindPopup("<table><tr><th></th><th>8</th></tr><tr><th>Plant Name</th><td>Citrullus amarus</th></tr><tr><th>Field Note</th><td>Also a fruit, though far harder and less colourful</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cpak75aqqGX/><img src=img/8_2.png style=width:200px></a></td></tr>");
+L.marker([-33.953939, 18.479560], {icon: Icon9}).addTo(map).bindPopup("<table><tr><th></th><th>9</th></tr><tr><th>Plant Name</th><td>Passiflora edulis</th></tr><tr><th>Field Note</th><td>A spreading creeper with a delicious fruit. Tendrils were the noted feature</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CpkSPK3q1Ay/><img src=img/9_2.png style=width:200px></a></td></tr>");
+L.marker([55.965121, -3.209424], {icon: Icon10}).addTo(map).bindPopup("<table><tr><th></th><th>10</th></tr><tr><th>Plant Name</th><td>Lonicera sp.</th></tr><tr><th>Field Note</th><td>No tendrils but still clingy</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CqF65cPKoQU/><img src=img/10_2.png style=width:200px></a></td></tr>");
 
         // greenIconMarker.addTo(map);
 
