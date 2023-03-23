@@ -86,7 +86,7 @@
     popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
 });
 
-L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
+// L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
 
 var LeafIcon = L.Icon.extend({
     options: {
@@ -99,17 +99,24 @@ var LeafIcon = L.Icon.extend({
     }
 });
 
-var greenIcon = new LeafIcon({iconUrl: 'img/9-1.png'}),
-    redIcon = new LeafIcon({iconUrl: 'img/6-1.png'}),
-    orangeIcon = new LeafIcon({iconUrl: 'img/1-1.png'});
+var Icon1 = new LeafIcon({iconUrl: 'img/1_1.png'}),
+    Icon2 = new LeafIcon({iconUrl: 'img/2_1.png'}), 
+    Icon3 = new LeafIcon({iconUrl: 'img/3_1.png'}),
+    Icon4 = new LeafIcon({iconUrl: 'img/4_1.png'}),
+    Icon5 = new LeafIcon({iconUrl: 'img/5_1.png'}), 
+    Icon6 = new LeafIcon({iconUrl: 'img/6_1.png'}),
+    Icon7 = new LeafIcon({iconUrl: 'img/7_1.png'}),
+    Icon8 = new LeafIcon({iconUrl: 'img/8_1.png'});
 
     L.icon = function (options) {
     return new L.Icon(options);
 };
 
-L.marker([-34.000874, 18.539193], {icon: greenIcon}).addTo(map).bindPopup("<strong>1</strong><br>Brassica<br>Link: below<br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-1.png style=width:42px;height:42px></a>");
-L.marker([-34.336568, 19.633068], {icon: redIcon}).addTo(map).bindPopup("<strong>1</strong><br>Brassica<br>Link: below<br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-1.png style=width:42px;height:42px></a>");
-L.marker([-33.953949, 18.479610], {icon: orangeIcon}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
+L.marker([-33.953949, 18.479610], {icon: Icon1}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
+L.marker([-33.932297, 18.406977], {icon: Icon2}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
+L.marker([-33.970278, 18.473158], {icon: Icon3}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
+L.marker([-29.221518, 29.938130], {icon: Icon4}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
+L.marker([-33.968500, 18.470706], {icon: Icon5}).addTo(map).bindPopup("<strong>Punica granatum</strong><br><br><a href=https://www.instagram.com/p/CobzQQhtqeA/?next=%2F/><img src=img/1-2.png style=width:120px><br></a>");
 
 
         // greenIconMarker.addTo(map);
