@@ -60,7 +60,7 @@ tr:nth-child(1) {
 
       // 2. Add layers to the map
       const basemaps = {
-        Base: L.tileLayer(
+        Pear_ed_Map: L.tileLayer(
           "https://api.mapbox.com/styles/v1/hbmalan/clfkyawvn001n01pl1tgl0sw9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig",
           {
             attribution:
@@ -69,14 +69,8 @@ tr:nth-child(1) {
         <a href="https://carto.com/attribution">CARTO</a>',
           }
         ),
-        // CycleOSM: L.tileLayer(
-        //   " https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b67a28b0f9574b0f913b1fc42c26882f",
-        //   {
-        //     attribution: "&copy; CycleOSM contributors",
-        //   }
-        // ),
-        Aerial: L.tileLayer(
-          "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/1/1/0@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGZsa3FpbHcwMnYwNDJyMnNkcHBmMHRvIn0.d_proB0WFdSJvF0pULs3mg",
+        Aerial_Imagery: L.tileLayer(
+          "https://api.mapbox.com/styles/v1/hbmalan/clfmix3r6001r01mtvwcpjjfn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig",
           {
             attribution:
               '&copy; <a href="https://osm.org/copyright">\
@@ -84,12 +78,9 @@ tr:nth-child(1) {
         <a href="https://carto.com/attribution">CARTO</a>',
           }
         ),
-        // Places: L.tileLayer.wms("https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer", {
-        //   layers: "OSM-Overlay-WMS",
-        // }),
       };
 
-      basemaps.Base.addTo(map);
+      basemaps.Pear_ed_Map.addTo(map);
 
       L.control.layers(basemaps).addTo(map);
 
