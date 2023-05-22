@@ -54,12 +54,16 @@ tr:nth-child(1) {
 
       // All the code for the leaflet map will come here
       const map = L.map("map", {
-        center: [19.136609, -11.106701],
+        center: [-0.933011, -10.570593],
         zoom: 3,
         maxZoom: 19,
         minZoom: 2,
         scrollWheelZoom: true,
+        zoomControl: false
       });
+      L.control.zoom({
+    position: 'topright'
+}).addTo(map);
 
       // 2. Add layers to the map
       const basemaps = {
