@@ -24,7 +24,6 @@
       table {
       border-collapse: collapse;
       width: 100%;
-  
 }
 
 td, th {
@@ -39,22 +38,14 @@ tr:nth-child(1) {
   </head>
   <body>
     <div id="map"></div>
-
     <script
       src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
       crossorigin=""
     ></script>
     <script>
-      // TODO
-      // - [x] Add cycleOSM layer
-      // - [] Add strava layer (needs API key but otherwise should be easy with googling)
-      // - [] Make dots size relative to each other (clamped to between min and max)
-      // - [] and also possibly use the same method to clamp a PNG
-
-      // All the code for the leaflet map will come here
       const map = L.map("map", {
-        center: [-0.933011, -10.570593],
+        center: [-3.955243, -10.449662],
         zoom: 3,
         maxZoom: 19,
         minZoom: 2,
