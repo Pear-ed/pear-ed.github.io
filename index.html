@@ -19,8 +19,7 @@
         width: 100vw;
         height: 100vh;
       }
-      <meta name="viewport" content="width=device-width, initial-scale=4.0, maximum-scale=6.0, user-scalable=yes" 
-      }
+
       table {
       border-collapse: collapse;
       width: 100%;
@@ -52,6 +51,22 @@ tr:nth-child(1) {
         scrollWheelZoom: true,
         zoomControl: false
       });
+
+      // listen for screen resize events
+window.addEventListener('resize', function(event){
+    // get the width of the screen after the resize event
+    var width = document.documentElement.clientWidth;
+    // tablets are between 768 and 922 pixels wide
+    // phones are less than 768 pixels wide
+    if (width < 768) {
+        // set the zoom level to 10
+        map.setZoom(1);
+    }  else {
+        // set the zoom level to 8
+        map.setZoom(3);
+    }
+});
+
       L.control.zoom({
     position: 'topright'
 }).addTo(map);
