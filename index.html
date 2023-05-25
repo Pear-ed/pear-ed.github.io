@@ -51,7 +51,7 @@
         center: [-3.955243, -10.449662],
         zoom: 2.5,
         maxZoom: 19,
-        minZoom: 1.5,
+        minZoom: 2,
         scrollWheelZoom: true,
         zoomControl: false
       });
@@ -110,11 +110,9 @@ window.addEventListener('resize', function(event){
     iconUrl: '9-1.png',
     shadowUrl: 'leaf-shadow.png',
 
-    iconSize:     [38, 38], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [38, 38], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+    iconSize:     [32, 32], // size of the icon
+    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    popupAnchor:  [16, 16] // point from which the popup should open relative to the iconAnchor
 });
 
 // L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
