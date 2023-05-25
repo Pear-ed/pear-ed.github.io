@@ -56,28 +56,26 @@
         zoomControl: false
       });
       
-      function zoomMapForUser(map, features) {
-  if(window.innerWidth <= <mobile-width-desired>) {
-    map.setZoom(1);
-  } else if(window.innerWidth <= <mobile-width-tablet>) {
-    map.setZoom(2);
-  }
-}
+//       function zoomMapForUser(map, features) {
+//   if(window.innerWidth <= <mobile-width-desired>) {
+//     map.setZoom(1);
+//   } else if(window.innerWidth <= <mobile-width-tablet>) {
+//     map.setZoom(2);
+//   }
+// }
 
-//       // listen for screen resize events
-// window.addEventListener('resize', function(event){
-//     // get the width of the screen after the resize event
-//     var width = document.documentElement.clientWidth;
-//     // tablets are between 768 and 922 pixels wide
-//     // phones are less than 768 pixels wide
-//     if (width < 768) {
-//         // set the zoom level to 10
-//         map.setZoom(2);
-//     }  else {
-//         // set the zoom level to 8
-//         map.setZoom(3);
-//     }
-// });
+
+    var width = document.documentElement.clientWidth;
+    // tablets are between 768 and 922 pixels wide
+    // phones are less than 768 pixels wide
+    if (width < 768) {
+        // set the zoom level to 10
+        map.setZoom(1);
+    }  else {
+        // set the zoom level to 8
+        map.setZoom(3);
+    }
+});
 
       L.control.zoom({
     position: 'topright'
