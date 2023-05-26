@@ -12,13 +12,14 @@
     />
     <style type="text/css">
       body {
-        margin: 0;
-        padding: 0;
+          padding: 0;
+          margin: 0;
       }
-      #map {
-        width: 100vw;
-        height: 100vh;
+      html, body, #map {
+          height: 100%;
+          width: 100vw;
       }
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
       table {
       border-collapse: collapse;
@@ -49,12 +50,33 @@
     <script>
       const map = L.map("map", {
         center: [-3.955243, -10.449662],
+        setView: true,
         zoom: 2.5,
         maxZoom: 19,
         minZoom: 2,
         scrollWheelZoom: true,
         zoomControl: false
       });
+
+      map.locate({setView: true, maxZoom: 16});
+
+      function onLocationFound(e) {
+      var radius = e.accuracy;
+
+      L.marker(e.latlng).addTo(map)
+          .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+      L.circle(e.latlng, radius).addTo(map);
+       }
+
+      map.on('locationfound', onLocationFound);
+
+      function onLocationError(e) {
+      alert(e.message);
+      }
+
+      map.on('locationerror', onLocationError);
+
       
 //       function zoomMapForUser(map, features) {
 //   if(window.innerWidth <= <mobile-width-desired>) {
