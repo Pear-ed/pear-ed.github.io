@@ -1,0 +1,486 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "category": "urban",
+      "title": "ABN AMRO Innovation Hub",
+      "company": "OMA Architecture",
+      "role": "Innovation Consultant",
+      "duration": "2023 - 2024",
+      "status": "Under Construction",
+      "description": "Transformation of historic bank building into a sustainable innovation center",
+      "city": "Amsterdam",
+      "images": [
+        
+      ],
+      "instagram": "https://www.instagram.com/p/example3/",
+      "geometry": {
+        "coordinates": [
+          [52.3379718, 4.8737727], [52.3380308, 4.8763472], [52.3372967, 4.8764866],
+          [52.336792, 4.8768299], [52.3367724, 4.8739015], [52.3379718, 4.8737727]
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "category": "urban",
+      "title": "Zuidas Development",
+      "company": "Municipality of Amsterdam",
+      "role": "Urban Planning Lead",
+      "duration": "2024 - present",
+      "status": "In progress",
+      "description": "Major urban transformation of Amsterdam's business district, focusing on sustainable development and mixed-use spaces",
+      "city": "Amsterdam",
+      "images": [
+        
+      ],
+      "instagram": "https://www.instagram.com/p/example1/",
+      "geometry": {
+        "coordinates": [
+          [52.3414373, 4.8523743], [52.3422142, 4.8582235], [52.3410822, 4.8582599],
+          [52.3415261, 4.8681055], [52.3419478, 4.8772244], [52.3420366, 4.8854715],
+          [52.3447001, 4.8858348], [52.3443893, 4.8905214], [52.3420588, 4.8929556],
+          [52.3388403, 4.8924106], [52.3388181, 4.8943725], [52.3382631, 4.8943361],
+          [52.3380855, 4.900476], [52.3332017, 4.8931372], [52.3330907, 4.8892499],
+          [52.3345781, 4.8891772], [52.3345559, 4.8836913], [52.3348667, 4.8810755],
+          [52.3348608, 4.8692218], [52.332238, 4.8692582], [52.3321758, 4.8571748],
+          [52.3303531, 4.8572185], [52.3299352, 4.8547596], [52.3298774, 4.8466773],
+          [52.3317364, 4.8446722], [52.3330685, 4.8475787], [52.3371088, 4.8480873],
+          [52.3371532, 4.8493952], [52.3405273, 4.8488139], [52.3406569, 4.8495508],
+          [52.3423695, 4.8491772], [52.3427548, 4.8518788], [52.3414373, 4.8523743]
+        ]
+      }
+    },
+    {
+      "id": "17",
+      "category": "water",
+      "title": "Spaarnegasthuis Transformation",
+      "company": "MVRDV Architects",
+      "role": "Project Architect",
+      "duration": "2023 - 2025",
+      "status": "Design Phase",
+      "description": "Ecological transformation of historic hospital grounds into a water-integrated healing environment",
+      "city": "Amsterdam",
+      "images": [
+        "img/sg1.jpg",
+        "img/sg2.jpg",
+        "img/sg4.jpg", 
+        "img/sg6.jpg",
+        "img/sg7.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example2/",
+      "geometry": {
+        "coordinates": [
+          [52.3678745, 4.6529405], [52.3676715, 4.6538362], [52.3676387, 4.6540078],
+          [52.3676027, 4.6541044], [52.3675634, 4.6541151], [52.3674946, 4.6541258],
+          [52.3655002, 4.6541473], [52.3653037, 4.6541258], [52.3648943, 4.6541097],
+          [52.3646815, 4.6541205], [52.3646061, 4.654099], [52.3645734, 4.6540507],
+          [52.3645603, 4.6540132], [52.3645472, 4.6539488], [52.3645439, 4.6538845],
+          [52.364593, 4.6521789], [52.364616, 4.6519805], [52.3646315, 4.651706],
+          [52.3646389, 4.6514763], [52.3646553, 4.6507844], [52.3646553, 4.6506879],
+          [52.3646782, 4.6506074], [52.3647339, 4.6505538], [52.3647994, 4.6505163],
+          [52.3669379, 4.6495884], [52.3671279, 4.6493685], [52.3673473, 4.6490199],
+          [52.3674226, 4.6488912], [52.3674979, 4.6487785], [52.3675765, 4.6487303],
+          [52.3676617, 4.6488053], [52.3677042, 4.6488912], [52.3677697, 4.6490306],
+          [52.367832, 4.6491754], [52.3678811, 4.6494329], [52.3678778, 4.6496528],
+          [52.3678876, 4.6527742], [52.3678745, 4.6529405]
+        ]
+      }
+    },
+    
+    {
+      "id": "2",
+      "category": "transport",
+      "title": "Eenrichtingcarré",
+      "company": "Benthem Crouwel Architects",
+      "role": "Transport Infrastructure Lead",
+      "duration": "2023 - 2026",
+      "status": "Design Phase",
+      "description": "Integrated transport hub connecting multiple transit modes with public spaces",
+      "city": "Amsterdam",
+      "images": [
+        "img/1rc1.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example4/",
+      "geometry": {
+        "coordinates": [
+          [52.3415305, 4.8680232], [52.3419368, 4.8772053], [52.3412028, 4.8773769],
+          [52.3409276, 4.8772911], [52.3407048, 4.8771839], [52.3403377, 4.8771839],
+          [52.3386731, 4.8770766], [52.3379783, 4.8771195], [52.3376637, 4.8772268],
+          [52.3374409, 4.8772482], [52.3363922, 4.8778489], [52.335645, 4.878514],
+          [52.3350682, 4.8791147], [52.3348696, 4.8792938], [52.3348716, 4.8684523],
+          [52.338116, 4.8683664], [52.3398397, 4.8681626], [52.3415305, 4.8680232]
+        ]
+      }
+    },
+    {
+      "id": "3",
+      "category": "urban",
+      "title": "Verdi",
+      "company": "Amsterdam Municipality",
+      "role": "Urban Planning Lead",
+      "duration": "2023 - 2025",
+      "status": "In Progress",
+      "description": "Urban transformation project in Amsterdam Zuid",
+      "city": "Amsterdam",
+      "images": [
+
+      ],
+      "instagram": "https://www.instagram.com/p/example17/",
+      "geometry": {
+        "coordinates": [
+          [52.3422214, 4.8582224], [52.3410836, 4.8582806], [52.3410161, 4.857468],
+          [52.3401313, 4.8573179], [52.3359891, 4.857275], [52.3321612, 4.8571462],
+          [52.3303353, 4.8572185], [52.3299307, 4.8547378], [52.3298931, 4.8473956],
+          [52.3298931, 4.8466662], [52.3317445, 4.8446695], [52.3330871, 4.8475939],
+          [52.33711, 4.8480959], [52.3371544, 4.8494053], [52.3405212, 4.8487901],
+          [52.3406569, 4.8495581], [52.3424087, 4.8491762], [52.3427548, 4.8518497],
+          [52.341457, 4.8523735], [52.3422214, 4.8582224]
+        ]
+      }
+    },
+    {
+      "id": "5",
+      "category": "urban",
+      "title": "Bo-Kaap Cultural Center",
+      "company": "Studio MAS",
+      "role": "Cultural Design Lead",
+      "duration": "2023 - 2024",
+      "status": "In Progress",
+      "description": "Community-focused cultural center celebrating Bo-Kaap's heritage through art",
+      "city": "Cape Town",
+      "images": [
+        
+      ],
+      "instagram": "https://www.instagram.com/p/example5/",
+      "geometry": {
+        "coordinates": [
+          [-33.9203435, 18.4133015], [-33.9201626, 18.413479], [-33.9203588, 18.4137234],
+          [-33.9203756, 18.4137339], [-33.9203916, 18.4137401], [-33.9204142, 18.4137383],
+          [-33.9204284, 18.4137322], [-33.9204361, 18.4137181], [-33.9204427, 18.4136913],
+          [-33.9204645, 18.4134667], [-33.9203435, 18.4133015]
+        ]
+      }
+    },
+    {
+      "id": "6",
+      "category": "urban",
+      "title": "Springfield Water Management",
+      "company": "DHK Architects",
+      "role": "Water Systems Lead",
+      "duration": "2023 - 2025",
+      "status": "In Progress",
+      "description": "Innovative water management system integrating sustainable urban drainage solutions",
+      "city": "Cape Town",
+      "images": [
+       
+      ],
+      "instagram": "https://www.instagram.com/p/example6/",
+      "geometry": {
+        "coordinates": [
+          [-34.0028783, 18.4594724], [-34.0033754, 18.4593802], [-34.0031212, 18.4583001],
+          [-34.0008419, 18.4580681], [-34.0009991, 18.4587377], [-34.0011739, 18.4591067],
+          [-34.0013378, 18.4592385], [-34.0014361, 18.4593308], [-34.0015891, 18.459423],
+          [-34.0016983, 18.4594658], [-34.0017584, 18.4594658], [-34.0018841, 18.4594395],
+          [-34.0019687, 18.4594131], [-34.002078, 18.4594032], [-34.0021517, 18.4593934],
+          [-34.002444, 18.4593934], [-34.0026106, 18.4594164], [-34.0027963, 18.4594395],
+          [-34.0028783, 18.4594724]
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "category": "urban",
+      "title": "HOPE Youth Centre",
+      "company": "SAOTA Architects",
+      "role": "Ecological Design Lead",
+      "duration": "2024 - 2026",
+      "status": "Design Phase",
+      "description": "Waterfront development with focus on ecological restoration and public access",
+      "city": "Cape Town",
+      "images": [
+        "img/ho2.jpg",
+        "img/ho8.jpg",
+        "img/ho3.jpg",
+        "img/ho4.jpg",
+        "img/ho5.jpg",
+        "img/ho6.jpg",
+        "img/ho1.jpg",
+        "img/ho7.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example7/",
+      "geometry": {
+        "coordinates": [
+          [-33.95578, 18.647144], [-33.9557704, 18.6471045], [-33.9557294, 18.6470567],
+          [-33.9557103, 18.6470501], [-33.9551582, 18.6471292], [-33.9551651, 18.6472099],
+          [-33.9547866, 18.6472626], [-33.9548194, 18.6477634], [-33.9541724, 18.6478314],
+          [-33.9542359, 18.6481802], [-33.9548303, 18.6481143], [-33.9554056, 18.6480517],
+          [-33.9558401, 18.6480072], [-33.95578, 18.647144]
+        ]
+      }
+    },
+    {
+      "id": "8",
+      "category": "water",
+      "title": "Adderley Transit Corridor",
+      "company": "City of Cape Town",
+      "role": "Transport Planning Lead",
+      "duration": "2023 - 2025",
+      "status": "Under Construction",
+      "description": "Urban mobility corridor transformation enhancing public transport connectivity",
+      "city": "Cape Town",
+      "images": [
+        "img/ad1.jpg",
+        "img/ad3.jpg",
+        "img/ad5.jpg",
+        "img/ad6.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example8/",
+      "geometry": {
+        "coordinates": [
+          [-33.9167967, 18.4279835], [-33.9174157, 18.4288293], [-33.9205316, 18.4257564],
+          [-33.919826, 18.4248635], [-33.9167967, 18.4279835]
+        ]
+      }
+    },
+    {
+      "id": "9",
+      "category": "transport",
+      "title": "Somerset West Transport Hub",
+      "company": "Urban Dynamics",
+      "role": "Urban Design Lead",
+      "duration": "2024 - 2026",
+      "status": "Planning Phase",
+      "description": "Mixed-use development creating a new urban center for Somerset West",
+      "city": "Cape Town",
+      "images": [
+        "img/sw1.jpg",
+        "img/sw2.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example9/",
+      "geometry": {
+        "coordinates": [
+          [-34.0873178, 18.8508813], [-34.0853855, 18.8493956], [-34.0849013, 18.8502752],
+          [-34.0841062, 18.8495887], [-34.0835421, 18.8508062], [-34.0844838, 18.8515678],
+          [-34.0849413, 18.850656], [-34.0850368, 18.8507311], [-34.0853766, 18.8501331],
+          [-34.0861695, 18.8507525], [-34.0862695, 18.8505595], [-34.0871579, 18.8512084],
+          [-34.0873178, 18.8508813]
+        ]
+      }
+    },
+    {
+      "id": "10",
+      "category": "transport",
+      "title": "Langa Transport Corridor",
+      "company": "Local Studio",
+      "role": "Community Arts Lead",
+      "duration": "2023 - 2024",
+      "status": "In Progress",
+      "description": "Community-driven cultural center celebrating local arts and heritage",
+      "city": "Cape Town",
+      "images": [
+        "img/la2.jpg",
+        "img/la5.jpg",
+        "img/la3.jpg",
+        "img/la1.jpg",
+        "img/la4.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example10/",
+      "geometry": {
+        "coordinates": [
+          [-33.9395342, 18.5293487], [-33.9398375, 18.530305], [-33.9411093, 18.5294612],
+          [-33.9447377, 18.5293909], [-33.9448368, 18.5270985], [-33.9484418, 18.5229568],
+          [-33.9501159, 18.5229357], [-33.9501017, 18.5217971], [-33.9500867, 18.5215364],
+          [-33.9478351, 18.5216419], [-33.9436643, 18.5265219], [-33.9435885, 18.5283642],
+          [-33.9409459, 18.5284064], [-33.9395342, 18.5293487]
+        ]
+      }
+    },
+    {
+      "id": "11",
+      "category": "water",
+      "title": "Company Gardens Renewal",
+      "company": "City of Cape Town Parks",
+      "role": "Landscape Architect",
+      "duration": "2024 - 2025",
+      "status": "Design Phase",
+      "description": "Historic garden restoration with sustainable water management systems",
+      "city": "Cape Town",
+      "images": [
+        "img/cg1.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example11/",
+      "geometry": {
+        "coordinates": [
+          [-33.9280548, 18.4152198], [-33.9277916, 18.4154971], [-33.928022, 18.4158364],
+          [-33.9281052, 18.4158434], [-33.9283356, 18.4156096], [-33.9280548, 18.4152198]
+        ]
+      }
+    },
+    {
+      "id": "12",
+      "category": "water",
+      "title": "Design School, University of Cape Town",
+      "company": "Cape Peninsula University",
+      "role": "Educational Design Lead",
+      "duration": "2023 - 2025",
+      "status": "Under Construction",
+      "description": "New creative hub for design education and innovation",
+      "city": "Cape Town",
+      "images": [
+        "img/ds8.jpg",
+        "img/ds2.jpg",
+        "img/ds3.jpg",
+        "img/ds4.jpg",
+        "img/ds5.jpg",
+        "img/ds.jpg",
+        "img/ds1.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example12/",
+      "geometry": {
+        "coordinates": [
+          [-33.9552961, 18.4666534], [-33.9553705, 18.4666428], [-33.9554128, 18.4666235],
+          [-33.9554565, 18.4666059], [-33.9554769, 18.4665795], [-33.9555236, 18.4663879],
+          [-33.9555163, 18.4663739], [-33.9553617, 18.4663115], [-33.9553362, 18.4662825],
+          [-33.9553224, 18.4662359], [-33.955318, 18.4661594], [-33.9553151, 18.4660873],
+          [-33.9553136, 18.4660276], [-33.9553122, 18.4659221], [-33.955283, 18.4656812],
+          [-33.9552757, 18.4655178], [-33.955283, 18.4654351], [-33.9553151, 18.4653033],
+          [-33.9553836, 18.4651345], [-33.9554332, 18.4649921], [-33.9554769, 18.4648849],
+          [-33.9555163, 18.4648216], [-33.9555878, 18.4647636], [-33.9557452, 18.4647073],
+          [-33.9558298, 18.4646968], [-33.9559231, 18.4646863], [-33.9559815, 18.4646722],
+          [-33.9560019, 18.4645984], [-33.9560019, 18.4644964], [-33.9559698, 18.4644753],
+          [-33.9558823, 18.4644823], [-33.9556665, 18.464521], [-33.9553807, 18.464623],
+          [-33.955232, 18.4646652], [-33.9549841, 18.4647179], [-33.9548849, 18.4647179],
+          [-33.9547683, 18.4647741], [-33.9546283, 18.4648796], [-33.954567, 18.464971],
+          [-33.9547245, 18.4652629], [-33.9547799, 18.4653929], [-33.9549039, 18.4656267],
+          [-33.9550599, 18.4659484], [-33.9551693, 18.4661647], [-33.9552451, 18.4663545],
+          [-33.9552742, 18.4664811], [-33.9552845, 18.4665989], [-33.9552961, 18.4666534]
+        ]
+      }
+    },
+    {
+      "id": "13",
+      "category": "water",
+      "title": "MyCiti Spine Road Bus Depot",
+      "company": "Transport for Cape Town",
+      "role": "Transport Systems Engineer",
+      "duration": "2024 - 2026",
+      "status": "Planning Phase",
+      "description": "Integrated transport corridor linking key urban nodes",
+      "city": "Cape Town",
+      "images": [
+        "img/spi1.jpg",
+        "img/spi2.jpg",
+        "img/spi3.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example13/",
+      "geometry": {
+        "coordinates": [
+          [-34.0455584, 18.6473428], [-34.0448709, 18.6506125], [-34.0447602, 18.6512384],
+          [-34.0447719, 18.6517658], [-34.0447952, 18.6520259], [-34.044836, 18.6522509],
+          [-34.0449467, 18.6526939], [-34.0485474, 18.6527643], [-34.048559, 18.6515267],
+          [-34.0491183, 18.6506758], [-34.0455584, 18.6473428]
+        ]
+      }
+    },
+    {
+      "id": "14",
+      "category": "art",
+      "title": "Born First Born Free Exhibition",
+      "company": "Silo District",
+      "role": "Urban Design Lead",
+      "duration": "2023 - 2025",
+      "status": "In Progress",
+      "description": "Mixed-use urban development promoting sustainable living",
+      "city": "Cape Town",
+      "images": [
+        "img/bfbf-e1.jpg",
+        "img/bfbf-e2.jpg",
+        "img/bfbf-e3.jpg",
+        "img/bfbf-e4.jpg",
+        "img/bfbf-e5.jpg",
+        "img/bfbf-e6.jpg",
+        "img/bfbf-e7.jpg",
+        "img/bfbf-e8.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example14/",
+      "geometry": {
+        "coordinates": [
+          [-33.9090767, 18.4234245], [-33.9091132, 18.4234808], [-33.9091789, 18.423414],
+          [-33.9091439, 18.4233595], [-33.9090767, 18.4234245]
+        ]
+      }
+    },
+    {
+      "id": "15",
+      "category": "water",
+      "title": "Pear_ed Hypothesis 3",
+      "company": "Ensō House",
+      "role": "Sustainability Consultant",
+      "duration": "2024 - 2026",
+      "status": "Design Phase",
+      "description": "Sustainable waterfront development with ecological focus",
+      "city": "London",
+      "images": [
+        "img/pe-l1.jpg",
+        "img/pe-l2.jpg",
+        "img/pe-l3.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example15/",
+      "geometry": {
+        "coordinates": [
+          [51.5075624, -0.1022655], [51.5075635, -0.1022207], [51.5075793, -0.1022207],
+          [51.507581, -0.1020669], [51.507314, -0.1020432], [51.5073096, -0.1022436],
+          [51.5075624, -0.1022655]
+        ]
+      }
+    },
+    {
+      "id": "16",
+      "category": "art",
+      "title": "Born First Born Free Book",
+      "company": "BFBF Studio",
+      "role": "Publication Design",
+      "duration": "2023 - 2024",
+      "status": "In Progress",
+      "description": "Architectural publication showcasing BFBF's design philosophy and projects",
+      "city": "Cape Town",
+      "images": [
+      
+      ],
+      "instagram": "https://www.instagram.com/p/example16/",
+      "geometry": {
+        "coordinates": [
+            [-33.927413, 18.4239378],
+            [-33.9273707, 18.4239857],
+            [-33.9273985, 18.4240231],
+            [-33.9274395, 18.4239743],
+            [-33.927413, 18.4239378]          
+        ]
+      }
+    },
+    {
+      "id": "18",
+      "category": "art",
+      "title": "Pear_ed Hypotheses 1+2",
+      "company": "Amsterdam Municipality",
+      "role": "Urban Design Lead",
+      "duration": "2023 - 2025",
+      "status": "In Progress",
+      "description": "Urban transformation project in Amsterdam Zuid",
+      "city": "Cape Town",
+      "images": [
+        "img/pe-a1.jpg",
+        "img/pe-a2.jpg",
+        "img/pe-a3.jpg"
+      ],
+      "instagram": "https://www.instagram.com/p/example18/",
+      "geometry": {
+        "coordinates": [
+          [ -33.9274062, 18.4239192 ], [ -33.9273146, 18.4240213 ], [ -33.9275186, 18.4243 ],
+          [ -33.9276076, 18.4242021 ], [ -33.9274062, 18.4239192 ] 
+        ]
+      }
+    }
+  ]
+} 

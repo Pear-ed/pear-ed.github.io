@@ -2,219 +2,1248 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Pear_ed Cuttings Map</title>
-    <link rel="icon" type="image/x-icon" href="img/0_0.png">
+    <title>Hayden Malan</title>
+    <link rel="icon" href="favicon-hm.png">
+    <link rel="mask-icon" href="favicon-hm.svg" color="#000000">
+    <link rel="shortcut icon" href="favicon-hm.png">
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-      crossorigin=""
     />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <style type="text/css">
+      /* Base Styles & Font Declarations */
+    
+      @font-face {
+        font-family: 'GT Walsheim';
+        src: url('fonts/GT-Walsheim-Pro-Trial-Regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Centra No2';
+        src: url('fonts/CentraNo2-Book.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+      }
+      
+      * {
+        font-family: 'Centra No2';
+        font-weight: 400;
+
+        color: #1e110b;
+      }
+
       body {
         margin: 0;
         padding: 0;
-      }
-      #map {
-        width: 90vw;
-        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: hidden;
       }
 
-      table {
-      border-collapse: collapse;
-      width: 100%;
-  }
+      /* Header Styles */
+      .header-container {
+        padding: 20px;
+        text-align: left;
+        position: absolute;
+        z-index: 1000;
+        width: 100%;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .header-container h1 {
+        font-size: 28px;
+        margin: 0;
+       
+      }
+
+      .header-container p {
+        font-size: 14px;
+        margin: 0;
+        
+      }
+
+      .about-text {
+          font-size: 14px !important;
+          max-width: 30vw;
+          line-height: 1.4;
+          margin-top: 8px;
+          opacity: 0.85;
+      }
+
+      /* Toggle button */
+      .about-toggle {
+          background: none;
+          border: none;
+          font-size: 14px;
+          cursor: pointer;
+          padding: 5px 0;
+          margin-top: 5px;
+          text-align: left;
+          color: #000;
+          pointer-events: auto;
+          font-family: 'GT Walsheim';
+      }
+
+      .about-toggle:hover {
+          text-decoration: underline;
+      }
+
+      .about-container {
+          max-height: 300px;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
+      }
+
+      .about-container.collapsed {
+          max-height: 0;
+      }
+
+      .about-text {
+          font-size: 14px;
+          max-width: 30vw;
+          line-height: 1.4;
+          margin-top: 8px;
+          opacity: 0.85;
+      }
+
+      /* Map & Container Styles */
+      .container {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        left: -40vw;
+        width: 150vw;
+        height: 100vh;
+        z-index: 1;
+      }
+
+      /* Leaflet Popup Styles */
       .leaflet-popup-content {
       max-width: 200px;
+        font-family: 'GT America Mono', monospace;
+        margin: 16px;
+      }
+
+      .leaflet-popup-content p {
+        margin: 0;
+      }
+
+      .leaflet-popup-content h3 {
+        font-size: 1.2em;
+        text-decoration: underline;
+        margin: 0;
+        margin-bottom: 4px;
+      }
+
+      .leaflet-popup-close-button {
+        display: none !important;
+      }
+
+      .leaflet-popup-content-wrapper {
+        border-radius: 8px;
+      }
+      .leaflet-popup-tip {
+        border-radius: 2px; 
+      }
+
+      /* Cluster Marker Styles */
+      .marker-cluster {
+        background-clip: padding-box;
+        border-radius: 15px;
+        background-color: transparent !important;
+        box-shadow: none !important;
+      }
+
+      .marker-cluster-small,r
+      .marker-cluster-medium,
+      .marker-cluster-large {
+        background-color: transparent !important;
+      }
+
+      .marker-cluster-small div,
+      .marker-cluster-medium div,
+      .marker-cluster-large div {
+        background-color: #9BBDE0 !important; 
+        color: #000 !important;
+        border-radius: 50% !important;
+        width: 30px !important;
+        height: 30px !important;
+        margin-left: 2px !important;
+        margin-top: 2px !important;
+        text-align: center !important;
+        line-height: 30px !important;
+        font-family: 'GT Walsheim' !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: none !important;
+      }
+
+      .marker-cluster div span {
+        font-family: 'GT Walsheim' !important;
+        font-size: 13px !important;
+        line-height: 1 !important;
+        display: block !important;
+      }
+
+      /* Sidebar Styles */
+      .sidebar {
+        position: absolute;
+        top: 0;
+        height: 100vh;
+        width: 400px;
+        overflow-y: hidden;
+        padding: 0;
+        padding-left: 40px;
+        padding-right: 20px;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        transition: right 0.5s ease;
+      }
+
+      .sidebar-toggle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: rotate(180deg);
+        width: 20px;
+        height: 100%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-size: 15px;
+        margin-left: 8px;
+      }
+
+      .sidebar-content {
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        padding-top: 20px;
+        padding-left: 0;
+        padding-bottom: 60px;
+        scroll-margin-top: 20px;
+      }
+
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .sidebar-content::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Adjust h2 positioning */
+      .sidebar-content h2 {
+        margin-top: 0;
+      }
+
+      /* Sidebar Category-Specific Styles */
+      #sidebar-art { right: -370px; background: var(--art-color); z-index: 5; }
+      #sidebar-water { right: -330px; background: var(--water-color); z-index: 4; }
+      #sidebar-transport { right: -290px; background: var(--transport-color); z-index: 3; }
+      #sidebar-urban { right: -250px; background: var(--urban-color); z-index: 2; }
+
+      /* Sidebar Open States */
+      #sidebar-art.open { right: 0px; }
+      #sidebar-water.open { right: 70px; }
+      #sidebar-transport.open { right: 110px; }
+      #sidebar-urban.open { right: 145px; }
+
+      /* Sidebar Hover States */
+      #sidebar-art:not(.open):hover { right: -365px; }
+      #sidebar-water:not(.open):hover { right: -325px; }
+      #sidebar-transport:not(.open):hover { right: -285px; }
+      #sidebar-urban:not(.open):hover { right: -245px; }
+
+      /* Project Card Styles */
+      .project-card {
+        border: none;
+        margin-bottom: 20px;
+        padding: 15px;
+        padding-right: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 6px;
+        background: #ffffff3c;
+      }
+
+      .project-card:hover {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+      }
+
+      .project-card h3 {
+        font-size: 14px !important;
+        margin: 0 0 6px 0px;
+        padding-bottom: 5px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        text-decoration: underline;
+      }
+
      
+
+      .project-card:last-child {
+        margin-bottom: 60px;
+      }
+
+      .project-details p {
+        font-size: 0.8em;
+        margin: 5px 0;
+        line-height: 1.2;
+      }
+
+      .project-details h3 {
+        font-size: 1.1em;
+      }
+
+      .project-details a {
+        font-size: 11px;
+      }
+
+      /* Gallery Styles */
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+        margin-bottom: 4px;
+      }
+
+      .gallery-item {
+        width: 80px;
+        flex-shrink: 0;
+        margin-bottom: -2px;
+        margin-top: 0px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 0px;
+      }
+
+      .sl-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        will-change: backdrop-filter;
+      }
+
+      /* Welcome Overlay Styles */
+      .welcome-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        cursor: pointer;
+        transition: opacity 0.5s ease;
+      }
+
+      .welcome-text {
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        margin-right: 8rem;
+        padding: 20px;
+      }
+
+      /* Nav Button Styles */
+      .nav-button {
+        position: absolute;
+        z-index: 1000;
+        padding: 10px 15px;
+        background: none;
+        cursor: pointer;
+        font-family: 'GT Walsheim';
+        font-size: 12px;
+        border: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-button:hover {
+        text-decoration: underline;
+      }
+
+      #amsterdam-button {
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      #capetown-button {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Add these media queries after your existing CSS */
+      @media screen and (max-width: 768px) {
+        /* Map adjustments */
+        #map {
+          height: 100vh;
+          width: 100vw;
+          left: 0;
+          width: 100vw;
+        }
+
+        .about-text {
+              font-size: 12px;
+              max-width: 90%;
+          }
+
+        /* Sidebar adjustments */
+        .sidebar {
+          position: fixed;
+          top: auto;
+          left: 0;
+          right: 0;
+          width: 100%;
+          padding: 20px;
+          padding-bottom: 400px; /* Add substantial padding at the bottom */
+          transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother animation */
+          overflow-y: auto;
+          touch-action: none; /* Prevent default touch behavior */
+        }
+
+        /* Adjust sidebar positions */
+        #sidebar-art { top: 92vh; }
+        #sidebar-water { top: 85vh; }
+        #sidebar-transport { top: 78vh; }
+        #sidebar-urban { top: 71vh; }
+
+        /* Sidebar open states */
+        #sidebar-art.open { top: 30vh; }
+        #sidebar-water.open { top: 30vh; }
+        #sidebar-transport.open { top: 30vh; }
+        #sidebar-urban.open { top: 30vh; }
+
+        /* Remove hover states */
+        #sidebar-art:not(.open):hover { right: 0; }
+        #sidebar-water:not(.open):hover { right: 0; }
+        #sidebar-transport:not(.open):hover { right: 0; }
+        #sidebar-urban:not(.open):hover { right: 0; }
+
+        /* Toggle button adjustments */
+        .sidebar-toggle {
+          position: relative;
+          height: 20px;
+          width: 100%;
+          writing-mode: horizontal-tb;
+          transform: none;
+          margin: 0;
+          margin-top: -5px;
+          margin-bottom: 30px;
+          display: flex;
+          justify-content: left;
+          background: inherit;
+          z-index: 1002;
+          cursor: pointer;
+          font-size: 14px !important;
+          touch-action: none;
+          user-select: none;
+          -webkit-user-select: none;
+        }
+
+        .sidebar h2 {
+            display: none; /* Hide category headings on mobile */
+        }
+
+        .sidebar {
+            transition: top 0.3s ease-out; /* Smooth animation for opening/closing */
+        }
+
+        /* Project cards adjustments */
+        .project-card {
+          margin-bottom: 20px;
+          max-width: 82%;
+        }
+
+        #sidebar-art .project-card:last-child{
+          margin-bottom: 150px; /* Add significant margin to last card */
+        }
+        #sidebar-water .project-card:last-child{
+          margin-bottom: 200px; /* Add significant margin to last card */
+        }
+        #sidebar-transport .project-card:last-child{
+          margin-bottom: 250px; /* Add significant margin to last card */
+        }
+        #sidebar-urban .project-card:last-child {
+            margin-bottom: 300px; /* Add significant margin to last card */
+        }
+
+        /* Gallery adjustments */
+        .gallery {
+          gap: 5px;
+          justify-content: flex-start; /* Ensure items start from the left */
+        }
+
+        .gallery-item {
+          width: 70px;
+          margin-bottom: 5px; /* Smaller margin for mobile */
+        }
+
+        .gallery-item img {
+          height: 70px;
+        }
+
+        /* Header adjustments */
+        .header-container {
+          margin: 10px;
+          padding: 10px;
+        }
+
+        .header-container h1 {
+          font-size: 24px;
+        }
+
+        .header-container p {
+          font-size: 14px;
+        }
+
+        /* Navigation button adjustments */
+        .nav-button {
+          font-size: 13px;
+          padding: 8px 12px;
+        }
+
+        #amsterdam-button {
+          top: 80px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        #capetown-button {
+          bottom: 30vh;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .welcome-text {
+            font-size: 14px; /* Smaller text for mobile */
+            padding: 20px;
+            margin-top: -100px; /* Move text up */
+            margin-right: 0px;
+        }
+
+        .leaflet-control-zoom {
+            display: none; /* Hide zoom controls on mobile */
+        }
+
+        .about-text {
+            font-size: 12px;
+            max-width: 90%;
+        }
+
+        .about-text {
+            max-width: 80vw !important;
+        }
+      }
+
+      /* Add styles for smaller phones */
+      @media screen and (max-width: 375px) {
+        .sidebar-toggle {
+          font-size: 12px;
+        }
+
+        .gallery-item {
+          width: 60px;
+        }
+
+        .gallery-item img {
+          height: 60px;
+        }
   }
 
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 5px;
-  }
-  tr:nth-child(1) {
-    background-color: #ebf394b4;
-  }
-      </style>
+      
+
+    </style>
     </head>
+
   <body>
+    <link rel="icon" href="img/favicon-hm.png" />
+    <div class="header-container">
+        <h1>hayden malan</h1>
+        <p>Landscape architecture practice.</p>
+        <button class="about-toggle">About ↓</button>
+        <div class="about-container collapsed">
+            <p class="about-text">I'm a landscape architect with a passion for sustainable design, 
+              focusing on urban transformation, water systems, and ecological integration. 
+              My work spans across the Netherlands and South Africa, creating spaces that connect 
+              people with their environment.
+              <br>
+              <br>
+              Website and design: Andrea Albiac.
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="sidebar-art" class="sidebar">
+            <div class="sidebar-toggle">Art practice</div>
+            <div class="sidebar-content">
+              <h2>Art practice</h2>
+              <div class="project-list art-list"></div>
+            </div>
+          </div>
+            
+        </div>
+        <div id="sidebar-water" class="sidebar">
+            <div class="sidebar-toggle">Water and ecology</div>
+            <div class="sidebar-content">
+              <h2>Water and ecology</h2>
+              <div class="project-list water-list"></div>
+            </div>
+        </div>
+        
+        <div id="sidebar-transport" class="sidebar">
+            <div class="sidebar-toggle">Transport systems</div>
+            <div class="sidebar-content">
+              <h2>Transport systems</h2>
+              <div class="project-list transport-list"></div>
+            </div>
+        </div>
+        <div id="sidebar-urban" class="sidebar">
+            <div class="sidebar-toggle">Urban transformation</div>
+            <div class="sidebar-content">
+              <h2>Urban transformation</h2>
+              <div class="project-list urban-list"></div>
+            </div>
+        </div>
     <div id="map"></div>
+    </div>
+
     <script
       src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-      crossorigin=""
     ></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.js"></script>
+    
     <script>
+      // Move createCustomPanes function definition to the top
+      function createCustomPanes() {
+          // Create custom panes for each project, higher number = higher z-index
+          for (let i = 1; i <= 20; i++) {
+              map.createPane(`project${i}`);
+              map.getPane(`project${i}`).style.zIndex = 400 + (21 - i); // Reverse the order so ID 1 has highest z-index
+          }
+      }
+
       const map = L.map("map", {
-        center: [-3.955243, 39.414112],
-        zoom: 2.5,
+        center: window.innerWidth <= 768 ? [52.3388, 4.8725] : [52.3388, 4.8725],
+        zoom: window.innerWidth <= 768 ? 9 : 10,
         maxZoom: 19,
         minZoom: 2,
         scrollWheelZoom: true,
         zoomControl: false
       });
-      
-//       function zoomMapForUser(map, features) {
-//   if(window.innerWidth <= <mobile-width-desired>) {
-//     map.setZoom(1);
-//   } else if(window.innerWidth <= <mobile-width-tablet>) {
-//     map.setZoom(2);
-//   }
-// }
 
-
-//     var width = document.documentElement.clientWidth;
-//     // tablets are between 768 and 922 pixels wide
-//     // phones are less than 768 pixels wide
-//     if (width < 768) {
-//         // set the zoom level to 10
-//         map.setZoom(1);
-//     }  else {
-//         // set the zoom level to 8
-//         map.setZoom(3);
-//     }
-// });
+      // Create panes immediately after map initialization
+      createCustomPanes();
 
       L.control.zoom({
     position: 'topright'
 }).addTo(map);
 
-      // 2. Add layers to the map
-      const basemaps = {
-        Pear_ed_Map: L.tileLayer(
-          "https://api.mapbox.com/styles/v1/hbmalanhbmalan/clzdyq5jt00d001qqaqyy80iw/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbmhibWFsYW4iLCJhIjoiY2x6ZHNlZ3MzMG1reTJrczhxZTgyeWo0NSJ9.4QknS0vpgvqLHCRB5VOiTQ",
+      // Mapbox layer
+      const mapLayer = L.tileLayer(
+          "https://api.mapbox.com/styles/v1/hbmalanhbmalan/cm85r0yca005w01s91hqfekwm/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbmhibWFsYW4iLCJhIjoiY2x6ZHNlZ3MzMG1reTJrczhxZTgyeWo0NSJ9.4QknS0vpgvqLHCRB5VOiTQ",
           {
             attribution:
-              '&copy; <a href="https://osm.org/copyright">\
-        Mapbox</a> contributors, &copy;\
-        <a href="https://carto.com/attribution">CARTO</a>',
+                  '&copy; <a href="https://osm.org/copyright">Mapbox</a> contributors'
           }
-        ),
-        Aerial_Imagery: L.tileLayer(
-          "https://api.mapbox.com/styles/v1/hbmalan/clfmix3r6001r01mtvwcpjjfn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbiIsImEiOiJjbGE5bmRlaG0wMDcxM29vZGkxdHdwdWtoIn0.SlojqWCvWwS-FcAuO0hLig",
-          {
-            attribution:
-              '&copy; <a href="https://osm.org/copyright">\
-        Mapbox</a> contributors, &copy;\
-        <a href="https://carto.com/attribution">CARTO</a>',
-          }
-        ),
+      ).addTo(map);
+
+      // Color definitions for categories
+      const categoryColors = {
+          'art': '#D96C3D',    // orange (for Art practice)
+          'water': '#F1A4A9',    // pink (unchanged)
+          'transport': '#DFE641', // green (unchanged)
+          'urban': '#757A9E'       // bluish grey (for Urban transformation)
       };
 
-      basemaps.Pear_ed_Map.addTo(map);
+      // Update CSS variables
+      document.documentElement.style.setProperty('--urban-color', categoryColors.urban);
+      document.documentElement.style.setProperty('--water-color', categoryColors.water);
+      document.documentElement.style.setProperty('--transport-color', categoryColors.transport);
+      document.documentElement.style.setProperty('--art-color', categoryColors.art);
 
-      L.control.layers(basemaps).addTo(map);
 
-      var greenIcon = L.icon({
-    iconUrl: '9-1.png',
-    shadowUrl: 'leaf-shadow.png',
+      // Common polygon style function - now takes a color parameter and ID
+      function getPolygonStyle(color, projectId) {
+          return {
+              pane: `project${projectId}`,
+              color: color,
+              weight: 2,              
+              fillColor: color,
+              fillOpacity: 0.3
+          };
+      }
 
-    iconSize:     [32, 32], // size of the icon
-    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
-    popupAnchor:  [16, 16] // point from which the popup should open relative to the iconAnchor
-});
+      // Create a marker cluster group with custom options
+      var markers = L.markerClusterGroup({
+          maxClusterRadius: 40,
+          iconCreateFunction: function(cluster) {
+              var childCount = cluster.getChildCount();
+              return new L.DivIcon({
+                  html: '<div><span>' + childCount + '</span></div>',
+                  className: 'marker-cluster marker-cluster-small',
+                  iconSize: new L.Point(30, 30)
+              });
+          },
+          disableClusteringAtZoom: 10,
+          spiderfyOnMaxZoom: false,
+          showCoverageOnHover: false,
+          zoomToBoundsOnClick: true
+      });
 
-// L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
+      // Update the lightbox configuration
+      const lightboxConfig = {
+          showCounter: false,
+          captions: false,
+          animationSpeed: 0,
+          fadeSpeed: 0,
+          animationSlide: false,
+          spinner: true,
+          preloading: true,
+          enableKeyboard: true,
+          scrollZoom: true,
+          close: false,
+          overlay: true,
+          disableScroll: false,
+          closeOnOverlayClick: true,
+      };
 
-var LeafIcon = L.Icon.extend({
-    options: {
-        // shadowUrl: 'leaf-shadow.png',
-        iconSize:     [38, 38],
-        // shadowSize:   [50, 64],
-        iconAnchor:   [0, 0],
-        // shadowAnchor: [4, 62],
-        popupAnchor:  [19, 0]
-    }
-});
+      // Replace the static mapFlyConfig with this function
+      function getMapFlyConfig(currentCenter, targetCenter, currentZoom = null, targetZoom = null) {
+          // Calculate distance between points using the Haversine formula
+          const R = 6371; // Earth's radius in kilometers
+          const lat1 = currentCenter.lat * Math.PI / 180;
+          const lat2 = targetCenter[0] * Math.PI / 180;
+          const dLat = (targetCenter[0] - currentCenter.lat) * Math.PI / 180;
+          const dLon = (targetCenter[1] - currentCenter.lng) * Math.PI / 180;
 
-var Icon1 = new LeafIcon({iconUrl: 'img/1_1.png'}),
-    Icon2 = new LeafIcon({iconUrl: 'img/2_1.png'}), 
-    Icon3 = new LeafIcon({iconUrl: 'img/3_1.png'}),
-    Icon4 = new LeafIcon({iconUrl: 'img/4_1.png'}),
-    Icon5 = new LeafIcon({iconUrl: 'img/5_1.png'}), 
-    Icon6 = new LeafIcon({iconUrl: 'img/6_1.png'}),
-    Icon7 = new LeafIcon({iconUrl: 'img/7_1.png'}),
-    Icon8 = new LeafIcon({iconUrl: 'img/8_1.png'}),
-    Icon9 = new LeafIcon({iconUrl: 'img/9_1.png'}),
-    Icon10 = new LeafIcon({iconUrl: 'img/10_1.png'});
-    Icon11 = new LeafIcon({iconUrl: 'img/11_1.png'});
-    Icon12 = new LeafIcon({iconUrl: 'img/12_1.png'});
-    Icon13 = new LeafIcon({iconUrl: 'img/13_1.png'});
-    Icon14 = new LeafIcon({iconUrl: 'img/14_1.png'});
-    Icon15 = new LeafIcon({iconUrl: 'img/15_1.png'});
-    Icon16 = new LeafIcon({iconUrl: 'img/16_1.png'});
-    Icon17 = new LeafIcon({iconUrl: 'img/17_1.png'});
-    Icon18 = new LeafIcon({iconUrl: 'img/18_1.png'});
-    Icon19 = new LeafIcon({iconUrl: 'img/19_1.png'});
-    Icon20 = new LeafIcon({iconUrl: 'img/20_1.png'});
-    Icon21 = new LeafIcon({iconUrl: 'img/21_1.png'});
-    Icon22 = new LeafIcon({iconUrl: 'img/22_1.png'});
-    Icon23 = new LeafIcon({iconUrl: 'img/23_1.png'});
-    Icon24 = new LeafIcon({iconUrl: 'img/24_1.png'});
-    Icon25 = new LeafIcon({iconUrl: 'img/25_1.png'});
-    Icon26 = new LeafIcon({iconUrl: 'img/26_1.png'});
-    Icon27 = new LeafIcon({iconUrl: 'img/27_1.png'});
-    Icon28 = new LeafIcon({iconUrl: 'img/28_1.png'});
-    Icon29 = new LeafIcon({iconUrl: 'img/29_1.png'});
-    Icon30 = new LeafIcon({iconUrl: 'img/30_1.png'});
-    Icon31 = new LeafIcon({iconUrl: 'img/31_1.png'});
-    Icon32 = new LeafIcon({iconUrl: 'img/32_1.png'});
-    Icon33 = new LeafIcon({iconUrl: 'img/33_1.png'});
-    Icon34 = new LeafIcon({iconUrl: 'img/34_1.png'});
-    Icon35 = new LeafIcon({iconUrl: 'img/35_1.png'});
-    Icon36 = new LeafIcon({iconUrl: 'img/36_1.png'});
-    Icon37 = new LeafIcon({iconUrl: 'img/37_1.png'});
-    Icon38 = new LeafIcon({iconUrl: 'img/38_1.png'});
-    Icon39 = new LeafIcon({iconUrl: 'img/39_1.png'});
-    Icon40 = new LeafIcon({iconUrl: 'img/40_1.png'});
+          const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1) * Math.cos(lat2) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+          const distance = R * c;
+
+          // Calculate zoom difference if zoom levels are provided
+          const zoomDiff = currentZoom && targetZoom ? Math.abs(targetZoom - currentZoom) : 0;
+          
+          // Adjust duration calculation for distance
+          // Make it faster for close points (under 100km) but maintain smooth transitions for longer distances
+          const distanceDuration = distance < 10 
+              ? Math.max(0.4, distance / 200)  // Faster for close points
+              : Math.min(3.5, Math.max(2, distance / 1000)); // Original calculation for distant points
+          
+          const zoomDuration = Math.min(2.5, Math.max(0.4, zoomDiff * 0.3)); // Slightly faster zoom
+          
+          // Use the longer of the two durations
+          const duration = Math.max(distanceDuration, zoomDuration);
+          
+          return {
+              duration: duration,
+              easeLinearity: 0.25,
+              animate: true,
+              noMoveStart: true
+          };
+      }
+
+      // Add this near mapFlyConfig
+      const navFlyConfig = {
+          duration: 3,        // Faster duration for nav buttons
+          easeLinearity: 0.5,   // More linear movement
+          animate: true,
+          noMoveStart: true
+      };
+
+      // Add these functions at the start of your script section
+      function getMarkerStyle(categoryColor, projectId) {
+          return {
+              pane: `project${projectId}`,
+              radius: 8,
+              fillColor: categoryColor,
+              color: categoryColor,
+              weight: 2,              
+              opacity: 1,
+              fillOpacity: 1
+          };
+      }
+
+      // Update the handleSidebarOpen function to work better on mobile
+      function handleSidebarOpen(category) {
+          const isMobile = window.innerWidth <= 768;
+          const sidebar = document.getElementById(`sidebar-${category}`);
+          
+          // Close all sidebars first
+          document.querySelectorAll('.sidebar').forEach(sb => {
+              sb.classList.remove('open');
+              
+              // Reset mobile sidebar positions
+              if (isMobile) {
+                  const positions = {
+                      'sidebar-art': '92vh',
+                      'sidebar-water': '85vh',
+                      'sidebar-transport': '78vh',
+                      'sidebar-urban': '71vh'
+                  };
+                  sb.style.top = positions[sb.id];
+              }
+          });
+          
+          // Open the selected sidebar
+          if (sidebar) {
+              sidebar.classList.add('open');
+              
+              // Set mobile sidebar position
+              if (isMobile) {
+                  sidebar.style.top = '100px';
+              }
+          }
+      }
+
+      // Update the map click handler to properly close sidebars on mobile
+      map.on('click', function(e) {
+          const isMobile = window.innerWidth <= 768;
+          
+          // Only close sidebars if clicking directly on the map
+          document.querySelectorAll('.sidebar').forEach(sidebar => {
+              sidebar.classList.remove('open');
+              
+              // Reset mobile sidebar positions
+              if (isMobile) {
+                  const positions = {
+                      'sidebar-art': '92vh',
+                      'sidebar-water': '85vh',
+                      'sidebar-transport': '78vh',
+                      'sidebar-urban': '71vh'
+                  };
+                  sidebar.style.top = positions[sidebar.id];
+              }
+          });
+      });
+
+      // Update the function that creates markers and polygons
+      function addPolygonAndMarker(coords, popupContent, projectid, category) {
+          const categoryColor = categoryColors[category];
+          const projectId = parseInt(projectid);
+          
+          let centerLat = (coords[0][0] + coords[2][0]) / 2;
+          let centerLng = (coords[0][1] + coords[2][1]) / 2;
+          
+          // Common click handler function for both polygon and markers
+          const handleElementClick = function(e) {
+              if (e.originalEvent) e.originalEvent.stopPropagation();
+              
+              // Open the sidebar
+              handleSidebarOpen(category);
+              
+              // Find and scroll to the corresponding project card
+              const projectCard = document.getElementById(`project-${projectId}`).closest('.project-card');
+              if (projectCard) {
+                  // Get the parent sidebar content
+                  const sidebarContent = document.querySelector(`#sidebar-${category} .sidebar-content`);
+                  if (sidebarContent) {
+                      setTimeout(() => {
+                          projectCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }, 300);
+                  }
+              }
+              
+              if (window.innerWidth <= 768) {
+                  this.openPopup();
+              }
+              
+              const currentZoom = map.getZoom();
+              if (currentZoom < 15) {
+                  const currentCenter = map.getCenter();
+                  const flyConfig = getMapFlyConfig(currentCenter, [centerLat, centerLng], currentZoom, 15);
+                  map.flyTo([centerLat, centerLng], 15, flyConfig);
+              }
+          };
+          
+          let polygon = L.polygon(coords, getPolygonStyle(categoryColor, projectId))
+              .on('click', handleElementClick)
+              .on('mouseover', function(e) {
+                  if (window.innerWidth > 768) {
+                      this.openPopup();
+                  }
+              })
+              .on('mouseout', function(e) {
+                  if (window.innerWidth > 768) {
+                      this.closePopup();
+                  }
+              })
+              .bindPopup(popupContent);
+          
+          let visibleMarker = L.circleMarker([centerLat, centerLng], getMarkerStyle(categoryColor, projectId))
+              .on('click', handleElementClick)
+              .on('mouseover', function(e) {
+                  if (window.innerWidth > 768) {
+                      this.openPopup();
+                  }
+              })
+              .on('mouseout', function(e) {
+                  if (window.innerWidth > 768) {
+                      this.closePopup();
+                  }
+              })
+              .bindPopup(popupContent);
+          
+          visibleMarker.addTo(map);
+          
+          let clusterMarker = L.circleMarker([centerLat, centerLng], getMarkerStyle(categoryColor, projectId))
+              .on('click', handleElementClick)
+              .on('mouseover', function(e) {
+                  if (window.innerWidth > 768) {
+                      this.openPopup();
+                  }
+              })
+              .on('mouseout', function(e) {
+                  if (window.innerWidth > 768) {
+                      this.closePopup();
+                  }
+              })
+              .bindPopup(popupContent);
+          
+          markers.addLayer(clusterMarker);
+    
+          // Zoom level to show polygons and manage marker visibility
+          map.on('zoomend', function() {
+              if (map.getZoom() <= 10) {
+                  if (map.hasLayer(polygon)) map.removeLayer(polygon);
+                  if (map.hasLayer(visibleMarker)) map.removeLayer(visibleMarker);
+              } else {
+                  if (!map.hasLayer(polygon)) polygon.addTo(map);
+                  if (!map.hasLayer(visibleMarker)) visibleMarker.addTo(map);
+              }
+          });
+      }
+
+      // Function to create popup content
+      function createPopupContent(project) {
+          return `
+              <div class='popup-content' data-category='${project.category}'>
+                  <h3 class='project-list-title'>${project.title}</h3>
+                  <p class='project-duration'>${project.duration}</p>
+              </div>
+          `;
+      }
+
+      // Function to create project card (update the existing function)
+      function createProjectCard(project) {
+          const card = document.createElement('div');
+          card.className = 'project-card';
+          
+          const categoryColor = categoryColors[project.category];
+          
+          // Create a unique gallery class for this project
+          const galleryClass = `gallery-${project.id}`;
+          
+          card.innerHTML = `
+              <div id="project-${project.id}" class="project-details">
+                  <h3 style="--project-color: ${categoryColor}">${project.title}</h3>
+                  <p>${project.city}</p>
+                  <p>Company: ${project.company}</p>
+                  <p>Role: ${project.role}</p>
+                  <p>${project.duration}</p>
+                  <p>${project.status}</p>
+                  <p>${project.description}</p>
+                  <div class="gallery ${galleryClass}">
+                      ${project.images.map((img, i) => `
+                          <a href="${img}" class="gallery-item">
+                              <img src="${img}" alt="${project.title} ${i + 1}">
+                          </a>
+                      `).join('')}
+                  </div>
+                  <a href="${project.instagram}" target="_blank" class="instagram-link">View on Instagram</a>
+              </div>
+          `;
+
+          // Add click handler to the card
+          card.addEventListener('click', (e) => {
+              if (!e.target.closest('.gallery') && !e.target.closest('.instagram-link')) {
+                  const coords = project.geometry.coordinates;
+                  const centerLat = coords.reduce((sum, point) => sum + point[0], 0) / coords.length;
+                  const centerLng = coords.reduce((sum, point) => sum + point[1], 0) / coords.length;
+                  const currentCenter = map.getCenter();
+                  const currentZoom = map.getZoom();
+                  const flyConfig = getMapFlyConfig(currentCenter, [centerLat, centerLng], currentZoom, 15);
+                  map.flyTo([centerLat, centerLng], 15, flyConfig);
+              }
+          });
+
+          return card;
+      }
+
+      // Load and initialize projects from JSON
+      fetch('data/projects.json')
+          .then(response => response.json())
+          .then(data => {
+              if (!data || !data.projects) {
+                  console.error('No projects found in data');
+                  return;
+              }
+
+              data.projects.forEach(project => {
+                  // Create and add polygon with popup
+                  const popupContent = createPopupContent(project);
+                  addPolygonAndMarker(
+                      project.geometry.coordinates,
+                      popupContent,
+                      project.id,
+                      project.category
+                  );
+
+                  // Create and add project card
+                  const projectList = document.querySelector(`.${project.category}-list`);
+                  if (projectList) {
+                      const card = createProjectCard(project);
+                      projectList.appendChild(card);
+                  }
+              });
+
+              // Initialize SimpleLightbox for each project gallery
+              data.projects.forEach(project => {
+              
+                  new SimpleLightbox(`.gallery-${project.id} a`, lightboxConfig);
+              });
+          })
+          .catch(error => {
+              console.error('Error loading project data:', error);
+          });
+
     
 
-    L.icon = function (options) {
-    return new L.Icon(options);
-};
+// Add both layers to the map
+map.addLayer(markers);
 
-L.marker([-33.953949, 18.479610], {icon: Icon1}).addTo(map).bindPopup("<table><tr><th></th><th>1</th></tr><tr><th>Plant Name</th><td>Punica granatum</th></tr><tr><th>Field Note</th><td>So bold as to start the image conversation entirely</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CobzQQhtqeA/ target=_blank><img src=img/1_2.png style=width:150px></a></td></tr>");
-L.marker([-33.932297, 18.406977], {icon: Icon2}).addTo(map).bindPopup("<table><tr><th></th><th>2</th></tr><tr><th>Plant Name</th><td>Hylocereus undatus</th></tr><tr><th>Field Note</th><td>An equally bold fruit to respond to the Pomegranate</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cob0HzfNmPY/ target=_blank><img src=img/2_2.png style=width:150px></a></td></tr>");
-L.marker([-33.970278, 18.473158], {icon: Icon3}).addTo(map).bindPopup("<table><tr><th></th><th>3</th></tr><tr><th>Plant Name</th><td>Clivia miniata</th></tr><tr><th>Field Note</th><td>Bright red colour seeds in compact form</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CoePdvAtEX7/ target=_blank><img src=img/3_2.png style=width:150px></a></td></tr>");
-L.marker([-29.221518, 29.938130], {icon: Icon4}).addTo(map).bindPopup("<table><tr><th></th><th>4</th></tr><tr><th>Plant Name</th><td>Cannas and Acers</th></tr><tr><th>Field Note</th><td>Seeds bulge in succulent balls near ends of branches</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CojaaxwqlE3/ target=_blank><img src=img/4_2.png style=width:150px></a></td></tr>");
-L.marker([-33.968500, 18.470706], {icon: Icon5}).addTo(map).bindPopup("<table><tr><th></th><th>5</th></tr><tr><th>Plant Name</th><td>Yucca aloifolia</th></tr><tr><th>Field Note</th><td>Brilliant white contrasts with any and all surroundings. Can be eaten raw or cooked!</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CorUUeVq0pQ/ target=_blank><img src=img/5_2.png style=width:200px></a></td></tr>");
-L.marker([-34.336568, 19.633068], {icon: Icon6}).addTo(map).bindPopup("<table><tr><th></th><th>6</th></tr><tr><th>Plant Name</th><td>Cichorium intybus</th></tr><tr><th>Field Note</th><td>A delicate plant and flower that is processed to make Chirory coffee!</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Co68g-3K1ln/ target=_blank><img src=img/6_2.png style=width:150px></a></td></tr>");
-L.marker([-33.964240, 18.476195], {icon: Icon7}).addTo(map).bindPopup("<table><tr><th></th><th>7</th></tr><tr><th>Plant Name</th><td>Carissa bispinosa</th></tr><tr><th>Field Note</th><td>The equally unassuming plant gives Hayden's grandmother num num berries for her homemade jelly</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CpKsOj9Kc4k/ target=_blank><img src=img/7_2.png style=width:150px></a></td></tr>");
-L.marker([-32.878118, 18.754549], {icon: Icon8}).addTo(map).bindPopup("<table><tr><th></th><th>8</th></tr><tr><th>Plant Name</th><td>Citrullus amarus</th></tr><tr><th>Field Note</th><td>Also a fruit, though far harder and less colourful</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cpak75aqqGX/ target=_blank><img src=img/8_2.png style=width:150px></a></td></tr>");
-L.marker([-33.953939, 18.479560], {icon: Icon9}).addTo(map).bindPopup("<table><tr><th></th><th>9</th></tr><tr><th>Plant Name</th><td>Passiflora edulis</th></tr><tr><th>Field Note</th><td>A spreading creeper with a delicious fruit. Tendrils were the noted feature</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CpkSPK3q1Ay/ target=_blank><img src=img/9_2.png style=width:150px></a></td></tr>");
-L.marker([55.965121, -3.209424], {icon: Icon10}).addTo(map).bindPopup("<table><tr><th></th><th>10</th></tr><tr><th>Plant Name</th><td>Lonicera sp.</th></tr><tr><th>Field Note</th><td>No tendrils but still clingy</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CqF65cPKoQU/ target=_blank><img src=img/10_2.png style=width:150px></a></td></tr>");
-L.marker([-33.910257, 18.401336], {icon: Icon11}).addTo(map).bindPopup("<table><tr><th></th><th>11</th></tr><tr><th>Plant Name</th><td>Podranea ricasoliana</th></tr><tr><th>Field Note</th><td>One of the toughest climbers in the land, of the land. </td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CqfAeODKiCS/ target=_blank><img src=img/11_2.png style=width:150px></a></td></tr>");
-L.marker([51.550969, -0.085410], {icon: Icon12}).addTo(map).bindPopup("<table><tr><th></th><th>12</th></tr><tr><th>Plant Name</th><td>Akebia sp.</th></tr><tr><th>Field Note</th><td>Flesh-coloured petals and less of a chocolate scent than its common name suggests</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CqpnfnAKNKb/ target=_blank><img src=img/12_2.png style=width:150px></a></td></tr>");
-L.marker([-33.956790, 18.468042], {icon: Icon13}).addTo(map).bindPopup("<table><tr><th></th><th>13</th></tr><tr><th>Plant Name</th><td>Araujia sericifera</th></tr><tr><th>Field Note</th><td>A nasty creeper that is a spreadimg, ticking time bomb</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cq5mtqxq6HR/ target=_blank><img src=img/13_2.png style=width:150px></a></td></tr>");
-L.marker([55.965537, -3.205324], {icon: Icon14}).addTo(map).bindPopup("<table><tr><th></th><th>14</th></tr><tr><th>Plant Name</th><td>Lysichiton americanus</th></tr><tr><th>Field Note</th><td>Very bright yellow with a very strange smell</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CrIo1NBqyGt/ target=_blank><img src=img/14_2.png style=width:150px></a></td></tr>");
-L.marker([-33.911574, 18.401211], {icon: Icon15}).addTo(map).bindPopup("<table><tr><th></th><th>15</th></tr><tr><th>Plant Name</th><td>Echinopsis pachanoi</th></tr><tr><th>Field Note</th><td>Bold and tall</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Crnwma2KYET/ target=_blank><img src=img/15_2.png style=width:150px></a></td></tr>");
-L.marker([55.963962, -3.211345], {icon: Icon16}).addTo(map).bindPopup("<table><tr><th></th><th>16</th></tr><tr><th>Plant Name</th><td>Meconopsis and Equisetum</th></tr><tr><th>Field Note</th><td>Unusually tall and unusually blue, hollow stems all round</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cr0b_0tqT4o/ target=_blank><img src=img/16_2.png style=width:150px></a></td></tr>");
-L.marker([-33.970153, 18.472884], {icon: Icon17}).addTo(map).bindPopup("<table><tr><th></th><th>17</th></tr><tr><th>Plant Name</th><td>Cyperus papyrus</th></tr><tr><th>Field Note</th><td>Tall, straight and likes water</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CsJIa3KKYGw/ target=_blank><img src=img/17_2.png style=width:150px></a></td></tr>");  
-L.marker([51.549529, -0.080832], {icon: Icon18}).addTo(map).bindPopup("<table><tr><th></th><th>18</th></tr><tr><th>Plant Name</th><td>Bambusa</th></tr><tr><th>Field Note</th><td>Hollow segmented stems, softer and fibrous, a nice shade of green</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CssvJQjqeKC/ target=_blank><img src=img/18_2.png style=width:150px></a></td></tr>");
-L.marker([-34.001879, 18.457418], {icon: Icon19}).addTo(map).bindPopup("<table><tr><th></th><th>19</th></tr><tr><th>Plant Name</th><td>Nandina domestica</th></tr><tr><th>Field Note</th><td>You plant it outside your front door. On your way out in the morning you tell it your bad dreams and it removes bad omens.</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cs8tSUbK_rw/ target=_blank><img src=img/19_2.png style=width:150px></a></td></tr>");
-L.marker([51.55273, -0.077616], {icon: Icon20}).addTo(map).bindPopup("<table><tr><th></th><th>20</th></tr><tr><th>Plant Name</th><td>Tropaeolum majus</th></tr><tr><th>Field Note</th><td>Peltate, irregular and perfect</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CttNXjTK7wz/ target=_blank><img src=img/20_2.png style=width:150px></a></td></tr>");
-L.marker([-33.953655, 18.479379], {icon: Icon21}).addTo(map).bindPopup("<table><tr><th></th><th>21</th></tr><tr><th>Plant Name</th><td>Dracaena draco</th></tr><tr><th>Field Note</th><td>Able to be used for its natural red dye and currently used in skincare</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CuZnBx6KFR7/ target=_blank><img src=img/21_2.png style=width:150px></a></td></tr>");
-L.marker([51.547940, -0.074682], {icon: Icon22}).addTo(map).bindPopup("<table><tr><th></th><th>22</th></tr><tr><th>Plant Name</th><td>Momordica charantia</th></tr><tr><th>Field Note</th><td>Reptilian skin, great seed patterning, challengingly bitter after taste </td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cu6gsVHqptf/ target=_blank><img src=img/22_2.png style=width:150px></a></td></tr>");
-L.marker([50.858005, 5.698593], {icon: Icon23}).addTo(map).bindPopup("<table><tr><th></th><th>23</th></tr><tr><th>Plant Name</th><td>Rubus ideaeus</th></tr><tr><th>Field Note</th><td>Persistent and edible; I’m pretty sure this is a 'wild' raspberry</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cv2RVPzKW9l/ target=_blank><img src=img/23_2.png style=width:150px></a></td></tr>");
-L.marker([-29.530802, 31.215974], {icon: Icon24}).addTo(map).bindPopup("<table><tr><th></th><th>24</th></tr><tr><th>Plant Name</th><td>Cassia fistula</th></tr><tr><th>Field Note</th><td>These pods were ridiculously hard and near-impossible to slice open</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cx5t-fGKt6O/ target=_blank><img src=img/24_2.png style=width:150px></a></td></tr>");
-L.marker([52.343664, 4.908522], {icon: Icon25}).addTo(map).bindPopup("<table><tr><th></th><th>25</th></tr><tr><th>Plant Name</th><td>Gleditsia triacanthos</th></tr><tr><th>Field Note</th><td>The yellowing leaves were just about the only colour during winter</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CyeDpseKkuG/ target=_blank><img src=img/25_2.png style=width:150px></a></td></tr>");
-L.marker([40.860722, -73.468930], {icon: Icon26}).addTo(map).bindPopup("<table><tr><th></th><th>26</th></tr><tr><th>Plant Name</th><td>Cornus sp.</th></tr><tr><th>Field Note</th><td>I was sadder that these trees weren't in flower</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CyeaSaZpCFP/ target=_blank><img src=img/26_2.png style=width:150px></a></td></tr>");
-L.marker([51.446604, 5.484122], {icon: Icon27}).addTo(map).bindPopup("<table><tr><th></th><th>27</th></tr><tr><th>Plant Name</th><td>Acer saccharum</th></tr><tr><th>Field Note</th><td>Spectacularly large trees planted alongside the campus</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cyy9gw_q-ZM/ target=_blank><img src=img/27_2.png style=width:150px></a></td></tr>");
-L.marker([40.903190, -73.465805], {icon: Icon28}).addTo(map).bindPopup("<table><tr><th></th><th>28</th></tr><tr><th>Plant Name</th><td>Zea mays</th></tr><tr><th>Field Note</th><td>Can't quite remember the husk colour but I wasn't expecting the ear to be pink</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Cy1lP_NJ43D/ target=_blank><img src=img/28_2.png style=width:150px></a></td></tr>");
-L.marker([52.352205, 4.894123], {icon: Icon29}).addTo(map).bindPopup("<table><tr><th></th><th>29</th></tr><tr><th>Plant Name</th><td>Vitis vinifera 'Glenora'</th></tr><tr><th>Field Note</th><td>These leaves have shoots quite late in spring</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/CzR3rMYqMch/ target=_blank><img src=img/29_2.png style=width:150px></a></td></tr>");
-L.marker([37.775976, -122.400948], {icon: Icon30}).addTo(map).bindPopup("<table><tr><th></th><th>30</th></tr><tr><th>Plant Name</th><td>Chrysanthemum sp.s</th></tr><tr><th>Field Note</th><td>'Natural' blue</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/Czrc5cMSpiX/ target=_blank><img src=img/30_2.png style=width:150px></a></td></tr>");
-L.marker([52.346398, 4.902453], {icon: Icon31}).addTo(map).bindPopup("<table><tr><th></th><th>31</th></tr><tr><th>Plant Name</th><td>Yucca aloifolia</th></tr><tr><th>Field Note</th><td>The most amazing brushes Hayden has ever painted with</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/C0UsP-OrkZX/ target=_blank><img src=img/31_2.png style=width:150px></a></td></tr>");
-L.marker([-29.783744, 31.040163], {icon: Icon32}).addTo(map).bindPopup("<table><tr><th></th><th>32</th></tr><tr><th>Plant Name</th><td>Unknown sp. </th></tr><tr><th>Field Note</th><td>The hairs on the shoots are very itchy</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/C2EZijJqTLY/ target=_blank><img src=img/32_2.png style=width:150px></a></td></tr>");
-L.marker([52.343326, 4.906170], {icon: Icon33}).addTo(map).bindPopup("<table><tr><th></th><th>33</th></tr><tr><th>Plant Name</th><td>Solanum tuberosum</th></tr><tr><th>Field Note</th><td>It is disturbing that we do not know where most of our food comes from</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/C3xBchbKiUa/ target=_blank><img src=img/33_2.png style=width:150px></a></td></tr>");
-L.marker([51.536115, -0.073357], {icon: Icon34}).addTo(map).bindPopup("<table><tr><th></th><th>34</th></tr><tr><th>Plant Name</th><td>Viola odorata</th></tr><tr><th>Field Note</th><td>The veins on the petals are darker than you'd think</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/C4ao2jpKZ08/ target=_blank><img src=img/34_2.png style=width:150px></a></td></tr>");
-L.marker([52.355617, 4.925726], {icon: Icon35}).addTo(map).bindPopup("<table><tr><th></th><th>35</th></tr><tr><th>Plant Name</th><td>Prunus serrulata `Kanzan`</th></tr><tr><th>Field Note</th><td>Such explosive colour, especially because the tree has no leaves</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/C5ImZprKARU/ target=_blank><img src=img/35_2.png style=width:150px></a></td></tr>");
-L.marker([51.435553, -0.072554], {icon: Icon36}).addTo(map).bindPopup("<table><tr><th></th><th>36</th></tr><tr><th>Plant Name</th><td>Prunus sp.</th></tr><tr><th>Field Note</th><td>The clusters of anthers might be my favourite morphological trait on Prunus flowers</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/C5TMR5eK_lE/ target=_blank><img src=img/36_2.png style=width:150px></a></td></tr>");
-L.marker([52.342610, 4.908676], {icon: Icon37}).addTo(map).bindPopup("<table><tr><th></th><th>37</th></tr><tr><th>Plant Name</th><td>Aesculus hippocastanum</th></tr><tr><th>Field Note</th><td>Mighty within a sea of brick buildings</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/C5-xUqvqvxt/ target=_blank><img src=img/37_2.png style=width:150px></a></td></tr>");
-L.marker([51.503251, -0.101318], {icon: Icon38}).addTo(map).bindPopup("<table><tr><th></th><th>38</th></tr><tr><th>Plant Name</th><td>Papaver somniferum</th></tr><tr><th>Field Note</th><td>The more grim the concrete, the better the poppy</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/C8H_kzpqljX/ target=_blank><img src=img/38_2.png style=width:150px></a></td></tr>");
-L.marker([52.341871, 4.880304], {icon: Icon39}).addTo(map).bindPopup("<table><tr><th></th><th>39</th></tr><tr><th>Plant Name</th><td>Verbascum densiflorum</th></tr><tr><th>Field Note</th><td>Unwavering and relentless strength</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/C8kIS1CqQHj/ target=_blank><img src=img/39_2.png style=width:150px></a></td></tr>");
-L.marker([51.561380, -0.07985], {icon: Icon40}).addTo(map).bindPopup("<table><tr><th></th><th>40</th></tr><tr><th>Plant Name</th><td>Rosa sp.</th></tr><tr><th>Field Note</th><td>This rose is slightly too perfect and suits being petals that have fallen</td></tr><tr><th>Image Link</th><td><a href=https://www.instagram.com/p/C89QQ-LKFj9/ target=_blank><img src=img/40_2.png style=width:150px></a></td></tr>");
+  
+
+      // Add click handlers for all sidebar toggles
+      document.querySelectorAll('.sidebar-toggle').forEach(toggle => {
+          toggle.addEventListener('click', function() {
+              const sidebar = this.parentElement;
+              
+              // Close all other sidebars
+              document.querySelectorAll('.sidebar').forEach(sb => {
+                  if (sb !== sidebar) {
+                      sb.classList.remove('open');
+                  }
+              });
+              
+              // Toggle this sidebar
+              sidebar.classList.toggle('open');
+          });
+      });
+
+      // Reset positions when switching to desktop
+      function resetSidebarPositions() {
+          if (window.innerWidth > 768) {
+              document.querySelectorAll('.sidebar').forEach(sidebar => {
+                  sidebar.style.top = ''; // Remove the top property entirely
+              });
+          }
+      }
+
+      // Add resize event listener with debouncing
+      let resizeTimeout;
+      window.addEventListener('resize', function() {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(resetSidebarPositions, 250);
+      });
+
+      // Call it when the DOM is loaded
+      document.addEventListener('DOMContentLoaded', resetSidebarPositions);
+
+      // Update the createNavButton function
+      function createNavButton(id, text, viewConfig) {
+          const button = document.createElement('button');
+          button.id = id;
+          button.className = 'nav-button';
+          button.textContent = text;
+          button.style.display = 'none';
+          
+          button.addEventListener('click', () => {
+              map.flyTo(viewConfig.coords, viewConfig.zoom, viewConfig.options);  // Use the options here
+          });
+          
+          document.querySelector('.container').appendChild(button);
+          return button;
+      }
+
+      // Define bounding boxes for both areas
+      const netherlandsBounds = L.latLngBounds(
+          [50.75, 3.2],   // Southwest corner
+          [53.7, 7.22]    // Northeast corner
+      );
+
+      const capetownBounds = L.latLngBounds(
+          [-34.5, 18.2],  // Southwest corner
+          [-33.5, 18.9]   // Northeast corner
+      );
+
+      // Update the moveend event handler to use bounds instead of distance
+      map.on('moveend', () => {
+          const currentBounds = map.getBounds();
+          
+          // Show Amsterdam button if current view doesn't intersect with Netherlands bounds
+          amsterdamButton.style.display = currentBounds.intersects(netherlandsBounds) 
+              ? 'none' 
+              : 'block';
+          
+          // Show Cape Town button if current view doesn't intersect with Cape Town bounds
+          capetownButton.style.display = currentBounds.intersects(capetownBounds) 
+              ? 'none' 
+              : 'block';
+      });
+
+      // Update the button click handlers to fit the bounds instead of specific coordinates
+      const amsterdamButton = createNavButton('amsterdam-button', 'go to the Netherlands ↑', {
+          coords: netherlandsBounds.getCenter(),
+          zoom: map.getBoundsZoom(netherlandsBounds),
+          options: navFlyConfig
+      });
+
+      const capetownButton = createNavButton('capetown-button', 'go to South Africa ↓', {
+          coords: capetownBounds.getCenter(),
+          zoom: map.getBoundsZoom(capetownBounds),
+          options: navFlyConfig
+      });
+
+      // Replace the existing welcome overlay creation with this function
+      function createWelcomeOverlay() {
+          const overlay = document.createElement('div');
+          overlay.className = 'welcome-overlay';
+          
+          const text = document.createElement('div');
+          text.className = 'welcome-text';
+          text.textContent = 'Welcome! Move around and explore 🔎';
+          
+          overlay.appendChild(text);
+          document.body.appendChild(overlay);
+          
+          overlay.addEventListener('click', function() {
+              overlay.style.opacity = '0';
+              setTimeout(() => overlay.remove(), 500);
+          });
+      }
+
+      // Call it when the DOM is loaded
+      document.addEventListener('DOMContentLoaded', createWelcomeOverlay);
+
+      
+      function initializeMobileDrag() {
+          if (window.innerWidth <= 768) {
+              const sidebars = document.querySelectorAll('.sidebar');
+              const mapContainer = document.getElementById('map');
+
+              // Helper function to set sidebar position
+              function setSidebarPosition(sidebar, isOpen) {
+                  const positions = {
+                      'sidebar-art': '92vh',
+                      'sidebar-water': '85vh',
+                      'sidebar-transport': '78vh',
+                      'sidebar-urban': '71vh'
+                  };
+                  sidebar.style.top = isOpen ? '100px' : positions[sidebar.id];
+              }
+
+              // Add map container click handler for mobile
+              mapContainer.addEventListener('mousedown', function(e) {
+                  if (e.target.id === 'map' || e.target.classList.contains('leaflet-container')) {
+                      sidebars.forEach(sidebar => {
+                          if (sidebar.classList.contains('open')) {
+                              sidebar.classList.remove('open');
+                              setSidebarPosition(sidebar, false);
+                          }
+                      });
+                  }
+              });
+
+              // Existing drag functionality
+              sidebars.forEach(sidebar => {
+                  const toggle = sidebar.querySelector('.sidebar-toggle');
+                  let startY = 0;
+                  let currentY = 0;
+
+                  toggle.addEventListener('touchstart', function(e) {
+                      startY = e.touches[0].clientY;
+                      e.preventDefault();
+                  });
+
+                  toggle.addEventListener('touchmove', function(e) {
+                      currentY = e.touches[0].clientY;
+                      e.preventDefault();
+                  });
+
+                  toggle.addEventListener('touchend', function(e) {
+                      const finalDelta = startY - currentY;
+                      
+                      if (finalDelta > 100) {
+                          sidebar.classList.add('open');
+                          setSidebarPosition(sidebar, true);
+                      }
+                      else if (finalDelta < -100) {
+                          sidebar.classList.remove('open');
+                          setSidebarPosition(sidebar, false);
+                      }
+                      else {
+                          setSidebarPosition(sidebar, sidebar.classList.contains('open'));
+                      }
+                  });
+              });
+          }
+      }
+
+      // Initialize drag functionality when the DOM is loaded
+      document.addEventListener('DOMContentLoaded', initializeMobileDrag);
+
+      // Add this to your JavaScript section
+      document.addEventListener('DOMContentLoaded', function() {
+          const aboutToggle = document.querySelector('.about-toggle');
+          const aboutContainer = document.querySelector('.about-container');
+          
+          if (aboutToggle && aboutContainer) {
+              aboutToggle.addEventListener('click', function() {
+                  aboutContainer.classList.toggle('collapsed');
+                  aboutToggle.textContent = aboutContainer.classList.contains('collapsed') ? 'About ↓' : 'About ↑';
+              });
+          }
+      });
+
 
     </script>
   </body>
