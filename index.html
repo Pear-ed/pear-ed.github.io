@@ -33,14 +33,14 @@
       }
 
       @font-face {
-        font-family: 'Centra No2';
+        font-family: 'Centra No2' 'light';
         src: url('fonts/CentraNo2-Light.woff2') format('woff2');
         font-weight: 300;
         font-style: normal;
       }
 
       @font-face {
-        font-family: 'Centra No2';
+        font-family: 'Centra No2' 'medium';
         src: url('fonts/CentraNo2-Medium.woff2') format('woff2');
         font-weight: 500;
         font-style: normal;
@@ -101,11 +101,13 @@
           margin-top: 8px;
           opacity: 0.85;
       }
+      
 
       /* Toggle button */
       .about-toggle {
           background: none;
           border: none;
+          width: fit-content;
           font-size: 14px;
           cursor: pointer;
           padding: 5px 0;
@@ -120,14 +122,27 @@
           text-decoration: underline;
       }
 
+       .about-toggle-container {
+          pointer-events: auto;
+      }
+
       .about-container {
-          max-height: 300px;
+          max-height: 0;
           overflow: hidden;
           transition: max-height 0.3s ease-out;
       }
 
-      .about-container.collapsed {
-          max-height: 0;
+      /* For desktop hover */
+      @media (hover: hover) {
+          .about-toggle:hover + .about-container,
+          .about-container:hover {
+              max-height: 300px;
+          }
+      }
+
+      /* For mobile and click behavior */
+      .about-container.expanded {
+          max-height: 300px;
       }
 
       .about-text {
@@ -308,7 +323,6 @@
       }
 
       .project-card:hover {
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         transform: translateY(-2px);
       }
 
@@ -362,6 +376,7 @@
         flex-shrink: 0;
         margin-bottom: -2px;
         margin-top: 0px;
+        transition: transform 0.2s ease-in-out;
       }
 
       .gallery-item img {
@@ -369,6 +384,10 @@
         height: 80px;
         object-fit: cover;
         border-radius: 0px;
+      }
+
+      .gallery-item:hover {
+        transform: rotate(2deg);
       }
 
       .sl-overlay {
@@ -447,9 +466,14 @@
         }
 
         .about-text {
-              font-size: 12px;
+              font-size: 13px;
+              font-family: 'Centra No2' 'medium';
               max-width: 90%;
-          }
+        }
+
+        .about-toggle {
+          text-decoration: underline;
+        }
 
         /* Sidebar adjustments */
         .sidebar {
@@ -588,16 +612,8 @@
         .leaflet-control-zoom {
             display: none; /* Hide zoom controls on mobile */
         }
-
-        .about-text {
-            font-size: 12px;
-            max-width: 90%;
-        }
-
-        .about-text {
-            max-width: 80vw !important;
-        }
       }
+       
 
       /* Add styles for smaller phones */
       @media screen and (max-width: 375px) {
@@ -614,26 +630,27 @@
         }
   }
 
-      
-
     </style>
     </head>
+    
 
   <body>
     <link rel="icon" href="img/favicon-hm.png" />
     <div class="header-container">
         <h1>hayden malan</h1>
         <p>Landscape architecture practice.</p>
-        <button class="about-toggle">About ↓</button>
-        <div class="about-container collapsed">
-            <p class="about-text">I'm a landscape architect with a passion for sustainable design, 
-              focusing on urban transformation, water systems, and ecological integration. 
-              My work spans across the Netherlands and South Africa, creating spaces that connect 
-              people with their environment.
-              <br>
-              <br>
-              Website and design: Andrea Albiac.
-            </p>
+        <div class="about-toggle-container">
+            <button class="about-toggle">About</button>
+            <div class="about-container">
+                <p class="about-text">I'm a landscape architect with a passion for sustainable design, 
+                  focusing on urban transformation, water systems, and ecological integration. 
+                  My work spans across the Netherlands and South Africa, creating spaces that connect 
+                  people with their environment.
+                  <br>
+                  <br>
+                  Website and design: Andrea Albiac.
+                </p>
+            </div>
         </div>
     </div>
 
@@ -1265,8 +1282,7 @@ map.addLayer(markers);
           
           if (aboutToggle && aboutContainer) {
               aboutToggle.addEventListener('click', function() {
-                  aboutContainer.classList.toggle('collapsed');
-                  aboutToggle.textContent = aboutContainer.classList.contains('collapsed') ? 'About ↓' : 'About ↑';
+                  aboutContainer.classList.toggle('expanded');
               });
           }
       });
