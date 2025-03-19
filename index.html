@@ -31,6 +31,29 @@
         font-weight: 400;
         font-style: normal;
       }
+
+      @font-face {
+        font-family: 'Centra No2';
+        src: url('fonts/CentraNo2-Light.woff2') format('woff2');
+        font-weight: 300;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Centra No2';
+        src: url('fonts/CentraNo2-Medium.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Centra No2';
+        src: url('fonts/CentraNo2-BookItalic.woff2') format('woff2');
+        font-weight: 400;
+        font-style: italic;
+      }
+      
+      
       
       * {
         font-family: 'Centra No2';
@@ -250,7 +273,7 @@
       }
 
       /* Adjust h2 positioning */
-      .sidebar-content h2 {
+      .sidebar-content h1 {
         margin-top: 0;
       }
 
@@ -289,34 +312,40 @@
         transform: translateY(-2px);
       }
 
-      .project-card h3 {
+      .project-card h2 {
         font-size: 14px !important;
         margin: 0 0 6px 0px;
-        padding-bottom: 5px;
+        padding-bottom: 0px;
         display: flex;
         align-items: flex-start;
         gap: 10px;
         text-decoration: underline;
       }
 
-     
-
-      .project-card:last-child {
-        margin-bottom: 60px;
-      }
-
-      .project-details p {
-        font-size: 0.8em;
-        margin: 5px 0;
+      .project-details h3 {
+        font-size: 12px;
+        margin: 0 0 4px 0;
+        font-weight: 300;
         line-height: 1.2;
       }
 
-      .project-details h3 {
-        font-size: 1.1em;
+      .project-details p {
+        font-size: 13px;
+        margin: 16px 0 8px 0;
+        line-height: 1.2;
       }
 
       .project-details a {
-        font-size: 11px;
+        font-size: 12px;
+        text-decoration: none;
+      }
+
+      .project-details a:hover {
+        text-decoration: underline;
+      } 
+
+      .project-card:last-child {
+        margin-bottom: 60px;
       }
 
       /* Gallery Styles */
@@ -337,7 +366,7 @@
 
       .gallery-item img {
         width: 100%;
-        height: 90px;
+        height: 80px;
         object-fit: cover;
         border-radius: 0px;
       }
@@ -381,7 +410,7 @@
       /* Nav Button Styles */
       .nav-button {
         position: absolute;
-        z-index: 1000;
+        z-index: 2;
         padding: 10px 15px;
         background: none;
         cursor: pointer;
@@ -475,7 +504,7 @@
           -webkit-user-select: none;
         }
 
-        .sidebar h2 {
+        .sidebar-content h1 {
             display: none; /* Hide category headings on mobile */
         }
 
@@ -612,7 +641,7 @@
         <div id="sidebar-art" class="sidebar">
             <div class="sidebar-toggle">Art practice</div>
             <div class="sidebar-content">
-              <h2>Art practice</h2>
+              <h1>Art practice</h1>
               <div class="project-list art-list"></div>
             </div>
           </div>
@@ -621,7 +650,7 @@
         <div id="sidebar-water" class="sidebar">
             <div class="sidebar-toggle">Water and ecology</div>
             <div class="sidebar-content">
-              <h2>Water and ecology</h2>
+              <h1>Water and ecology</h1>
               <div class="project-list water-list"></div>
             </div>
         </div>
@@ -629,14 +658,14 @@
         <div id="sidebar-transport" class="sidebar">
             <div class="sidebar-toggle">Transport systems</div>
             <div class="sidebar-content">
-              <h2>Transport systems</h2>
+              <h1>Transport systems</h1>
               <div class="project-list transport-list"></div>
             </div>
         </div>
         <div id="sidebar-urban" class="sidebar">
             <div class="sidebar-toggle">Urban transformation</div>
             <div class="sidebar-content">
-              <h2>Urban transformation</h2>
+              <h1>Urban transformation</h1>
               <div class="project-list urban-list"></div>
             </div>
         </div>
@@ -974,12 +1003,10 @@
           
           card.innerHTML = `
               <div id="project-${project.id}" class="project-details">
-                  <h3 style="--project-color: ${categoryColor}">${project.title}</h3>
-                  <p>${project.city}</p>
-                  <p>Company: ${project.company}</p>
-                  <p>Role: ${project.role}</p>
-                  <p>${project.duration}</p>
-                  <p>${project.status}</p>
+                  <h2 style="--project-color: ${categoryColor}">${project.title}</h2>
+                  <h3>${project.city} · ${project.duration} · ${project.status}</h3>
+                  <h3>Company: ${project.company}</h3>
+                  <h3>Role: ${project.role}</h3>
                   <p>${project.description}</p>
                   <div class="gallery ${galleryClass}">
                       ${project.images.map((img, i) => `
