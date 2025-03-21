@@ -333,7 +333,7 @@ function createProjectCard(project) {
                     </a>
                 `).join('')}
             </div>
-            <a href="${project.instagram}" target="_blank" class="instagram-link">View on Instagram</a>
+            <a href="${project.instagram}" target="_blank" class="instagram-link">More about this project</a>
         </div>
     `;
 
@@ -686,10 +686,19 @@ document.addEventListener('DOMContentLoaded', initializeMobileDrag);
 document.addEventListener('DOMContentLoaded', function() {
     const aboutToggle = document.querySelector('.about-toggle');
     const aboutContainer = document.querySelector('.about-container');
+    const contactToggle = document.querySelector('.contact-toggle');
+    const contactContainer = document.querySelector('.contact-container');
     
     if (aboutToggle && aboutContainer) {
         aboutToggle.addEventListener('click', function() {
             aboutContainer.classList.toggle('expanded');
         });
     }
+
+    if (contactToggle && contactContainer) {
+        contactToggle.addEventListener('click', function() {
+            contactContainer.classList.toggle('expanded');
+        });
+    }
 });
+
