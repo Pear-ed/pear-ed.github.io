@@ -4,16 +4,16 @@
       "id": "1",
       "category": "urban",
       "title": "ABN AMRO Innovation Hub",
-      "company": "OMA Architecture",
-      "role": "Innovation Consultant",
-      "duration": "2023 - 2024",
+      "company": "Gemeente Amsterdam",
+      "role": "",
+      "duration": "2023 - Present",
       "status": "Under Construction",
       "description": "Transformation of historic bank building into a sustainable innovation center",
       "city": "Amsterdam",
       "images": [
         
       ],
-      "instagram": "https://www.instagram.com/p/example3/",
+      "instagram": "https://zuidas.nl/construction-project/mahler-1/",
       "geometry": {
         "coordinates": [
           [52.3379718, 4.8737727], [52.3380308, 4.8763472], [52.3372967, 4.8764866],
@@ -54,13 +54,13 @@
     {
       "id": "17",
       "category": "water",
-      "title": "Spaarnegasthuis Transformation",
-      "company": "MVRDV Architects",
-      "role": "Project Architect",
-      "duration": "2023 - 2025",
-      "status": "Design Phase",
-      "description": "Ecological transformation of historic hospital grounds into a water-integrated healing environment",
-      "city": "Amsterdam",
+      "title": "Spaarnegasthuis Hospital Transformation",
+      "company": "DSLA",
+      "role": "",
+      "duration": "2023-2024",
+      "status": "Vision completed",
+      "description": "A hospital expansion as part of a broader upgrade and densification of Haarlem Zuid. The design reintroduces a historic river as the backbone of the district, creating a pedestrian-friendly environment that fosters connection, efficiency, and a softer, more inviting urban landscape.",
+      "city": "Haarlem",
       "images": [
         "img/sg1.jpg",
         "img/sg2.jpg",
@@ -68,7 +68,7 @@
         "img/sg6.jpg",
         "img/sg7.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example2/",
+      "instagram": "https://www.spaarnegasthuis.nl/nieuws/spaarne-gasthuis-start-met-het-ontwerp-nieuwbouw-haarlem-zuid",
       "geometry": {
         "coordinates": [
           [52.3678745, 4.6529405], [52.3676715, 4.6538362], [52.3676387, 4.6540078],
@@ -92,11 +92,11 @@
       "id": "2",
       "category": "transport",
       "title": "Eenrichtingcarré",
-      "company": "Benthem Crouwel Architects",
-      "role": "Transport Infrastructure Lead",
-      "duration": "2023 - 2026",
+      "company": "Gemeente Amsterdam",
+      "role": "",
+      "duration": "2024 - Present",
       "status": "Design Phase",
-      "description": "Integrated transport hub connecting multiple transit modes with public spaces",
+      "description": "A project focused on introducing one-way traffic routes in the Zuidas district, aiming to reduce car traffic and create more space for pedestrians and cyclists. The design is part of ongoing efforts to improve the area's accessibility and make it a more sustainable and livable urban environment.",
       "city": "Amsterdam",
       "images": [
         "img/1rc1.jpg"
@@ -117,16 +117,16 @@
       "id": "3",
       "category": "urban",
       "title": "Verdi",
-      "company": "Amsterdam Municipality",
-      "role": "Urban Planning Lead",
-      "duration": "2023 - 2025",
-      "status": "In Progress",
-      "description": "Urban transformation project in Amsterdam Zuid",
+      "company": "Gemeente Amsterdam",
+      "role": "",
+      "duration": "2024 - Present",
+      "status": "Concept phase",
+      "description": "The Zuidas project plans to develop approximately 600 new homes in Verdi, integrating green spaces, slow traffic routes, and amenities. This includes relocating and expanding the Sporthallen Zuid. A key focus is improving connections and greening the area. The plan is progressing, with a formal proposal expected by the end of 2020, followed by public consultations. ",
       "city": "Amsterdam",
       "images": [
 
       ],
-      "instagram": "https://www.instagram.com/p/example17/",
+      "instagram": "https://zuidas.nl/blog/2020/09/02/filmpje-wat-zijn-de-plannen-voor-woningen-in-verdi/",
       "geometry": {
         "coordinates": [
           [52.3422214, 4.8582224], [52.3410836, 4.8582806], [52.3410161, 4.857468],
@@ -142,17 +142,17 @@
     {
       "id": "5",
       "category": "urban",
-      "title": "Bo-Kaap Cultural Center",
-      "company": "Studio MAS",
-      "role": "Cultural Design Lead",
-      "duration": "2023 - 2024",
-      "status": "In Progress",
-      "description": "Community-focused cultural center celebrating Bo-Kaap's heritage through art",
+      "title": "Bo-Kaap Trading Area",
+      "company": "TKLA",
+      "role": "",
+      "duration": "2020 - 2022",
+      "status": "Vision approved by municipal council",
+      "description": "Designing a trading facility in Bo-Kaap that integrates 12 stalls, an office, and restrooms, while preserving heritage elements like historic houses and Ficus trees. The plan enhances pedestrian accessibility, fosters local economic growth, and enriches the cultural landscape.",
       "city": "Cape Town",
       "images": [
         
       ],
-      "instagram": "https://www.instagram.com/p/example5/",
+      "instagram": "https://atlanticsun.co.za/news/2023-07-13-bo-kaap-residents-welcome-trading-facility-design-plan/",
       "geometry": {
         "coordinates": [
           [-33.9203435, 18.4133015], [-33.9201626, 18.413479], [-33.9203588, 18.4137234],
@@ -165,17 +165,17 @@
     {
       "id": "6",
       "category": "urban",
-      "title": "Springfield Water Management",
-      "company": "DHK Architects",
-      "role": "Water Systems Lead",
+      "title": "Springfield",
+      "company": "TKLA in collaboration with CCNIA",
+      "role": "",
       "duration": "2023 - 2025",
-      "status": "In Progress",
-      "description": "Innovative water management system integrating sustainable urban drainage solutions",
+      "status": "Completed",
+      "description": "A series of classrooms seamlessly integrated into Springfield Convent School's historic grid. A rooftop garden, positioned at the original entrance level, replaces a nondescript slope, creating a dynamic connection between old and new. The design preserves historic trees while enhancing pedestrian flow, linking the new courtyard to the school's storied landscape.",
       "city": "Cape Town",
       "images": [
        
       ],
-      "instagram": "https://www.instagram.com/p/example6/",
+      "instagram": "http://www.ccnia.co.za/projects/public/springfield-convent-school-new-music-annex/",
       "geometry": {
         "coordinates": [
           [-34.0028783, 18.4594724], [-34.0033754, 18.4593802], [-34.0031212, 18.4583001],
@@ -192,11 +192,11 @@
       "id": "7",
       "category": "urban",
       "title": "HOPE Youth Centre",
-      "company": "SAOTA Architects",
-      "role": "Ecological Design Lead",
+      "company": "TKLA in collaboration with CCNIA",
+      "role": "",
       "duration": "2024 - 2026",
-      "status": "Design Phase",
-      "description": "Waterfront development with focus on ecological restoration and public access",
+      "status": "Completed",
+      "description": "A bold landscape intervention shaping a youth center in Delft, a community facing both environmental and social challenges. The design fosters a village-like atmosphere, balancing open movement with inviting gathering spaces, creating a nurturing, educational, and safe environment in collaboration with HOPE Cape Town and CCNIA.",
       "city": "Cape Town",
       "images": [
         "img/ho2.jpg",
@@ -208,7 +208,7 @@
         "img/ho1.jpg",
         "img/ho7.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example7/",
+      "instagram": "https://www.tk-la.co.za/HOPE-The-Nex",
       "geometry": {
         "coordinates": [
           [-33.95578, 18.647144], [-33.9557704, 18.6471045], [-33.9557294, 18.6470567],
@@ -222,12 +222,12 @@
     {
       "id": "8",
       "category": "water",
-      "title": "Adderley Transit Corridor",
+      "title": "Adderley Street",
       "company": "City of Cape Town",
-      "role": "Transport Planning Lead",
-      "duration": "2023 - 2025",
-      "status": "Under Construction",
-      "description": "Urban mobility corridor transformation enhancing public transport connectivity",
+      "role": "",
+      "duration": "2021",
+      "status": "Vision completed, sent to external party for feasability study",
+      "description": "Reimagining the Adderley Street Fountains as a pedestrian-friendly, water-sensitive public space. This proposal transforms the traffic-circle fountains and center islands into a bioremediation system, integrating stormwater reuse, non-motorized transport, and vibrant gathering areas—linking Cape Town's urban squares while aligning with the city's sustainability strategies.",
       "city": "Cape Town",
       "images": [
         "img/ad1.jpg",
@@ -235,7 +235,7 @@
         "img/ad5.jpg",
         "img/ad6.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example8/",
+      "instagram": "https://www.tk-la.co.za/Adderley-Street",
       "geometry": {
         "coordinates": [
           [-33.9167967, 18.4279835], [-33.9174157, 18.4288293], [-33.9205316, 18.4257564],
@@ -247,17 +247,17 @@
       "id": "9",
       "category": "transport",
       "title": "Somerset West Transport Hub",
-      "company": "Urban Dynamics",
-      "role": "Urban Design Lead",
+      "company": "TKLA for the City of Cape Town",
+      "role": "",
       "duration": "2024 - 2026",
       "status": "Planning Phase",
-      "description": "Mixed-use development creating a new urban center for Somerset West",
+      "description": "A reimagined public transport interchange in Somerset West’s CBD, designed to improve traffic flow and support local commerce. As landscape architects, we played a key role in coordinating the integration of pedestrian-friendly spaces, traffic calming features, and trade-oriented infrastructure, collaborating across disciplines to create a functional, welcoming urban environment.",
       "city": "Cape Town",
       "images": [
         "img/sw1.jpg",
         "img/sw2.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example9/",
+      "instagram": "https://www.capetown.gov.za/Media-and-news/New%20transport%20facility%20in%20Somerset%20West%20CBD%20to%20keep%20commuters%20moving",
       "geometry": {
         "coordinates": [
           [-34.0873178, 18.8508813], [-34.0853855, 18.8493956], [-34.0849013, 18.8502752],
@@ -272,11 +272,11 @@
       "id": "10",
       "category": "transport",
       "title": "Langa Transport Corridor",
-      "company": "Local Studio",
-      "role": "Community Arts Lead",
-      "duration": "2023 - 2024",
-      "status": "In Progress",
-      "description": "Community-driven cultural center celebrating local arts and heritage",
+      "company": "Independent Collaboration/Street Experiments South Africa",
+      "role": "",
+      "duration": "2024 - Present",
+      "status": "Sketch phase, concept phase approved",
+      "description": "Addressing urban mobility challenges in Langa and Athlone, this project focuses on improving pedestrian and cyclist access to the city's economic hub. Through three street experiments, we aim to test solutions that create safer, more inclusive public spaces while learning from community-driven planning and bottom-up approaches to urban mobility.",
       "city": "Cape Town",
       "images": [
         "img/la2.jpg",
@@ -285,7 +285,7 @@
         "img/la1.jpg",
         "img/la4.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example10/",
+      "instagram": "https://www.instagram.com/quitaschabracq/p/DDZIGjLIqjv/?img_index=1",
       "geometry": {
         "coordinates": [
           [-33.9395342, 18.5293487], [-33.9398375, 18.530305], [-33.9411093, 18.5294612],
@@ -299,17 +299,17 @@
     {
       "id": "11",
       "category": "water",
-      "title": "Company Gardens Renewal",
-      "company": "City of Cape Town Parks",
-      "role": "Landscape Architect",
-      "duration": "2024 - 2025",
-      "status": "Design Phase",
-      "description": "Historic garden restoration with sustainable water management systems",
+      "title": "Landscapes of Remebrance",
+      "company": "TKLA in collaboration with Paul Elliott Architects",
+      "role": "",
+      "duration": "2022",
+      "status": "Competition finalist",
+      "description": "A landscape created in memory of Black South Africans who served and lost their lives in World War One. The design reflects the cycles of life and death through natural seasonal changes, with areas symbolizing forest, field, and water. This space encourages reflection, remembrance, and community gathering while marking the passage of time.",
       "city": "Cape Town",
       "images": [
         "img/cg1.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example11/",
+      "instagram": "https://www.cwgc.org/our-work/blog/the-cape-town-labour-corps-memorial-a-new-chapter-in-commemoration/",
       "geometry": {
         "coordinates": [
           [-33.9280548, 18.4152198], [-33.9277916, 18.4154971], [-33.928022, 18.4158364],
@@ -321,11 +321,11 @@
       "id": "12",
       "category": "water",
       "title": "Design School, University of Cape Town",
-      "company": "Cape Peninsula University",
-      "role": "Educational Design Lead",
-      "duration": "2023 - 2025",
-      "status": "Under Construction",
-      "description": "New creative hub for design education and innovation",
+      "company": "TKLA",
+      "role": "",
+      "duration": "2020 - 2022",
+      "status": "Completed",
+      "description": "A landscape design that blends historic cork oaks with modern planting to both reveal and shelter the University of Cape Town's Design School. The design preserves the iconic cork oaks along the main thoroughfare while introducing a reimagined plane tree avenue and vibrant plantings, ensuring seamless integration with the surrounding campus and landscape.",
       "city": "Cape Town",
       "images": [
         "img/ds8.jpg",
@@ -336,7 +336,7 @@
         "img/ds.jpg",
         "img/ds1.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example12/",
+      "instagram": "https://issuu.com/outsideandinmag/docs/scape_dec_2022_issuu/60",
       "geometry": {
         "coordinates": [
           [-33.9552961, 18.4666534], [-33.9553705, 18.4666428], [-33.9554128, 18.4666235],
@@ -362,18 +362,18 @@
       "id": "13",
       "category": "water",
       "title": "MyCiti Spine Road Bus Depot",
-      "company": "Transport for Cape Town",
-      "role": "Transport Systems Engineer",
-      "duration": "2024 - 2026",
+      "company": "TKLA",
+      "role": "",
+      "duration": "2020 - 2021",
       "status": "Planning Phase",
-      "description": "Integrated transport corridor linking key urban nodes",
+      "description": "Landscape design for Cape Town's MyCiTi Spine Road, focusing on planting schemes and typography that help manage water flow through natural swales. The project enhances the area's functionality while integrating it with the surrounding environment.",
       "city": "Cape Town",
       "images": [
         "img/spi1.jpg",
         "img/spi2.jpg",
         "img/spi3.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example13/",
+      "instagram": "https://www.myciti.org.za/en/phase2a/construction/spine-road-depots/",
       "geometry": {
         "coordinates": [
           [-34.0455584, 18.6473428], [-34.0448709, 18.6506125], [-34.0447602, 18.6512384],
@@ -387,11 +387,11 @@
       "id": "14",
       "category": "art",
       "title": "Born First Born Free Exhibition",
-      "company": "Silo District",
-      "role": "Urban Design Lead",
-      "duration": "2023 - 2025",
-      "status": "In Progress",
-      "description": "Mixed-use urban development promoting sustainable living",
+      "company": "Born First Born Free",
+      "role": "Independent artist",
+      "duration": "2022",
+      "status": "Exhibition presented",
+      "description": "Arrangements forms part of a continued exchange of visual and symbolic ideas between Daniel and myself. Both Daniel and I began working with flowers in their respective artistic practices, resulting in this combined exhibition and zine. Daniel painted a series of oil paintings that explore colour, shape and composition through floral still lifes.",
       "city": "Cape Town",
       "images": [
         "img/bfbf-e1.jpg",
@@ -403,7 +403,7 @@
         "img/bfbf-e7.jpg",
         "img/bfbf-e8.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example14/",
+      "instagram": "https://www.instagram.com/bornfirst_bornfree/",
       "geometry": {
         "coordinates": [
           [-33.9090767, 18.4234245], [-33.9091132, 18.4234808], [-33.9091789, 18.423414],
@@ -414,19 +414,19 @@
     {
       "id": "15",
       "category": "water",
-      "title": "Pear_ed Hypothesis 3",
-      "company": "Ensō House",
-      "role": "Sustainability Consultant",
-      "duration": "2024 - 2026",
-      "status": "Design Phase",
-      "description": "Sustainable waterfront development with ecological focus",
+      "title": "Hypothesis 3",
+      "company": "Pear_ed",
+      "role": "t",
+      "duration": "2024",
+      "status": "Exhibition presented",
+      "description": "Hypothesis 3, a collaboration with Cynthia Fan, explores the question, 'What do plants really want?' Through botanical compositions and an Instagram dialogue between plants, the project challenges traditional flower arranging. Divided between London and Amsterdam, the work focuses on plant autonomy, capturing growth, decay, and change. An interactive map tracks the plants' transformations.",
       "city": "London",
       "images": [
         "img/pe-l1.jpg",
         "img/pe-l2.jpg",
         "img/pe-l3.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example15/",
+      "instagram": "https://www.enso-house.com/pastevents/exhibition/plants-in-parallel#pear_ed",
       "geometry": {
         "coordinates": [
           [51.5075624, -0.1022655], [51.5075635, -0.1022207], [51.5075793, -0.1022207],
@@ -438,17 +438,17 @@
     {
       "id": "16",
       "category": "art",
-      "title": "Born First Born Free Book",
-      "company": "BFBF Studio",
+      "title": "'Born First Born Free' Book",
+      "company": "Born First Born Free",
       "role": "Publication Design",
-      "duration": "2023 - 2024",
-      "status": "In Progress",
-      "description": "Architectural publication showcasing BFBF's design philosophy and projects",
+      "duration": "2018 - 2019",
+      "status": "Published book",
+      "description": "Born First Born Free is a year-long visual exchange between my brother, Daniel Malan, and I, spanning two continents. Through a shared Instagram account, they responded to each other's images, creating a dialogue that explored cultural contrasts and similarities. The results culminate in a book documenting this ongoing conversation.",
       "city": "Cape Town",
       "images": [
       
       ],
-      "instagram": "https://www.instagram.com/p/example16/",
+      "instagram": "https://www.instagram.com/bornfirst_bornfree/",
       "geometry": {
         "coordinates": [
             [-33.927413, 18.4239378],
@@ -462,19 +462,19 @@
     {
       "id": "18",
       "category": "art",
-      "title": "Pear_ed Hypotheses 1+2",
-      "company": "Amsterdam Municipality",
-      "role": "Urban Design Lead",
-      "duration": "2023 - 2025",
-      "status": "In Progress",
-      "description": "Urban transformation project in Amsterdam Zuid",
+      "title": "Hypotheses 1+2",
+      "company": "Pear_ed",
+      "role": "Artistic collaboration",
+      "duration": "2023",
+      "status": "Exhibition presented",
+      "description": "The project is a collaboration between Cynthia Fan and Hayden Malan, explores the desires and autonomy of plants. Combining botany, biology, and art, the project challenges traditional flower arranging through botanical compositions that change over time, highlighting the life cycle of plants and their non-human sentience. The exhibition encourages deeper engagement with organic matter and focuses on the sculptural potential of plants.",
       "city": "Cape Town",
       "images": [
         "img/pe-a1.jpg",
         "img/pe-a2.jpg",
         "img/pe-a3.jpg"
       ],
-      "instagram": "https://www.instagram.com/p/example18/",
+      "instagram": "https://www.a4arts.org/projects/recE3JdJrjDD2oxZw-pear-ed-hypothesis-1-2",
       "geometry": {
         "coordinates": [
           [ -33.9274062, 18.4239192 ], [ -33.9273146, 18.4240213 ], [ -33.9275186, 18.4243 ],
