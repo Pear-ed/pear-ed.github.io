@@ -87,6 +87,7 @@ const lightboxConfig = {
     scrollZoom: true,
     close: false,
     overlay: true,
+    overlayOpacity: 0.8,
     disableScroll: false,
     closeOnOverlayClick: true,
 };

@@ -404,9 +404,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0);
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
+    background: rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: blur(5px); 
+    backdrop-filter: blur(5px);
     will-change: backdrop-filter;
   }
 
