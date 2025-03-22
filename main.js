@@ -149,30 +149,44 @@ function getMarkerStyle(categoryColor, projectId) {
     };
 }
 
-// Update the handleSidebarOpen function
+// Define this at the top level with other constants
+const SIDEBAR_POSITIONS = {
+    'sidebar-art': '82vh',
+    'sidebar-water': '75vh',
+    'sidebar-transport': '68vh',
+    'sidebar-urban': '61vh'
+};
+
+// Helper function to set sidebar position
+function setSidebarPosition(sidebar, position) {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        sidebar.style.top = typeof position === 'number' ? `${position}px` : position;
+    }
+}
+
+// Consolidated closeAllSidebars function
+function closeAllSidebars() {
+    const isMobile = window.innerWidth <= 768;
+    document.querySelectorAll('.sidebar').forEach(sb => {
+        sb.classList.remove('open');
+        if (isMobile) {
+            setSidebarPosition(sb, SIDEBAR_POSITIONS[sb.id]);
+        }
+    });
+}
+
+// Update handleSidebarOpen to use the consolidated functions
 function handleSidebarOpen(category) {
     const isMobile = window.innerWidth <= 768;
     const sidebar = document.getElementById(`sidebar-${category}`);
     
-    // Close all sidebars first
-    document.querySelectorAll('.sidebar').forEach(sb => {
-        sb.classList.remove('open');
-        if (isMobile) {
-            const positions = {
-                'sidebar-art': '92vh',
-                'sidebar-water': '85vh',
-                'sidebar-transport': '78vh',
-                'sidebar-urban': '71vh'
-            };
-            sb.style.top = positions[sb.id];
-        }
-    });
+    closeAllSidebars();
     
-    // Open the selected sidebar
     if (sidebar) {
         sidebar.classList.add('open');
         if (isMobile) {
-            sidebar.style.top = '20vh';
+            setSidebarPosition(sidebar, '20vh');
         }
     }
 }
@@ -513,10 +527,10 @@ function initializeMobileDrag() {
 
     // Helper function to close all sidebars
     function closeAllSidebars() {
-        sidebars.forEach(sidebar => {
-            sidebar.classList.remove('open');
+        document.querySelectorAll('.sidebar').forEach(sb => {
+            sb.classList.remove('open');
             if (isMobile) {
-                setSidebarPosition(getDefaultPosition(sidebar.id));
+                sb.style.top = SIDEBAR_POSITIONS[sb.id];
             }
         });
     }
@@ -532,7 +546,7 @@ function initializeMobileDrag() {
                !target.closest('.sidebar');
     }
 
-    // For desktop
+    // Update click/touch handlers to use consolidated closeAllSidebars
     if (!isMobile) {
         mapContainer.addEventListener('click', function(e) {
             if (isMapBackgroundClick(e)) {
@@ -541,34 +555,13 @@ function initializeMobileDrag() {
         });
     }
 
-    // For mobile
     if (isMobile) {
         mapContainer.addEventListener('touchend', function(e) {
             if (isMapBackgroundClick(e)) {
                 closeAllSidebars();
             }
         }, { passive: true });
-    }
 
-    // Helper function to set sidebar position with a specific value
-    function setSidebarPosition(sidebar, position) {
-        if (isMobile) {
-            sidebar.style.top = typeof position === 'number' ? `${position}px` : position;
-        }
-    }
-
-    // Get default position for a sidebar
-    function getDefaultPosition(sidebarId) {
-        const positions = {
-            'sidebar-art': '82vh',
-            'sidebar-water': '75vh',
-            'sidebar-transport': '68vh',
-            'sidebar-urban': '61vh'
-        };
-        return positions[sidebarId];
-    }
-
-    if (isMobile) {
         sidebars.forEach(sidebar => {
             const toggle = sidebar.querySelector('.sidebar-toggle');
             let startY = 0;
@@ -582,17 +575,15 @@ function initializeMobileDrag() {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                // Close all other sidebars
                 sidebars.forEach(sb => {
                     if (sb !== sidebar) {
                         sb.classList.remove('open');
-                        setSidebarPosition(sb, getDefaultPosition(sb.id));
+                        setSidebarPosition(sb, SIDEBAR_POSITIONS[sb.id]);
                     }
                 });
                 
-                // Toggle this sidebar
                 const isOpen = sidebar.classList.toggle('open');
-                setSidebarPosition(sidebar, isOpen ? '20vh' : getDefaultPosition(sidebar.id));
+                setSidebarPosition(sidebar, isOpen ? '20vh' : SIDEBAR_POSITIONS[sb.id]);
             });
 
             toggle.addEventListener('touchstart', function(e) {
@@ -640,47 +631,45 @@ function initializeMobileDrag() {
                     sidebars.forEach(sb => {
                         if (sb !== sidebar) {
                             sb.classList.remove('open');
-                            setSidebarPosition(sb, getDefaultPosition(sb.id));
+                            setSidebarPosition(sb, SIDEBAR_POSITIONS[sb.id]);
                         }
                     });
                     
                     const isOpen = sidebar.classList.toggle('open');
-                    setSidebarPosition(sidebar, isOpen ? '20vh' : getDefaultPosition(sidebar.id));
+                    setSidebarPosition(sidebar, isOpen ? '20vh' : SIDEBAR_POSITIONS[sb.id]);
                 } else if (isDragging) {
                     const currentTop = sidebar.getBoundingClientRect().top;
-                    const screenMidpoint = window.innerHeight / 2;
-                    const velocityThreshold = velocity > 0.5 ? 0 : screenMidpoint;
+                    const maxAllowedTop = parseFloat(SIDEBAR_POSITIONS[sidebar.id]) * window.innerHeight / 100;
                     
-                    if (currentTop < velocityThreshold || deltaY > 30) {
+                    if (currentTop < window.innerHeight / 2 || deltaY > 30) {
                         sidebar.classList.add('open');
                         setSidebarPosition(sidebar, '20vh');
-                    } else {
+                    } else if (currentTop > maxAllowedTop) {
+                        // Limit to original position
                         sidebar.classList.remove('open');
-                        setSidebarPosition(sidebar, getDefaultPosition(sidebar.id));
+                        setSidebarPosition(sidebar, SIDEBAR_POSITIONS[sidebar.id]);
                     }
                 }
             });
         });
     }
 
-    // Desktop click handlers
-    document.querySelectorAll('.sidebar-toggle').forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-            if (window.innerWidth > 768) {
+    // Update desktop click handlers to use consolidated pattern
+    if (!isMobile) {
+        document.querySelectorAll('.sidebar-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
                 const sidebar = this.parentElement;
                 
-                // Close all other sidebars
                 document.querySelectorAll('.sidebar').forEach(sb => {
                     if (sb !== sidebar) {
                         sb.classList.remove('open');
                     }
                 });
                 
-                // Toggle this sidebar
                 sidebar.classList.toggle('open');
-            }
+            });
         });
-    });
+    }
 }
 
 // Initialize drag functionality when the DOM is loaded
