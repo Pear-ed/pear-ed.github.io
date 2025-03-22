@@ -498,6 +498,9 @@ const capetownButton = createNavButton('capetown-button', 'go to South Africa â†
     options: navFlyConfig
 });
 
+// Add custom positioning for the button
+capetownButton.style.bottom = '40vh';  // Position it above the urban sidebar (61vh)
+
 // Replace the existing welcome overlay creation with this function
 function createWelcomeOverlay() {
     const overlay = document.createElement('div');
