@@ -645,11 +645,11 @@ function initializeMobileDrag() {
                     const currentTop = sidebar.getBoundingClientRect().top;
                     const maxAllowedTop = parseFloat(SIDEBAR_POSITIONS[sidebar.id]) * window.innerHeight / 100;
                     
-                    if (currentTop < window.innerHeight / 2 || deltaY > 30) {
+                    if (currentTop < window.innerHeight * 0.4 || deltaY > 30) {
                         sidebar.classList.add('open');
                         setSidebarPosition(sidebar, '20vh');
-                    } else if (currentTop > maxAllowedTop) {
-                        // Limit to original position
+                    } else {
+                        // If dragged down past threshold or original position, snap to closed
                         sidebar.classList.remove('open');
                         setSidebarPosition(sidebar, SIDEBAR_POSITIONS[sidebar.id]);
                     }

@@ -483,6 +483,7 @@
 
     .header-container p {
       font-size: 16px;
+      margin-bottom: 0px;
     }
 
     .about-text,
@@ -496,6 +497,10 @@
     .contact-toggle {
         font-size: 16px;
         text-decoration: underline;
+    }
+
+    .about-toggle {
+      margin-top: -5px;
     }
 
     /* Sidebar adjustments */
