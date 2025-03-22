@@ -551,7 +551,7 @@ function initializeMobileDrag() {
     }
 
     // Helper function to set sidebar position with a specific value
-    function setSidebarPosition(position) {
+    function setSidebarPosition(sidebar, position) {
         if (isMobile) {
             sidebar.style.top = typeof position === 'number' ? `${position}px` : position;
         }
@@ -576,13 +576,29 @@ function initializeMobileDrag() {
             let isDragging = false;
             let touchStartTime = 0;
             let initialSidebarTop = 0;
-            const DRAG_THRESHOLD = 10;
+
+            // Add click handler for the toggle
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Close all other sidebars
+                sidebars.forEach(sb => {
+                    if (sb !== sidebar) {
+                        sb.classList.remove('open');
+                        setSidebarPosition(sb, getDefaultPosition(sb.id));
+                    }
+                });
+                
+                // Toggle this sidebar
+                const isOpen = sidebar.classList.toggle('open');
+                setSidebarPosition(sidebar, isOpen ? '20vh' : getDefaultPosition(sidebar.id));
+            });
 
             toggle.addEventListener('touchstart', function(e) {
                 startY = e.touches[0].clientY;
                 touchStartTime = Date.now();
                 isDragging = false;
-                // Store the initial sidebar position
                 initialSidebarTop = sidebar.getBoundingClientRect().top;
                 e.preventDefault();
             });
@@ -591,29 +607,23 @@ function initializeMobileDrag() {
                 currentY = e.touches[0].clientY;
                 const deltaY = currentY - startY;
 
-                // Reduce threshold for more immediate response
-                if (Math.abs(deltaY) > 2) { // Reduced from 10 to 5
+                if (Math.abs(deltaY) > 2) {
                     isDragging = true;
                 }
 
                 if (isDragging) {
-                    // Calculate new position with smoother movement
                     let newTop = initialSidebarTop + deltaY;
-                    
-                    // Add constraints with some elasticity for smoother feel
                     const maxTop = window.innerHeight - 100;
                     const minTop = 100;
                     
-                    // Add elasticity when reaching bounds
                     if (newTop < minTop) {
-                        newTop = minTop + (newTop - minTop) * 0.2; // Elastic resistance at top
+                        newTop = minTop + (newTop - minTop) * 0.2;
                     } else if (newTop > maxTop) {
-                        newTop = maxTop + (newTop - maxTop) * 0.2; // Elastic resistance at bottom
+                        newTop = maxTop + (newTop - maxTop) * 0.2;
                     }
                     
-                    // Remove any transition during drag for immediate response
                     sidebar.style.transition = 'none';
-                    setSidebarPosition(newTop);
+                    setSidebarPosition(sidebar, newTop);
                 }
                 e.preventDefault();
             });
@@ -621,9 +631,8 @@ function initializeMobileDrag() {
             toggle.addEventListener('touchend', function(e) {
                 const touchDuration = Date.now() - touchStartTime;
                 const deltaY = startY - currentY;
-                const velocity = Math.abs(deltaY) / touchDuration; // Calculate velocity
+                const velocity = Math.abs(deltaY) / touchDuration;
                 
-                // Restore transition for smooth end animation
                 sidebar.style.transition = 'top 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
                 
                 if (touchDuration < 150 && !isDragging) {
@@ -631,28 +640,23 @@ function initializeMobileDrag() {
                     sidebars.forEach(sb => {
                         if (sb !== sidebar) {
                             sb.classList.remove('open');
-                            setSidebarPosition(getDefaultPosition(sb.id));
+                            setSidebarPosition(sb, getDefaultPosition(sb.id));
                         }
                     });
                     
                     const isOpen = sidebar.classList.toggle('open');
-                    setSidebarPosition(isOpen ? '20vh' : getDefaultPosition(sidebar.id));
+                    setSidebarPosition(sidebar, isOpen ? '20vh' : getDefaultPosition(sidebar.id));
                 } else if (isDragging) {
-                    // Use velocity to determine final position
                     const currentTop = sidebar.getBoundingClientRect().top;
                     const screenMidpoint = window.innerHeight / 2;
-                    
-                    // Adjust threshold based on velocity
                     const velocityThreshold = velocity > 0.5 ? 0 : screenMidpoint;
                     
-                    if (currentTop < velocityThreshold || deltaY > 30) { // Reduced threshold from 50 to 30
-                        // Open the sidebar
+                    if (currentTop < velocityThreshold || deltaY > 30) {
                         sidebar.classList.add('open');
-                        setSidebarPosition('20vh');
+                        setSidebarPosition(sidebar, '20vh');
                     } else {
-                        // Close the sidebar
                         sidebar.classList.remove('open');
-                        setSidebarPosition(getDefaultPosition(sidebar.id));
+                        setSidebarPosition(sidebar, getDefaultPosition(sidebar.id));
                     }
                 }
             });
@@ -662,7 +666,7 @@ function initializeMobileDrag() {
     // Desktop click handlers
     document.querySelectorAll('.sidebar-toggle').forEach(toggle => {
         toggle.addEventListener('click', function(e) {
-            if (window.innerWidth > 768) {  // Only handle click for desktop
+            if (window.innerWidth > 768) {
                 const sidebar = this.parentElement;
                 
                 // Close all other sidebars
@@ -700,5 +704,6 @@ document.addEventListener('DOMContentLoaded', function() {
             contactContainer.classList.toggle('expanded');
         });
     }
-});
+})
+
 
