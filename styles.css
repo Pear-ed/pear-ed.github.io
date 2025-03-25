@@ -434,7 +434,6 @@
     padding: 20px;
   }
 
-  /* Nav Button Styles */
   .nav-button {
     position: absolute;
     z-index: 2;
@@ -442,7 +441,7 @@
     background: none;
     cursor: pointer;
     font-family: 'GT Walsheim';
-    font-size: 12px;
+    font-size: 13px;
     border: none;
     transition: opacity 0.3s ease;
   }
@@ -603,15 +602,11 @@
     }
 
     #amsterdam-button {
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 53vh;
     }
 
     #capetown-button {
-      bottom: 30vh;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: 40vh;
     }
 
     .welcome-text {
