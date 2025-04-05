@@ -506,7 +506,7 @@ function createWelcomeOverlay() {
     
     const text = document.createElement('div');
     text.className = 'welcome-text';
-    text.textContent = 'Welcome! Move around and explore 🔎';
+    text.textContent = 'Click, zoom, move, please!';
     
     overlay.appendChild(text);
     document.body.appendChild(overlay);
