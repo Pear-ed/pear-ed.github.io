@@ -24,7 +24,7 @@ position: 'topright'
 
 // Mapbox layer
 const mapLayer = L.tileLayer(
-    "https://api.mapbox.com/styles/v1/hbmalanhbmalan/cm85r0yca005w01s91hqfekwm/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbmhibWFsYW4iLCJhIjoiY2x6ZHNlZ3MzMG1reTJrczhxZTgyeWo0NSJ9.4QknS0vpgvqLHCRB5VOiTQ",
+    "https://api.mapbox.com/styles/v1/hbmalanhbmalan/clzdyq5jt00d001qqaqyy80iw/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGJtYWxhbmhibWFsYW4iLCJhIjoiY2x6ZHNlZ3MzMG1reTJrczhxZTgyeWo0NSJ9.4QknS0vpgvqLHCRB5VOiTQ",
     {
       attribution:
             '&copy; <a href="https://osm.org/copyright">Mapbox</a> contributors'
@@ -33,10 +33,10 @@ const mapLayer = L.tileLayer(
 
 // Color definitions for categories
 const categoryColors = {
-    'art': '#D96C3D',    // orange (for Art practice)
-    'water': '#F1A4A9',    // pink (unchanged)
-    'transport': '#DFE641', // green (unchanged)
-    'urban': '#757A9E'       // bluish grey (for Urban transformation)
+    'art': '#8C271E',    // Base color
+    'water': '#A52D23',    // Slightly lighter shade
+    'transport': '#7A2119', // Slightly darker shade
+    'urban': '#B3342A'       // Another lighter shade
 };
 
 // Update CSS variables
