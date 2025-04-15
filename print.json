@@ -1,0 +1,292 @@
+{
+  "prints": [
+    {
+      "id": "h_88",
+      "image": "img/print/h_88.jpg",
+      "title": "Print 88",
+      "edition": "2024"
+    },
+    {
+      "id": "h_86",
+      "image": "img/print/h_86.jpg",
+      "title": "Print 86",
+      "edition": "2024"
+    },
+    {
+      "id": "c_19",
+      "image": "img/print/c_19.jpg",
+      "title": "Print 19",
+      "edition": "2024"
+    },
+    {
+      "id": "c_16",
+      "image": "img/print/c_16.jpg",
+      "title": "Print 16",
+      "edition": "2024"
+    },
+    {
+      "id": "c_21",
+      "image": "img/print/c_21.jpg",
+      "title": "Print 21",
+      "edition": "2024"
+    },
+    {
+      "id": "c_17",
+      "image": "img/print/c_17.jpg",
+      "title": "Print 17",
+      "edition": "2024"
+    },
+    {
+      "id": "c_18",
+      "image": "img/print/c_18.jpg",
+      "title": "Print 18",
+      "edition": "2024"
+    },
+    {
+      "id": "c_23",
+      "image": "img/print/c_23.jpg",
+      "title": "Print 23",
+      "edition": "2024"
+    },
+    {
+      "id": "c_8",
+      "image": "img/print/c_8.jpg",
+      "title": "Print 8",
+      "edition": "2024"
+    },
+    {
+      "id": "c_15",
+      "image": "img/print/c_15.jpg",
+      "title": "Print 15",
+      "edition": "2024"
+    },
+    {
+      "id": "c_7",
+      "image": "img/print/c_7.jpg",
+      "title": "Print 7",
+      "edition": "2024"
+    },
+    {
+      "id": "c_2",
+      "image": "img/print/c_2.jpg",
+      "title": "Print 2",
+      "edition": "2024"
+    },
+    {
+      "id": "h_74",
+      "image": "img/print/h_74.jpg",
+      "title": "Print 74",
+      "edition": "2024"
+    },
+    {
+      "id": "h_73",
+      "image": "img/print/h_73.jpg",
+      "title": "Print 73",
+      "edition": "2024"
+    },
+    {
+      "id": "c_24",
+      "image": "img/print/c_24.jpg",
+      "title": "Print 24",
+      "edition": "2024"
+    },
+    {
+      "id": "c_22",
+      "image": "img/print/c_22.jpg",
+      "title": "Print 22",
+      "edition": "2024"
+    },
+    {
+      "id": "h_61",
+      "image": "img/print/h_61.jpg",
+      "title": "Print 61",
+      "edition": "2024"
+    },
+    {
+      "id": "h_59",
+      "image": "img/print/h_59.jpg",
+      "title": "Print 59",
+      "edition": "2024"
+    },
+    {
+      "id": "c_10",
+      "image": "img/print/c_10.jpg",
+      "title": "Print 10",
+      "edition": "2024"
+    },
+    {
+      "id": "c_14",
+      "image": "img/print/c_14.jpg",
+      "title": "Print 14",
+      "edition": "2024"
+    },
+    {
+      "id": "h_57",
+      "image": "img/print/h_57.jpg",
+      "title": "Print 57",
+      "edition": "2024"
+    },
+    {
+      "id": "c_3",
+      "image": "img/print/c_3.jpg",
+      "title": "Print 3",
+      "edition": "2024"
+    },
+    {
+      "id": "h_50",
+      "image": "img/print/h_50.jpg",
+      "title": "Print 50",
+      "edition": "2024"
+    },
+    {
+      "id": "h_49",
+      "image": "img/print/h_49.jpg",
+      "title": "Print 49",
+      "edition": "2024"
+    },
+    {
+      "id": "h_48",
+      "image": "img/print/h_48.jpg",
+      "title": "Print 48",
+      "edition": "2024"
+    },
+    {
+      "id": "h_47",
+      "image": "img/print/h_47.jpg",
+      "title": "Print 47",
+      "edition": "2024"
+    },
+    {
+      "id": "c_13",
+      "image": "img/print/c_13.jpg",
+      "title": "Print 13",
+      "edition": "2024"
+    },
+    {
+      "id": "c_4",
+      "image": "img/print/c_4.jpg",
+      "title": "Print 4",
+      "edition": "2024"
+    },
+    {
+      "id": "h_46",
+      "image": "img/print/h_46.jpg",
+      "title": "Print 46",
+      "edition": "2024"
+    },
+    {
+      "id": "h_45",
+      "image": "img/print/h_45.jpg",
+      "title": "Print 45",
+      "edition": "2024"
+    },
+    {
+      "id": "c_6",
+      "image": "img/print/c_6.jpg",
+      "title": "Print 6",
+      "edition": "2024"
+    },
+    {
+      "id": "h_41",
+      "image": "img/print/h_41.jpg",
+      "title": "Print 41",
+      "edition": "2024"
+    },
+    {
+      "id": "h_38",
+      "image": "img/print/h_38.jpg",
+      "title": "Print 38",
+      "edition": "2024"
+    },
+    {
+      "id": "h_40",
+      "image": "img/print/h_40.jpg",
+      "title": "Print 40",
+      "edition": "2024"
+    },
+    {
+      "id": "c_5",
+      "image": "img/print/c_5.jpg",
+      "title": "Print 5",
+      "edition": "2024"
+    },
+    {
+      "id": "h_37",
+      "image": "img/print/h_37.jpg",
+      "title": "Print 37",
+      "edition": "2024"
+    },
+    {
+      "id": "c_11",
+      "image": "img/print/c_11.jpg",
+      "title": "Print 11",
+      "edition": "2024"
+    },
+    {
+      "id": "c_9",
+      "image": "img/print/c_9.jpg",
+      "title": "Print 9",
+      "edition": "2024"
+    },
+    {
+      "id": "h_16",
+      "image": "img/print/h_16.jpg",
+      "title": "Print 16",
+      "edition": "2024"
+    },
+    {
+      "id": "h_15",
+      "image": "img/print/h_15.jpg",
+      "title": "Print 15",
+      "edition": "2024"
+    },
+    {
+      "id": "c_12",
+      "image": "img/print/c_12.jpg",
+      "title": "Print 12",
+      "edition": "2024"
+    },
+    {
+      "id": "h_12",
+      "image": "img/print/h_12.jpg",
+      "title": "Print 12",
+      "edition": "2024"
+    },
+    {
+      "id": "h_14",
+      "image": "img/print/h_14.jpg",
+      "title": "Print 14",
+      "edition": "2024"
+    },
+    {
+      "id": "h_6",
+      "image": "img/print/h_6.jpg",
+      "title": "Print 6",
+      "edition": "2024"
+    },
+    {
+      "id": "h_2",
+      "image": "img/print/h_2.jpg",
+      "title": "Print 2",
+      "edition": "2024"
+    },
+    {
+      "id": "h_84",
+      "image": "img/print/h_84.jpg",
+      "title": "Print 84",
+      "edition": "2024"
+    },
+    {
+      "id": "h_80",
+      "image": "img/print/h_80.jpg",
+      "title": "Print 80",
+      "edition": "2024"
+    },
+    {
+      "id": "h_55",
+      "image": "img/print/h_55.jpg",
+      "title": "Print 55",
+      "edition": "2024"
+    }
+  ]
+} 

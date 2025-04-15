@@ -6,6 +6,13 @@
   }
 
   @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: url('fonts/NeueHaasGrotesk-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
     font-family: 'Centra No2';
     src: url('fonts/CentraNo2-Book.woff2') format('woff2');
     font-weight: 400;
@@ -70,18 +77,16 @@
     display: flex;
     flex-direction: column;
     left: 0;
-    margin-top: 0px;
+    bottom: 0;
+    margin-bottom: 20px;
   }
 
-  .header-container h1 {
-    font-size: 28px;
-    margin: 0;
-    margin-bottom: 12px;
-  }
-
-  .header-container p {
+  .location-text {
     font-size: 14px;
     margin: 0px;
+    margin-top: 20px;
+    color: rgba(217, 133, 133, 1);
+    pointer-events: none;
   }
 
   .about-toggle-container,
@@ -95,6 +100,9 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
   }
 
   /* For desktop hover */
@@ -108,7 +116,7 @@
   }
 
   .contact-toggle-container {
-    margin-top: -8px;  /* This will remove the gap between toggles */
+    margin-top: -8px;
   }
 
   .about-text,
@@ -117,8 +125,9 @@
     max-width: 400px;
     line-height: 1.4;
     margin-top: 8px;
-    opacity: 0.85;
+    opacity: 1;
     padding-bottom: 20px;
+    color: rgba(217, 133, 133, 1);
   }
 
   /* Toggle buttons */
@@ -131,7 +140,7 @@
     cursor: pointer;
     padding: 5px 0;
     text-align: left;
-    color: #000;
+    color: rgba(217, 133, 133, 1);
     pointer-events: auto;
     font-family: 'GT Walsheim';
   }
@@ -304,6 +313,7 @@
     margin-left: 8px;
   }
 
+  /* Sidebar Content Styles */
   .sidebar-content {
     height: 100%;
     overflow-x: hidden;
@@ -315,6 +325,8 @@
     padding-bottom: 60px;
     position: relative;
     scroll-padding-top: 30px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   /* Hide scrollbar for Chrome, Safari and Opera */
@@ -329,17 +341,20 @@
 
   /* Sidebar Category-Specific Styles */
   #sidebar-art { right: -370px; background: var(--art-color); z-index: 5; }
-  #sidebar-water { right: -330px; background: var(--water-color); z-index: 4; }
+  #sidebar-print { right: -330px; background: #CECEC6; z-index: 4; }
   #sidebar-conversation { right: -290px; background: var(--conversation-color); z-index: 3; }
 
   /* Sidebar Open States */
   #sidebar-art.open { right: 0px; }
-  #sidebar-water.open { right: 70px; }
+  #sidebar-print.open { 
+    right: 0;
+    width: 80%;
+  }
   #sidebar-conversation.open { right: 110px; }
 
   /* Sidebar Hover States */
   #sidebar-art:not(.open):hover { right: -365px; }
-  #sidebar-water:not(.open):hover { right: -325px; }
+  #sidebar-print:not(.open):hover { right: -325px; }
   #sidebar-conversation:not(.open):hover { right: -285px; }
 
   /* Project Card Styles */
@@ -542,12 +557,12 @@
     }
             
     #sidebar-art { top: 82vh; }
-    #sidebar-water { top: 75vh; }
+    #sidebar-print { top: 75vh; }
     #sidebar-conversation { top: 68vh; }
 
     /* Remove hover states */
     #sidebar-art:not(.open):hover { right: 0; }
-    #sidebar-water:not(.open):hover { right: 0; }
+    #sidebar-print:not(.open):hover { right: 0; }
     #sidebar-conversation:not(.open):hover { right: 0; }
 
     /* Toggle button adjustments */
@@ -591,7 +606,7 @@
     #sidebar-art .project-card:last-child{
       margin-bottom: 40vh;
     }
-    #sidebar-water .project-card:last-child{
+    #sidebar-print .project-card:last-child{
       margin-bottom: 45vh;
     }
     #sidebar-conversation .project-card:last-child {
@@ -659,7 +674,13 @@
     .gallery-item img {
       height: 60px;
     }
-}
+
+    .prints-gallery {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+  }
 
 .leaflet-marker-pane {
     z-index: 600;
@@ -734,4 +755,192 @@
 .popup-id {
     font-size: 12px;
     margin-bottom: 5px;
+}
+
+/* Floating Text Styles */
+.floating-text {
+    position: fixed;
+    writing-mode: vertical-rl;
+    transform: rotateZ(180deg);
+    font-size: 5rem;
+    line-height: 0.9;
+    font-family: "Neue Haas Grotesk";
+    font-weight: 500;
+    letter-spacing: 0rem;
+    font-style: normal;
+    color: rgba(217, 133, 133, 0.85);
+    opacity: 1;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+    left: 40px;
+    top: 33.33vh;
+    transform: rotateZ(180deg);
+    white-space: nowrap;
+}
+
+.floating-text:hover {
+    font-style: italic;
+    opacity: 1;
+}
+
+/* Prints Gallery Styles */
+.prints-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.print-card {
+    position: relative;
+    width: 100%;
+    padding-bottom: 133.33%; /* 4:3 ratio */
+    overflow: visible;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+    margin: 0;
+    margin-bottom: 40px; /* Space for text */
+}
+
+.print-card:hover {
+    transform: scale(1.02);
+}
+
+.print-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.print-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+    background: white;
+}
+
+.print-item:hover img {
+    opacity: 0.9;
+}
+
+/* Print Info Styles */
+.print-info {
+    position: absolute;
+    bottom: -60px; /* Increased from -40px to move text further down */
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: transparent;
+    color: rgba(255, 116, 116, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    text-align: center;
+}
+
+.print-info h3 {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+    font-family: 'GT Walsheim';
+    line-height: 1.2;
+    color: rgba(255, 116, 116, 0.85);
+}
+
+.print-info p {
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.4;
+    color: rgba(255, 116, 116, 0.85);
+}
+
+@media screen and (max-width: 768px) {
+    .prints-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .print-info {
+        padding: 8px;
+    }
+    
+    .print-info h3 {
+        font-size: 12px;
+    }
+    
+    .print-info p {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .prints-gallery {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+/* Color definitions for categories */
+:root {
+    --art-color: #795C5F;
+    --water-color: #CECEC6;
+    --conversation-color: #ED455C;
+}
+
+/* Exhibition Gallery Styles */
+.hypothesis-container {
+    margin-bottom: 40px;
+}
+
+.hypothesis-container h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.exhibition-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.exhibition-item {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+}
+
+.exhibition-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.exhibition-item:hover img {
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+    .exhibition-gallery {
+        gap: 10px;
+    }
+    
+    .hypothesis-container h2 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
 }

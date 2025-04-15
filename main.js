@@ -742,4 +742,139 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 })
 
+// Function to load and display prints
+function loadPrints() {
+    console.log('Starting loadPrints function');
+    
+    const printList = document.querySelector('.print-list');
+    console.log('Print list element:', printList);
+    
+    if (!printList) {
+        console.error('Could not find .print-list element');
+        return;
+    }
+
+    // Fetch prints data from JSON file
+    fetch('data/prints.json')
+        .then(response => {
+            console.log('Fetch response:', response);
+            return response.json();
+        })
+        .then(data => {
+            if (!data || !data.prints) {
+                console.error('No prints found in data');
+                return;
+            }
+
+            console.log('Loaded prints data:', data.prints);
+
+            // Create a container for the prints
+            const printsContainer = document.createElement('div');
+            printsContainer.className = 'prints-gallery';
+            console.log('Created prints container');
+
+            // Add each print to the gallery
+            data.prints.forEach(print => {
+                const printCard = document.createElement('div');
+                printCard.className = 'print-card';
+                printCard.innerHTML = `
+                    <div class="print-item">
+                        <img src="${print.image}" alt="${print.title}">
+                        <div class="print-info">
+                            <h3>${print.title}</h3>
+                            <p>${print.edition}</p>
+                        </div>
+                    </div>
+                `;
+                printsContainer.appendChild(printCard);
+            });
+
+            console.log('Added prints to container');
+            console.log('Prints container HTML:', printsContainer.innerHTML);
+
+            // Add the prints container to the sidebar
+            printList.appendChild(printsContainer);
+            console.log('Added prints container to sidebar');
+            console.log('Print list HTML after adding container:', printList.innerHTML);
+
+            // Initialize SimpleLightbox for the prints gallery
+            new SimpleLightbox({
+                elements: '.prints-gallery .print-item',
+                ...lightboxConfig
+            });
+            console.log('Initialized lightbox');
+        })
+        .catch(error => {
+            console.error('Error loading prints data:', error);
+        });
+}
+
+// Call loadPrints when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, calling loadPrints');
+    loadPrints();
+});
+
+// Function to load and display exhibition images
+function loadExhibitionImages() {
+    const artList = document.querySelector('.art-list');
+    if (!artList) {
+        console.error('Could not find .art-list element');
+        return;
+    }
+
+    // Create containers for each hypothesis
+    const hypothesis1Container = document.createElement('div');
+    hypothesis1Container.className = 'hypothesis-container';
+    hypothesis1Container.innerHTML = '<h2>Hypothesis 1</h2><div class="exhibition-gallery"></div>';
+
+    const hypothesis2Container = document.createElement('div');
+    hypothesis2Container.className = 'hypothesis-container';
+    hypothesis2Container.innerHTML = '<h2>Hypothesis 2</h2><div class="exhibition-gallery"></div>';
+
+    // Get all h1 images
+    const h1Images = Array.from({length: 11}, (_, i) => `img/exhibition/h1_${i + 1}.jpg`);
+    // Get all h2 images
+    const h2Images = Array.from({length: 4}, (_, i) => `img/exhibition/h2_${i + 1}.jpg`);
+
+    // Add h1 images to hypothesis 1 container
+    h1Images.forEach(img => {
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'exhibition-item';
+        imgContainer.innerHTML = `
+            <a href="${img}" class="gallery-item">
+                <img src="${img}" alt="Hypothesis 1 image">
+            </a>
+        `;
+        hypothesis1Container.querySelector('.exhibition-gallery').appendChild(imgContainer);
+    });
+
+    // Add h2 images to hypothesis 2 container
+    h2Images.forEach(img => {
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'exhibition-item';
+        imgContainer.innerHTML = `
+            <a href="${img}" class="gallery-item">
+                <img src="${img}" alt="Hypothesis 2 image">
+            </a>
+        `;
+        hypothesis2Container.querySelector('.exhibition-gallery').appendChild(imgContainer);
+    });
+
+    // Add containers to the art list
+    artList.appendChild(hypothesis1Container);
+    artList.appendChild(hypothesis2Container);
+
+    // Initialize SimpleLightbox for the exhibition galleries
+    new SimpleLightbox({
+        elements: '.exhibition-gallery .gallery-item',
+        ...lightboxConfig
+    });
+}
+
+// Call loadExhibitionImages when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    loadExhibitionImages();
+});
+
 
