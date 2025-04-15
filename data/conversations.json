@@ -1,0 +1,786 @@
+{
+  "conversations": [
+    {
+      "id": "1",
+      "category": "conversation",
+      "title": "Punica granatum",
+      "description": "So bold as to start the image conversation entirely",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.953949, 18.479610]
+      },
+      "image_link": "https://www.instagram.com/p/CobzQQhtqeA/"
+    },
+    {
+      "id": "2",
+      "category": "conversation",
+      "title": "Hylocereus undatus",
+      "description": "An equally bold fruit to respond to the Pomegranate",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.932297, 18.406977]
+      },
+      "image_link": "https://www.instagram.com/p/Cob0HzfNmPY/"
+    },
+    {
+      "id": "3",
+      "category": "conversation",
+      "title": "Clivia miniata",
+      "description": "Bright red colour seeds in compact form",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.970278, 18.473158]
+      },
+      "image_link": "https://www.instagram.com/p/CoePdvAtEX7/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/3_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "4",
+      "category": "conversation",
+      "title": "Cannas and Acers",
+      "description": "Seeds bulge in succulent balls near ends of branches",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-29.221518, 29.938130]
+      },
+      "image_link": "https://www.instagram.com/p/CojaaxwqlE3/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/4_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "5",
+      "category": "conversation",
+      "title": "Yucca aloifolia",
+      "description": "Brilliant white contrasts with any and all surroundings. Can be eaten raw or cooked!",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.968500, 18.470706]
+      },
+      "image_link": "https://www.instagram.com/p/CorUUeVq0pQ/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/5_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "6",
+      "category": "conversation",
+      "title": "Cichorium intybus",
+      "description": "A delicate plant and flower that is processed to make Chirory coffee!",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-34.336568, 19.633068]
+      },
+      "image_link": "https://www.instagram.com/p/Co68g-3K1ln/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/6_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "7",
+      "category": "conversation",
+      "title": "Carissa bispinosa",
+      "description": "The equally unassuming plant gives Hayden's grandmother num num berries for her homemade jelly",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.964240, 18.476195]
+      },
+      "image_link": "https://www.instagram.com/p/CpKsOj9Kc4k/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/7_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "8",
+      "category": "conversation",
+      "title": "Citrullus amarus",
+      "description": "Also a fruit, though far harder and less colourful",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-32.878118, 18.754549]
+      },
+      "image_link": "https://www.instagram.com/p/Cpak75aqqGX/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/8_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "9",
+      "category": "conversation",
+      "title": "Passiflora edulis",
+      "description": "A spreading creeper with a delicious fruit. Tendrils were the noted feature",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.953939, 18.479560]
+      },
+      "image_link": "https://www.instagram.com/p/CpkSPK3q1Ay/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/9_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "10",
+      "category": "conversation",
+      "title": "Lonicera sp.",
+      "description": "No tendrils but still clingy",
+      "geometry": {
+        "type": "point",
+        "coordinates": [55.965121, -3.209424]
+      },
+      "image_link": "https://www.instagram.com/p/CqF65cPKoQU/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/10_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "11",
+      "category": "conversation",
+      "title": "Podranea ricasoliana",
+      "description": "One of the toughest climbers in the land, of the land.",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.910257, 18.401336]
+      },
+      "image_link": "https://www.instagram.com/p/CqfAeODKiCS/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/11_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "12",
+      "category": "conversation",
+      "title": "Akebia sp.",
+      "description": "Flesh-coloured petals and less of a chocolate scent than its common name suggests",
+      "geometry": {
+        "type": "point",
+        "coordinates": [51.550969, -0.085410]
+      },
+      "image_link": "https://www.instagram.com/p/CqpnfnAKNKb/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/12_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "13",
+      "category": "conversation",
+      "title": "Araujia sericifera",
+      "description": "A nasty creeper that is a spreadimg, ticking time bomb",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.956790, 18.468042]
+      },
+      "image_link": "https://www.instagram.com/p/Cq5mtqxq6HR/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/13_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "14",
+      "category": "conversation",
+      "title": "Lysichiton americanus",
+      "description": "Very bright yellow with a very strange smell",
+      "geometry": {
+        "type": "point",
+        "coordinates": [55.965537, -3.205324]
+      },
+      "image_link": "https://www.instagram.com/p/CrIo1NBqyGt/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/14_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "15",
+      "category": "conversation",
+      "title": "Echinopsis pachanoi",
+      "description": "Bold and tall",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.911574, 18.401211]
+      },
+      "image_link": "https://www.instagram.com/p/Crnwma2KYET/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/15_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "16",
+      "category": "conversation",
+      "title": "Meconopsis and Equisetum",
+      "description": "Unusually tall and unusually blue, hollow stems all round",
+      "geometry": {
+        "type": "point",
+        "coordinates": [55.963962, -3.211345]
+      },
+      "image_link": "https://www.instagram.com/p/Cr0b_0tqT4o/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/16_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "17",
+      "category": "conversation",
+      "title": "Cyperus papyrus",
+      "description": "Tall, straight and likes water",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.970153, 18.472884]
+      },
+      "image_link": "https://www.instagram.com/p/CsJIa3KKYGw/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/17_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "18",
+      "category": "conversation",
+      "title": "Bambusa",
+      "description": "Hollow segmented stems, softer and fibrous, a nice shade of green",
+      "geometry": {
+        "type": "point",
+        "coordinates": [51.549529, -0.080832]
+      },
+      "image_link": "https://www.instagram.com/p/CssvJQjqeKC/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/18_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "19",
+      "category": "conversation",
+      "title": "Nandina domestica",
+      "description": "You plant it outside your front door. On your way out in the morning you tell it your bad dreams and it removes bad omens.",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-34.001879, 18.457418]
+      },
+      "image_link": "https://www.instagram.com/p/Cs8tSUbK_rw/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/19_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "20",
+      "category": "conversation",
+      "title": "Tropaeolum majus",
+      "description": "Peltate, irregular and perfect",
+      "geometry": {
+        "type": "point",
+        "coordinates": [51.55273, -0.077616]
+      },
+      "image_link": "https://www.instagram.com/p/CttNXjTK7wz/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/20_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "21",
+      "category": "conversation",
+      "title": "Dracaena draco",
+      "description": "Able to be used for its natural red dye and currently used in skincare",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-33.953655, 18.479379]
+      },
+      "image_link": "https://www.instagram.com/p/CuZnBx6KFR7/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/21_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "22",
+      "category": "conversation",
+      "title": "Momordica charantia",
+      "description": "Reptilian skin, great seed patterning, challengingly bitter after taste",
+      "geometry": {
+        "type": "point",
+        "coordinates": [51.547940, -0.074682]
+      },
+      "image_link": "https://www.instagram.com/p/Cu6gsVHqptf/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/22_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "23",
+      "category": "conversation",
+      "title": "Rubus ideaeus",
+      "description": "Persistent and edible; I'm pretty sure this is a 'wild' raspberry",
+      "geometry": {
+        "type": "point",
+        "coordinates": [50.858005, 5.698593]
+      },
+      "image_link": "https://www.instagram.com/p/Cv2RVPzKW9l/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/23_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "24",
+      "category": "conversation",
+      "title": "Cassia fistula",
+      "description": "These pods were ridiculously hard and near-impossible to slice open",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-29.530802, 31.215974]
+      },
+      "image_link": "https://www.instagram.com/p/Cx5t-fGKt6O/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/24_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "25",
+      "category": "conversation",
+      "title": "Gleditsia triacanthos",
+      "description": "The yellowing leaves were just about the only colour during winter",
+      "geometry": {
+        "type": "point",
+        "coordinates": [52.343664, 4.908522]
+      },
+      "image_link": "https://www.instagram.com/p/CyeDpseKkuG/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/25_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "26",
+      "category": "conversation",
+      "title": "Cornus sp.",
+      "description": "I was sadder that these trees weren't in flower",
+      "geometry": {
+        "type": "point",
+        "coordinates": [40.860722, -73.468930]
+      },
+      "image_link": "https://www.instagram.com/p/CyeaSaZpCFP/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/26_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "27",
+      "category": "conversation",
+      "title": "Acer saccharum",
+      "description": "Spectacularly large trees planted alongside the campus",
+      "geometry": {
+        "type": "point",
+        "coordinates": [51.446604, 5.484122]
+      },
+      "image_link": "https://www.instagram.com/p/Cyy9gw_q-ZM/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/27_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "28",
+      "category": "conversation",
+      "title": "Zea mays",
+      "description": "Can't quite remember the husk colour but I wasn't expecting the ear to be pink",
+      "geometry": {
+        "type": "point",
+        "coordinates": [40.903190, -73.465805]
+      },
+      "image_link": "https://www.instagram.com/p/Cy1lP_NJ43D/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/28_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "29",
+      "category": "conversation",
+      "title": "Vitis vinifera 'Glenora'",
+      "description": "These leaves have shoots quite late in spring",
+      "geometry": {
+        "type": "point",
+        "coordinates": [52.352205, 4.894123]
+      },
+      "image_link": "https://www.instagram.com/p/CzR3rMYqMch/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/29_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "30",
+      "category": "conversation",
+      "title": "Chrysanthemum sp.s",
+      "description": "'Natural' blue",
+      "geometry": {
+        "type": "point",
+        "coordinates": [37.775976, -122.400948]
+      },
+      "image_link": "https://www.instagram.com/p/Czrc5cMSpiX/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/30_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "31",
+      "category": "conversation",
+      "title": "Yucca aloifolia",
+      "description": "The most amazing brushes Hayden has ever painted with",
+      "geometry": {
+        "type": "point",
+        "coordinates": [52.346398, 4.902453]
+      },
+      "image_link": "https://www.instagram.com/p/C0UsP-OrkZX/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/31_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "32",
+      "category": "conversation",
+      "title": "Unknown sp.",
+      "description": "The hairs on the shoots are very itchy",
+      "geometry": {
+        "type": "point",
+        "coordinates": [-29.783744, 31.040163]
+      },
+      "image_link": "https://www.instagram.com/p/C2EZijJqTLY/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/32_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "33",
+      "category": "conversation",
+      "title": "Solanum tuberosum",
+      "description": "It is disturbing that we do not know where most of our food comes from",
+      "geometry": {
+        "type": "point",
+        "coordinates": [52.343326, 4.906170]
+      },
+      "image_link": "https://www.instagram.com/p/C3xBchbKiUa/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/33_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "34",
+      "category": "conversation",
+      "title": "Viola odorata",
+      "description": "The veins on the petals are darker than you'd think",
+      "geometry": {
+        "type": "point",
+        "coordinates": [51.536115, -0.073357]
+      },
+      "image_link": "https://www.instagram.com/p/C4ao2jpKZ08/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/34_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "35",
+      "category": "conversation",
+      "title": "Prunus serrulata `Kanzan`",
+      "description": "Such explosive colour, especially because the tree has no leaves",
+      "geometry": {
+        "type": "point",
+        "coordinates": [52.355617, 4.925726]
+      },
+      "image_link": "https://www.instagram.com/p/C5ImZprKARU/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/35_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "36",
+      "category": "conversation",
+      "title": "Prunus sp.",
+      "description": "The clusters of anthers might be my favourite morphological trait on Prunus flowers",
+      "geometry": {
+        "type": "point",
+        "coordinates": [51.435553, -0.072554]
+      },
+      "image_link": "https://www.instagram.com/p/C5TMR5eK_lE/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/36_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "37",
+      "category": "conversation",
+      "title": "Aesculus hippocastanum",
+      "description": "Mighty within a sea of brick buildings",
+      "geometry": {
+        "type": "point",
+        "coordinates": [52.342610, 4.908676]
+      },
+      "image_link": "https://www.instagram.com/p/C5-xUqvqvxt/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/37_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "38",
+      "category": "conversation",
+      "title": "Papaver somniferum",
+      "description": "The more grim the concrete, the better the poppy",
+      "geometry": {
+        "type": "point",
+        "coordinates": [51.503251, -0.101318]
+      },
+      "image_link": "https://www.instagram.com/p/C8H_kzpqljX/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/38_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "39",
+      "category": "conversation",
+      "title": "Verbascum densiflorum",
+      "description": "Unwavering and relentless strength",
+      "geometry": {
+        "type": "point",
+        "coordinates": [52.341871, 4.880304]
+      },
+      "image_link": "https://www.instagram.com/p/C8kIS1CqQHj/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/39_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    },
+    {
+      "id": "40",
+      "category": "conversation",
+      "title": "Rosa sp.",
+      "description": "This rose is slightly too perfect and suits being petals that have fallen",
+      "geometry": {
+        "type": "point",
+        "coordinates": [51.561380, -0.07985]
+      },
+      "image_link": "https://www.instagram.com/p/C89QQ-LKFj9/",
+      "icon": {
+        "type": "LeafIcon",
+        "options": {
+          "iconUrl": "img/40_1.png",
+          "iconSize": [38, 38],
+          "iconAnchor": [0, 0],
+          "popupAnchor": [19, 0]
+        }
+      }
+    }
+  ]
+} 

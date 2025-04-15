@@ -33,17 +33,15 @@ const mapLayer = L.tileLayer(
 
 // Color definitions for categories
 const categoryColors = {
-    'art': '#8C271E',    // Base color
-    'water': '#A52D23',    // Slightly lighter shade
-    'transport': '#7A2119', // Slightly darker shade
-    'urban': '#B3342A'       // Another lighter shade
+    'exhibition': '#795C5F',    // Base color
+    'print': '#52414C',    // Slightly lighter shade
+    'conversation': '#ED455C'       // Another lighter shade
 };
 
 // Update CSS variables
-document.documentElement.style.setProperty('--urban-color', categoryColors.urban);
-document.documentElement.style.setProperty('--water-color', categoryColors.water);
-document.documentElement.style.setProperty('--transport-color', categoryColors.transport);
-document.documentElement.style.setProperty('--art-color', categoryColors.art);
+document.documentElement.style.setProperty('--art-color', categoryColors.exhibition);
+document.documentElement.style.setProperty('--water-color', categoryColors.print);
+document.documentElement.style.setProperty('--conversation-color', categoryColors.conversation);
 
 
 // Common polygon style function - now takes a color parameter and ID
@@ -54,6 +52,19 @@ function getPolygonStyle(color, projectId) {
         weight: 2,              
         fillColor: color,
         fillOpacity: 0.3
+    };
+}
+
+// Marker style function
+function getMarkerStyle(color, projectId) {
+    return {
+        pane: `project${projectId}`,
+        radius: 8,
+        fillColor: color,
+        color: color,
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 1
     };
 }
 
@@ -137,25 +148,11 @@ const navFlyConfig = {
     noMoveStart: true
 };
 
-// Add these functions at the start of your script section
-function getMarkerStyle(categoryColor, projectId) {
-    return {
-        pane: `project${projectId}`,
-        radius: 8,
-        fillColor: categoryColor,
-        color: categoryColor,
-        weight: 2,              
-        opacity: 1,
-        fillOpacity: 1
-    };
-}
-
 // Define this at the top level with other constants
 const SIDEBAR_POSITIONS = {
     'sidebar-art': '82vh',
     'sidebar-water': '75vh',
-    'sidebar-transport': '68vh',
-    'sidebar-urban': '61vh'
+    'sidebar-conversation': '68vh'
 };
 
 // Helper function to set sidebar position
@@ -206,13 +203,14 @@ const handlePopupVisibility = function(element) {
 
 // Update the function that creates markers and polygons
 function addPolygonAndMarker(coords, popupContent, projectid, category) {
+    console.log('Adding marker for project:', projectid, 'at coords:', coords);
     const categoryColor = categoryColors[category];
     const projectId = parseInt(projectid);
     
-    let centerLat = (coords[0][0] + coords[2][0]) / 2;
-    let centerLng = (coords[0][1] + coords[2][1]) / 2;
+    // For point markers, coords is already [lat, lng]
+    const [lat, lng] = coords;
     
-    // Common click handler function for both polygon and markers
+    // Common click handler function for markers
     const handleElementClick = function(e) {
         if (e.originalEvent) e.originalEvent.stopPropagation();
         
@@ -231,34 +229,31 @@ function addPolygonAndMarker(coords, popupContent, projectid, category) {
         const currentZoom = map.getZoom();
         if (currentZoom < 15) {
             const currentCenter = map.getCenter();
-            const flyConfig = getMapFlyConfig(currentCenter, [centerLat, centerLng], currentZoom, 15);
-            map.flyTo([centerLat, centerLng], 15, flyConfig);
+            const flyConfig = getMapFlyConfig(currentCenter, [lat, lng], currentZoom, 15);
+            map.flyTo([lat, lng], 15, flyConfig);
         }
     };
     
-    let polygon = L.polygon(coords, getPolygonStyle(categoryColor, projectId))
-        .on('click', handleElementClick)
-        .bindPopup(popupContent, { 
-            autoPan: false,
-            closeButton: false
-        });
-    
-    let visibleMarker = L.circleMarker([centerLat, centerLng], getMarkerStyle(categoryColor, projectId))
+    // Create visible marker
+    let visibleMarker = L.circleMarker([lat, lng], getMarkerStyle(categoryColor, projectId))
         .on('click', handleElementClick)
         .bindPopup(popupContent, {
             autoPan: false,
             closeButton: false
         });
     
+    console.log('Created visible marker:', visibleMarker);
     visibleMarker.addTo(map);
     
-    let clusterMarker = L.circleMarker([centerLat, centerLng], getMarkerStyle(categoryColor, projectId))
+    // Create cluster marker
+    let clusterMarker = L.circleMarker([lat, lng], getMarkerStyle(categoryColor, projectId))
         .on('click', handleElementClick)
         .bindPopup(popupContent, {
             autoPan: false,
             closeButton: false
         });
     
+    console.log('Created cluster marker:', clusterMarker);
     markers.addLayer(clusterMarker);
 
     // Function to check and update popup visibility
@@ -269,10 +264,8 @@ function addPolygonAndMarker(coords, popupContent, projectid, category) {
         if (isMobile) {
             // Only control popup visibility by zoom on mobile
             if (currentZoom > 9) {
-                if (map.hasLayer(polygon)) polygon.openPopup();
                 if (map.hasLayer(visibleMarker)) visibleMarker.openPopup();
             } else {
-                if (map.hasLayer(polygon)) polygon.closePopup();
                 if (map.hasLayer(visibleMarker)) visibleMarker.closePopup();
             }
         }
@@ -280,10 +273,6 @@ function addPolygonAndMarker(coords, popupContent, projectid, category) {
 
     // Add mouseover/mouseout for desktop without zoom restrictions
     if (window.innerWidth > 768) {
-        // For polygon
-        polygon.on('mouseover', function() { this.openPopup(); })
-              .on('mouseout', function() { this.closePopup(); });
-        
         // For visible marker
         visibleMarker.on('mouseover', function() { this.openPopup(); })
                     .on('mouseout', function() { this.closePopup(); });
@@ -300,10 +289,8 @@ function addPolygonAndMarker(coords, popupContent, projectid, category) {
         
         // Layer visibility logic
         if (currentZoom <= 10) {
-            if (map.hasLayer(polygon)) map.removeLayer(polygon);
             if (map.hasLayer(visibleMarker)) map.removeLayer(visibleMarker);
         } else {
-            if (!map.hasLayer(polygon)) polygon.addTo(map);
             if (!map.hasLayer(visibleMarker)) visibleMarker.addTo(map);
         }
         
@@ -381,49 +368,108 @@ function createProjectCard(project) {
     return card;
 }
 
-// Load and initialize projects from JSON
-fetch('data/projects.json')
+// Define shared icon configuration
+const sharedIconConfig = {
+    iconSize: [38, 38],
+    iconAnchor: [0, 0],
+    popupAnchor: [19, 0]
+};
+
+// Function to create conversation card
+function createConversationCard(conversation) {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    
+    const categoryColor = categoryColors.conversation;
+    
+    card.innerHTML = `
+        <div id="conversation-${conversation.id}" class="project-details">
+            <div class="conversation-id">${conversation.id}</div>
+            <h2 style="--project-color: ${categoryColor}"><i>${conversation.title}</i></h2>
+            <p>${conversation.description}</p>
+        </div>
+    `;
+
+    // Add click handler to the card
+    card.addEventListener('click', (e) => {
+        const coords = conversation.geometry.coordinates;
+        const currentCenter = map.getCenter();
+        const currentZoom = map.getZoom();
+        const flyConfig = getMapFlyConfig(currentCenter, coords, currentZoom, 15);
+        map.flyTo(coords, 15, flyConfig);
+
+        // Update scroll behavior for mobile
+        if (window.innerWidth <= 768) {
+            const conversationCard = document.getElementById(`conversation-${conversation.id}`);
+            if (conversationCard) {
+                setTimeout(() => {
+                    conversationCard.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center'
+                    });
+                }, 300);
+            }
+        }
+    });
+
+    return card;
+}
+
+// Load and initialize conversations from JSON
+fetch('data/conversations.json')
     .then(response => response.json())
     .then(data => {
-        if (!data || !data.projects) {
-            console.error('No projects found in data');
+        if (!data || !data.conversations) {
+            console.error('No conversations found in data');
             return;
         }
 
-        data.projects.forEach(project => {
-            // Create and add polygon with popup
-            const popupContent = createPopupContent(project);
-            addPolygonAndMarker(
-                project.geometry.coordinates,
-                popupContent,
-                project.id,
-                project.category
-            );
+        console.log('Loading conversations:', data.conversations.length);
+        
+        data.conversations.forEach(conversation => {
+            console.log('Processing conversation:', conversation.id, conversation.title);
+            
+            // Create custom icon using shared configuration
+            const customIcon = L.icon({
+                ...sharedIconConfig,
+                iconUrl: `img/marker/${conversation.id}_1.png`
+            });
 
-            // Create and add project card
-            const projectList = document.querySelector(`.${project.category}-list`);
+            // Create popup content
+            const popupContent = `
+                <div class='popup-content'>
+                    <div class="popup-id">${conversation.id}</div>
+                    <h3><i>${conversation.title}</i></h3>
+                    <div class="popup-image-container">
+                        <img src="img/marker/${conversation.id}_2.png" alt="${conversation.title}">
+                    </div>
+                </div>
+            `;
+
+            // Create marker with custom icon
+            const marker = L.marker(
+                conversation.geometry.coordinates,
+                { icon: customIcon }
+            ).bindPopup(popupContent);
+
+            // Add marker to cluster group
+            markers.addLayer(marker);
+
+            // Create and add conversation card
+            const projectList = document.querySelector('.conversation-list');
             if (projectList) {
-                const card = createProjectCard(project);
+                const card = createConversationCard(conversation);
                 projectList.appendChild(card);
             }
         });
 
-        // Initialize SimpleLightbox for each project gallery
-        data.projects.forEach(project => {
-        
-            new SimpleLightbox(`.gallery-${project.id} a`, lightboxConfig);
-        });
+        console.log('Adding markers layer to map');
+        map.addLayer(markers);
+        console.log('Markers added to map');
     })
     .catch(error => {
-        console.error('Error loading project data:', error);
+        console.error('Error loading conversation data:', error);
     });
-
-
-
-// Add both layers to the map
-map.addLayer(markers);
-
-
 
 // Reset positions when switching to desktop
 function resetSidebarPositions() {

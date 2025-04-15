@@ -196,18 +196,45 @@
   /* Cluster Marker Styles */
   .marker-cluster {
     background-clip: padding-box;
-    border-radius: 15px;
-    background-color: transparent !important;
-    box-shadow: none !important;
+    border-radius: 20px;
+    background-color: rgba(30, 17, 11, 0.8);
+    border: 2px solid #1e110b;
   }
 
-  .marker-cluster-small,
+  .marker-cluster div {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 15px;
+    font: 12px "Centra No2", sans-serif;
+    font-weight: 500;
+    color: #1e110b;
+  }
+
+  .marker-cluster-small {
+    background-color: rgba(30, 17, 11, 0.8);
+  }
+
+  .marker-cluster-small div {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 15px;
+    font: 12px "Centra No2", sans-serif;
+    font-weight: 500;
+    color: #1e110b;
+  }
+
   .marker-cluster-medium,
   .marker-cluster-large {
     background-color: transparent !important;
   }
 
-  .marker-cluster-small div,
   .marker-cluster-medium div,
   .marker-cluster-large div {
     background-color: #9BBDE0 !important; 
@@ -303,20 +330,17 @@
   /* Sidebar Category-Specific Styles */
   #sidebar-art { right: -370px; background: var(--art-color); z-index: 5; }
   #sidebar-water { right: -330px; background: var(--water-color); z-index: 4; }
-  #sidebar-transport { right: -290px; background: var(--transport-color); z-index: 3; }
-  #sidebar-urban { right: -250px; background: var(--urban-color); z-index: 2; }
+  #sidebar-conversation { right: -290px; background: var(--conversation-color); z-index: 3; }
 
   /* Sidebar Open States */
   #sidebar-art.open { right: 0px; }
   #sidebar-water.open { right: 70px; }
-  #sidebar-transport.open { right: 110px; }
-  #sidebar-urban.open { right: 145px; }
+  #sidebar-conversation.open { right: 110px; }
 
   /* Sidebar Hover States */
   #sidebar-art:not(.open):hover { right: -365px; }
   #sidebar-water:not(.open):hover { right: -325px; }
-  #sidebar-transport:not(.open):hover { right: -285px; }
-  #sidebar-urban:not(.open):hover { right: -245px; }
+  #sidebar-conversation:not(.open):hover { right: -285px; }
 
   /* Project Card Styles */
   .project-card {
@@ -519,14 +543,12 @@
             
     #sidebar-art { top: 82vh; }
     #sidebar-water { top: 75vh; }
-    #sidebar-transport { top: 68vh; }
-    #sidebar-urban { top: 61vh; }
+    #sidebar-conversation { top: 68vh; }
 
     /* Remove hover states */
     #sidebar-art:not(.open):hover { right: 0; }
     #sidebar-water:not(.open):hover { right: 0; }
-    #sidebar-transport:not(.open):hover { right: 0; }
-    #sidebar-urban:not(.open):hover { right: 0; }
+    #sidebar-conversation:not(.open):hover { right: 0; }
 
     /* Toggle button adjustments */
     .sidebar-toggle {
@@ -567,16 +589,13 @@
     }
 
     #sidebar-art .project-card:last-child{
-      margin-bottom: 40vh; /* Changed from 250px to 40% viewport height */
+      margin-bottom: 40vh;
     }
     #sidebar-water .project-card:last-child{
-      margin-bottom: 45vh; /* Changed from 300px to 50% viewport height */
+      margin-bottom: 45vh;
     }
-    #sidebar-transport .project-card:last-child{
-      margin-bottom: 55vh; /* Changed from 350px to 60% viewport height */
-    }
-    #sidebar-urban .project-card:last-child {
-        margin-bottom: 65vh; /* Changed from 400px to 70% viewport height */
+    #sidebar-conversation .project-card:last-child {
+        margin-bottom: 55vh;
     }
 
     /* Gallery adjustments */
@@ -640,4 +659,79 @@
     .gallery-item img {
       height: 60px;
     }
+}
+
+.leaflet-marker-pane {
+    z-index: 600;
+}
+
+.leaflet-marker-icon {
+    z-index: 600;
+}
+
+.leaflet-marker-shadow {
+    z-index: 600;
+}
+
+.leaflet-marker-pane .leaflet-marker-icon {
+    z-index: 600;
+}
+
+.leaflet-marker-pane .leaflet-marker-shadow {
+    z-index: 600;
+}
+
+.popup-content {
+    padding: 10px;
+}
+
+.popup-id {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.popup-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+}
+
+.popup-content h3 i {
+    font-style: italic;
+}
+
+.popup-image-container {
+    width: 100%;
+    padding-top: 100%; /* Creates a square aspect ratio */
+    position: relative;
+    margin-top: 10px;
+    background: white;
+}
+
+.popup-image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0;
+}
+
+.popup-content {
+    padding: 10px;
+}
+
+.popup-content h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.popup-id {
+    font-size: 12px;
+    margin-bottom: 5px;
 }
