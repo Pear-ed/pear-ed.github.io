@@ -6,10 +6,17 @@
   }
 
   @font-face {
-    font-family: 'Neue Haas Grotesk';
-    src: url('fonts/NeueHaasGrotesk-Medium.woff2') format('woff2');
+    font-family: 'NHaasGroteskMd';
+    src: url('fonts/NeueHaasGrotesk.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'NHaasGroteskMdLt';
+    src: url('fonts/NeueHaasGrotesk.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
   }
 
   @font-face {
@@ -85,7 +92,7 @@
     font-size: 14px;
     margin: 0px;
     margin-top: 20px;
-    color: rgba(217, 133, 133, 1);
+    color: #ED455C;
     pointer-events: none;
   }
 
@@ -140,7 +147,7 @@
     cursor: pointer;
     padding: 5px 0;
     text-align: left;
-    color: rgba(217, 133, 133, 1);
+    color: #ED455C;
     pointer-events: auto;
     font-family: 'GT Walsheim';
   }
@@ -340,12 +347,12 @@
   }
 
   /* Sidebar Category-Specific Styles */
-  #sidebar-art { right: -370px; background: var(--art-color); z-index: 5; }
+  #sidebar-exhibition { right: -370px; background: var(--exhibition-color); z-index: 5; }
   #sidebar-print { right: -330px; background: #CECEC6; z-index: 4; }
   #sidebar-conversation { right: -290px; background: var(--conversation-color); z-index: 3; }
 
   /* Sidebar Open States */
-  #sidebar-art.open { right: 0px; }
+  #sidebar-exhibition.open { right: 0px; }
   #sidebar-print.open { 
     right: 0;
     width: 80%;
@@ -353,7 +360,7 @@
   #sidebar-conversation.open { right: 110px; }
 
   /* Sidebar Hover States */
-  #sidebar-art:not(.open):hover { right: -365px; }
+  #sidebar-exhibition:not(.open):hover { right: -365px; }
   #sidebar-print:not(.open):hover { right: -325px; }
   #sidebar-conversation:not(.open):hover { right: -285px; }
 
@@ -438,15 +445,30 @@
   }
 
   .sl-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.7);
-    -webkit-backdrop-filter: blur(5px); 
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(5px);
-    will-change: backdrop-filter;
+  }
+
+  .sl-wrapper .sl-close,
+  .sl-wrapper .sl-navigation button {
+    color: #1e110b;
+  }
+
+  .sl-wrapper .sl-counter {
+    color: #1e110b;
+  }
+
+  .sl-wrapper .sl-image img {
+    background: white;
+    padding: 20px;
+  }
+
+  .sl-wrapper .sl-caption {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1e110b;
+    padding: 10px 20px;
+    font-family: 'Centra No2';
+    font-size: 14px;
   }
 
   /* Welcome Overlay Styles */
@@ -556,12 +578,12 @@
       touch-action: none;
     }
             
-    #sidebar-art { top: 82vh; }
+    #sidebar-exhibition { top: 82vh; }
     #sidebar-print { top: 75vh; }
     #sidebar-conversation { top: 68vh; }
 
     /* Remove hover states */
-    #sidebar-art:not(.open):hover { right: 0; }
+    #sidebar-exhibition:not(.open):hover { right: 0; }
     #sidebar-print:not(.open):hover { right: 0; }
     #sidebar-conversation:not(.open):hover { right: 0; }
 
@@ -603,7 +625,7 @@
       max-width: 100%;
     }
 
-    #sidebar-art .project-card:last-child{
+    #sidebar-exhibition .project-card:last-child{
       margin-bottom: 40vh;
     }
     #sidebar-print .project-card:last-child{
@@ -764,24 +786,24 @@
     transform: rotateZ(180deg);
     font-size: 5rem;
     line-height: 0.9;
-    font-family: "Neue Haas Grotesk";
+    font-family: "NHaasGroteskMd", sans-serif;
     font-weight: 500;
     letter-spacing: 0rem;
     font-style: normal;
-    color: rgba(217, 133, 133, 0.85);
+    color: #ED455C;
     opacity: 1;
     transition: all 0.3s ease;
-    pointer-events: none;
     z-index: 1000;
-    left: 40px;
-    top: 33.33vh;
+    left: 50px;
+    top: 10vh;
     transform: rotateZ(180deg);
     white-space: nowrap;
 }
 
 .floating-text:hover {
+    font-family: "NHaasGroteskMdLt", sans-serif;
     font-style: italic;
-    opacity: 1;
+    color: #ED455C;
 }
 
 /* Prints Gallery Styles */
@@ -807,7 +829,13 @@
 }
 
 .print-card:hover {
-    transform: scale(1.02);
+    animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    15% { transform: rotate(-0.3deg); }
+    85% { transform: rotate(0.3deg); }
 }
 
 .print-item {
@@ -826,6 +854,7 @@
     object-fit: contain;
     transition: opacity 0.3s ease;
     background: white;
+    cursor: pointer;
 }
 
 .print-item:hover img {
@@ -835,18 +864,18 @@
 /* Print Info Styles */
 .print-info {
     position: absolute;
-    bottom: -60px; /* Increased from -40px to move text further down */
+    bottom: -60px;
     left: 0;
     width: 100%;
     height: auto;
     background: transparent;
-    color: rgba(255, 116, 116, 0.85);
+    color: rgba(30, 17, 11, 0.6);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    text-align: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px 20px;
+    text-align: left;
 }
 
 .print-info h3 {
@@ -854,14 +883,16 @@
     margin: 0 0 5px 0;
     font-family: 'GT Walsheim';
     line-height: 1.2;
-    color: rgba(255, 116, 116, 0.85);
+    color: rgba(30, 17, 11, 0.6);
+    padding-left: 10px;
 }
 
 .print-info p {
     font-size: 12px;
     margin: 0;
     line-height: 1.4;
-    color: rgba(255, 116, 116, 0.85);
+    color: rgba(30, 17, 11, 0.6);
+    padding-left: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -894,7 +925,7 @@
 
 /* Color definitions for categories */
 :root {
-    --art-color: #795C5F;
+    --exhibition-color: #795C5F;
     --water-color: #CECEC6;
     --conversation-color: #ED455C;
 }
@@ -931,7 +962,13 @@
 }
 
 .exhibition-item:hover img {
-    transform: scale(1.05);
+    animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    15% { transform: rotate(-0.3deg); }
+    85% { transform: rotate(0.3deg); }
 }
 
 @media screen and (max-width: 768px) {

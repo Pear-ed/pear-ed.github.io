@@ -39,7 +39,7 @@ const categoryColors = {
 };
 
 // Update CSS variables
-document.documentElement.style.setProperty('--art-color', categoryColors.exhibition);
+document.documentElement.style.setProperty('--exhibition-color', categoryColors.exhibition);
 document.documentElement.style.setProperty('--water-color', categoryColors.print);
 document.documentElement.style.setProperty('--conversation-color', categoryColors.conversation);
 
@@ -150,7 +150,7 @@ const navFlyConfig = {
 
 // Define this at the top level with other constants
 const SIDEBAR_POSITIONS = {
-    'sidebar-art': '82vh',
+    'sidebar-exhibition': '82vh',
     'sidebar-water': '75vh',
     'sidebar-conversation': '68vh'
 };
@@ -817,9 +817,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Function to load and display exhibition images
 function loadExhibitionImages() {
-    const artList = document.querySelector('.art-list');
-    if (!artList) {
-        console.error('Could not find .art-list element');
+    const exhibitionList = document.querySelector('.exhibition-list');
+    if (!exhibitionList) {
+        console.error('Could not find .exhibition-list element');
         return;
     }
 
@@ -861,9 +861,9 @@ function loadExhibitionImages() {
         hypothesis2Container.querySelector('.exhibition-gallery').appendChild(imgContainer);
     });
 
-    // Add containers to the art list
-    artList.appendChild(hypothesis1Container);
-    artList.appendChild(hypothesis2Container);
+    // Add containers to the exhibition list
+    exhibitionList.appendChild(hypothesis1Container);
+    exhibitionList.appendChild(hypothesis2Container);
 
     // Initialize SimpleLightbox for the exhibition galleries
     new SimpleLightbox({
