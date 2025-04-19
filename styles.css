@@ -1,20 +1,22 @@
-@font-face {
-    font-family: 'GT Walsheim';
-    src: url('fonts/GT-Walsheim-Pro-Trial-Regular.woff2') format('woff2');
+
+  @font-face {
+    font-family: 'Neue Haas' 'regular';
+    src: url('fonts/NHaasGrotesk.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
   }
 
+
   @font-face {
-    font-family: 'NHaasGroteskMd';
-    src: url('fonts/NeueHaasGrotesk.woff2') format('woff2');
+    font-family: 'Neue Haas' 'medium';
+    src: url('fonts/NHaasGroteskMd.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
   }
 
   @font-face {
-    font-family: 'NHaasGroteskMdLt';
-    src: url('fonts/NeueHaasGrotesk.woff2') format('woff2');
+    font-family: 'Neue Haas' 'italic';
+    src: url('fonts/NHaasGroteskMdIt.woff2') format('woff2');
     font-weight: 500;
     font-style: italic;
   }
@@ -39,17 +41,9 @@
     font-weight: 500;
     font-style: normal;
   }
-
-  @font-face {
-    font-family: 'Centra No2';
-    src: url('fonts/CentraNo2-BookItalic.woff2') format('woff2');
-    font-weight: 400;
-    font-style: italic;
-  }
-  
   
   * {
-    font-family: 'Centra No2';
+    font-family: 'Neue Haas' 'regular';
     font-weight: 400;
     color: #1e110b;
   }
