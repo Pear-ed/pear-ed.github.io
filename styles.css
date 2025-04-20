@@ -614,13 +614,10 @@ body {
     margin-top: -18vh;
   }
 
-  .header-container h1 {
-    font-size: 24px;
-  }
-
+  
   .header-container p {
-    font-size: 16px;
-    margin-bottom: 140px;
+    font-size: 15px;
+    margin-bottom: 22vh;
   }
 
   .about-text,
@@ -661,9 +658,13 @@ body {
     touch-action: none;
   }
             
-  #sidebar-exhibition { top: 92vh; }
-  #sidebar-map { top: 86vh; }
-  #sidebar-about { top: 68vh; }
+  #sidebar-exhibition { top: 77vh; }
+  #sidebar-map { top: 84vh; }
+  #sidebar-about { top: 91vh; }
+
+  #sidebar-map.open {
+    width: 100%;
+  }
 
   /* Remove hover states */
   #sidebar-exhibition:not(.open):hover { right: 0; }
@@ -786,6 +787,10 @@ body {
   .hypothesis-container h2 {
     font-size: 16px;
     margin-bottom: 15px;
+  }
+
+  .site-title {
+    z-index: 2; /* Lower z-index for mobile to sit behind sidebars */
   }
 }
 

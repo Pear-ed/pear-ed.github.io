@@ -144,9 +144,9 @@ const navFlyConfig = {
 
 // Define this at the top level with other constants
 const SIDEBAR_POSITIONS = {
-    'sidebar-exhibition': '82vh',
-    'sidebar-water': '75vh',
-    'sidebar-about': '68vh'
+    'sidebar-exhibition': '77vh',
+    'sidebar-map': '84vh',
+    'sidebar-about': '91vh'
 };
 
 // Helper function to set sidebar position
@@ -157,7 +157,7 @@ function setSidebarPosition(sidebar, position) {
     }
 }
 
-// Consolidated closeAllSidebars function
+// Helper function to close all sidebars
 function closeAllSidebars() {
     const isMobile = window.innerWidth <= 768;
     document.querySelectorAll('.sidebar').forEach(sb => {
@@ -168,345 +168,82 @@ function closeAllSidebars() {
     });
 }
 
-// Update handleSidebarOpen to use the consolidated functions
-function handleSidebarOpen(category) {
-    const isMobile = window.innerWidth <= 768;
-    const sidebar = document.getElementById(`sidebar-${category}`);
-    
-    closeAllSidebars();
-    
-    if (sidebar) {
-        sidebar.classList.add('open');
-        if (isMobile) {
-            setSidebarPosition(sidebar, '20vh');
-        }
-    }
+// Update click/touch handlers to be more specific
+function isMainContentClick(e) {
+    const target = e.target;
+    // Check if the click is not inside any sidebar or toggle button
+    return !target.closest('.sidebar') && 
+           !target.closest('.sidebar-toggle') &&
+           !target.closest('.sidebar-content');
 }
 
-// Function to handle popup visibility based on zoom and device
-const handlePopupVisibility = function(element) {
+// Initialize click handlers
+function initializeClickHandlers() {
     const isMobile = window.innerWidth <= 768;
-    const currentZoom = map.getZoom();
-    
-    if (isMobile && currentZoom > 9) {
-        element.openPopup();
-    } else {
-        element.closePopup();
-    }
-};
 
-// Update the function that creates markers and polygons
-function addPolygonAndMarker(coords, popupContent, projectid, category) {
-    console.log('Adding marker for project:', projectid, 'at coords:', coords);
-    const categoryColor = categoryColors[category];
-    const projectId = parseInt(projectid);
-    
-    // For point markers, coords is already [lat, lng]
-    const [lat, lng] = coords;
-    
-    // Common click handler function for markers
-    const handleElementClick = function(e) {
-        if (e.originalEvent) e.originalEvent.stopPropagation();
-        
-        handleSidebarOpen(category);
-        
-        const projectCard = document.getElementById(`project-${projectId}`).closest('.project-card');
-        if (projectCard) {
-            const sidebarContent = document.querySelector(`#sidebar-${category} .sidebar-content`);
-            if (sidebarContent) {
-                setTimeout(() => {
-                    projectCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 300);
-            }
-        }
-        
-        const currentZoom = map.getZoom();
-        if (currentZoom < 15) {
-            const currentCenter = map.getCenter();
-            const flyConfig = getMapFlyConfig(currentCenter, [lat, lng], currentZoom, 15);
-            map.flyTo([lat, lng], 15, flyConfig);
-        }
-    };
-    
-    // Create visible marker
-    let visibleMarker = L.circleMarker([lat, lng], getMarkerStyle(categoryColor, projectId))
-        .on('click', handleElementClick)
-        .bindPopup(popupContent, {
-            autoPan: false,
-            closeButton: false
-        });
-    
-    console.log('Created visible marker:', visibleMarker);
-    visibleMarker.addTo(map);
-    
-    // Create cluster marker
-    let clusterMarker = L.circleMarker([lat, lng], getMarkerStyle(categoryColor, projectId))
-        .on('click', handleElementClick)
-        .bindPopup(popupContent, {
-            autoPan: false,
-            closeButton: false
-        });
-    
-    console.log('Created cluster marker:', clusterMarker);
-    markers.addLayer(clusterMarker);
-
-    // Function to check and update popup visibility
-    const checkPopupVisibility = () => {
-        const isMobile = window.innerWidth <= 768;
-        const currentZoom = map.getZoom();
-        
-        if (isMobile) {
-            // Only control popup visibility by zoom on mobile
-            if (currentZoom > 9) {
-                if (map.hasLayer(visibleMarker)) visibleMarker.openPopup();
-            } else {
-                if (map.hasLayer(visibleMarker)) visibleMarker.closePopup();
-            }
-        }
-    };
-
-    // Add mouseover/mouseout for desktop without zoom restrictions
-    if (window.innerWidth > 768) {
-        // For visible marker
-        visibleMarker.on('mouseover', function() { this.openPopup(); })
-                    .on('mouseout', function() { this.closePopup(); });
-        
-        // For cluster marker (when visible at lower zoom levels)
-        clusterMarker.on('mouseover', function() { this.openPopup(); })
-                    .on('mouseout', function() { this.closePopup(); });
-    }
-
-    // Update the zoomend handler to not affect popup behavior on desktop
-    map.on('zoomend', function() {
-        const currentZoom = map.getZoom();
-        const isMobile = window.innerWidth <= 768;
-        
-        // Layer visibility logic
-        if (currentZoom <= 10) {
-            if (map.hasLayer(visibleMarker)) map.removeLayer(visibleMarker);
-        } else {
-            if (!map.hasLayer(visibleMarker)) visibleMarker.addTo(map);
-        }
-        
-        // Only control popup visibility on mobile
-        if (isMobile) {
-            checkPopupVisibility();
+    // Add click handler to document body to catch clicks outside sidebars
+    document.body.addEventListener('click', function(e) {
+        if (isMainContentClick(e)) {
+            closeAllSidebars();
         }
     });
-}
 
-// Function to create popup content
-function createPopupContent(project) {
-    return `
-        <div class='popup-content' data-category='${project.category}'>
-            <h3 class='project-list-title'>${project.title}</h3>
-            <p class='project-duration'>${project.duration}</p>
-        </div>
-    `;
-}
-
-// Function to create project card (update the existing function)
-function createProjectCard(project) {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    
-    const categoryColor = categoryColors[project.category];
-    
-    // Create a unique gallery class for this project
-    const galleryClass = `gallery-${project.id}`;
-    
-    card.innerHTML = `
-        <div id="project-${project.id}" class="project-details">
-            <h2 style="--project-color: ${categoryColor}">${project.title}</h2>
-            <h3>${project.city} · ${project.duration} · ${project.status}</h3>
-            <h3>Company: ${project.company}</h3>
-            ${project.role ? `<h3>Role: ${project.role}</h3>` : ''}
-            <p>${project.description}</p>
-            <div class="gallery ${galleryClass}">
-                ${project.images.map((img, i) => `
-                    <a href="${img}" class="gallery-item">
-                        <img src="${img}" alt="${project.title} ${i + 1}">
-                    </a>
-                `).join('')}
-            </div>
-            <a href="${project.instagram}" target="_blank" class="instagram-link">More about this project</a>
-        </div>
-    `;
-
-    // Add click handler to the card
-    card.addEventListener('click', (e) => {
-        if (!e.target.closest('.gallery') && !e.target.closest('.instagram-link')) {
-            const coords = project.geometry.coordinates;
-            const centerLat = coords.reduce((sum, point) => sum + point[0], 0) / coords.length;
-            const centerLng = coords.reduce((sum, point) => sum + point[1], 0) / coords.length;
-            const currentCenter = map.getCenter();
-            const currentZoom = map.getZoom();
-            const flyConfig = getMapFlyConfig(currentCenter, [centerLat, centerLng], currentZoom, 15);
-            map.flyTo([centerLat, centerLng], 15, flyConfig);
-
-            // Update scroll behavior for mobile
-            if (window.innerWidth <= 768) {
-                const projectCard = document.getElementById(`project-${project.id}`);
-                if (projectCard) {
-                    setTimeout(() => {
-                        projectCard.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'center' // Change to center
-                        });
-                    }, 300);
+    if (isMobile) {
+        document.body.addEventListener('touchend', function(e) {
+            // Only handle touchend if it's not part of a drag
+            const sidebar = e.target.closest('.sidebar');
+            if (sidebar && !sidebar.classList.contains('dragging')) {
+                if (isMainContentClick(e)) {
+                    closeAllSidebars();
                 }
             }
-        }
-    });
-
-    return card;
-}
-
-// Reset positions when switching to desktop
-function resetSidebarPositions() {
-    if (window.innerWidth > 768) {
-        document.querySelectorAll('.sidebar').forEach(sidebar => {
-            sidebar.style.top = ''; // Remove the top property entirely
-        });
+        }, { passive: true });
     }
 }
-
-// Add resize event listener with debouncing
-let resizeTimeout;
-window.addEventListener('resize', function() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(resetSidebarPositions, 250);
-});
-
-// Call it when the DOM is loaded
-document.addEventListener('DOMContentLoaded', resetSidebarPositions);
-
-// Update the createNavButton function
-function createNavButton(id, text, viewConfig) {
-    const button = document.createElement('button');
-    button.id = id;
-    button.className = 'nav-button';
-    button.textContent = text;
-    button.style.display = 'none';
-    
-    button.addEventListener('click', () => {
-        map.flyTo(viewConfig.coords, viewConfig.zoom, viewConfig.options);  // Use the options here
-    });
-    
-    document.querySelector('#sidebar-map .sidebar-content').appendChild(button);
-    return button;
-}
-
-// Define bounding boxes for both areas
-const netherlandsBounds = L.latLngBounds(
-    [50.75, 3.2],   // Southwest corner
-    [53.7, 7.22]    // Northeast corner
-);
-
-const capetownBounds = L.latLngBounds(
-    [-34.5, 18.2],  // Southwest corner
-    [-33.5, 18.9]   // Northeast corner
-);
-
-// Update the moveend event handler to use bounds instead of distance
-map.on('moveend', () => {
-    const currentBounds = map.getBounds();
-    
-    // Show Amsterdam button if current view doesn't intersect with Netherlands bounds
-    amsterdamButton.style.display = currentBounds.intersects(netherlandsBounds) 
-        ? 'none' 
-        : 'block';
-    
-    // Show Cape Town button if current view doesn't intersect with Cape Town bounds
-    capetownButton.style.display = currentBounds.intersects(capetownBounds) 
-        ? 'none' 
-        : 'block';
-});
-
-// Update the button click handlers to fit the bounds instead of specific coordinates
-const amsterdamButton = createNavButton('amsterdam-button', 'go to the Netherlands ↑', {
-    coords: netherlandsBounds.getCenter(),
-    zoom: map.getBoundsZoom(netherlandsBounds),
-    options: navFlyConfig
-});
-
-const capetownButton = createNavButton('capetown-button', 'go to South Africa ↓', {
-    coords: capetownBounds.getCenter(),
-    zoom: map.getBoundsZoom(capetownBounds),
-    options: navFlyConfig
-});
 
 function initializeMobileDrag() {
     const sidebars = document.querySelectorAll('.sidebar');
-    const mapContainer = document.getElementById('map');
     const isMobile = window.innerWidth <= 768;
 
-    // Helper function to close all sidebars
-    function closeAllSidebars() {
-        document.querySelectorAll('.sidebar').forEach(sb => {
-            sb.classList.remove('open');
-            if (isMobile) {
-                sb.style.top = SIDEBAR_POSITIONS[sb.id];
-            }
-        });
-    }
+    sidebars.forEach(sidebar => {
+        const toggle = sidebar.querySelector('.sidebar-toggle');
+        let startY = 0;
+        let currentY = 0;
+        let isDragging = false;
+        let touchStartTime = 0;
+        let initialSidebarTop = 0;
 
-    // Update map click/touch handlers to be more specific
-    function isMapBackgroundClick(e) {
-        const target = e.target;
-        return (target.classList.contains('leaflet-tile') || 
-                target.classList.contains('leaflet-container')) && 
-               !target.closest('.leaflet-marker-pane') && 
-               !target.closest('.leaflet-overlay-pane') &&
-               !target.closest('.leaflet-popup-pane') &&
-               !target.closest('.sidebar');
-    }
-
-    // Update click/touch handlers to use consolidated closeAllSidebars
-    if (!isMobile) {
-        mapContainer.addEventListener('click', function(e) {
-            if (isMapBackgroundClick(e)) {
-                closeAllSidebars();
-            }
-        });
-    }
-
-    if (isMobile) {
-        mapContainer.addEventListener('touchend', function(e) {
-            if (isMapBackgroundClick(e)) {
-                closeAllSidebars();
-            }
-        }, { passive: true });
-
-        sidebars.forEach(sidebar => {
-            const toggle = sidebar.querySelector('.sidebar-toggle');
-            let startY = 0;
-            let currentY = 0;
-            let isDragging = false;
-            let touchStartTime = 0;
-            let initialSidebarTop = 0;
-
-            // Add click handler for the toggle
-            toggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                sidebars.forEach(sb => {
-                    if (sb !== sidebar) {
-                        sb.classList.remove('open');
-                        setSidebarPosition(sb, SIDEBAR_POSITIONS[sb.id]);
+        // Add click handler for the toggle
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const category = sidebar.id.replace('sidebar-', '');
+            
+            // Close exhibition sidebar when opening map or about
+            if (category === 'map' || category === 'about') {
+                const exhibitionSidebar = document.getElementById('sidebar-exhibition');
+                if (exhibitionSidebar) {
+                    exhibitionSidebar.classList.remove('open');
+                    if (isMobile) {
+                        setSidebarPosition(exhibitionSidebar, SIDEBAR_POSITIONS['sidebar-exhibition']);
                     }
-                });
-                
-                const isOpen = sidebar.classList.toggle('open');
-                setSidebarPosition(sidebar, isOpen ? '20vh' : SIDEBAR_POSITIONS[sb.id]);
-            });
+                }
+            }
+            
+            const isOpen = sidebar.classList.toggle('open');
+            if (isMobile) {
+                setSidebarPosition(sidebar, isOpen ? '20vh' : SIDEBAR_POSITIONS[sidebar.id]);
+            }
+        });
 
+        if (isMobile) {
             toggle.addEventListener('touchstart', function(e) {
                 startY = e.touches[0].clientY;
                 touchStartTime = Date.now();
                 isDragging = false;
                 initialSidebarTop = sidebar.getBoundingClientRect().top;
+                sidebar.classList.add('dragging');
                 e.preventDefault();
             });
 
@@ -536,6 +273,7 @@ function initializeMobileDrag() {
             });
 
             toggle.addEventListener('touchend', function(e) {
+                sidebar.classList.remove('dragging');
                 const touchDuration = Date.now() - touchStartTime;
                 const deltaY = startY - currentY;
                 const velocity = Math.abs(deltaY) / touchDuration;
@@ -544,15 +282,19 @@ function initializeMobileDrag() {
                 
                 if (touchDuration < 150 && !isDragging) {
                     // Handle as a click - toggle sidebar
-                    sidebars.forEach(sb => {
-                        if (sb !== sidebar) {
-                            sb.classList.remove('open');
-                            setSidebarPosition(sb, SIDEBAR_POSITIONS[sb.id]);
+                    const category = sidebar.id.replace('sidebar-', '');
+                    
+                    // Close exhibition sidebar when opening map or about
+                    if (category === 'map' || category === 'about') {
+                        const exhibitionSidebar = document.getElementById('sidebar-exhibition');
+                        if (exhibitionSidebar) {
+                            exhibitionSidebar.classList.remove('open');
+                            setSidebarPosition(exhibitionSidebar, SIDEBAR_POSITIONS['sidebar-exhibition']);
                         }
-                    });
+                    }
                     
                     const isOpen = sidebar.classList.toggle('open');
-                    setSidebarPosition(sidebar, isOpen ? '20vh' : SIDEBAR_POSITIONS[sb.id]);
+                    setSidebarPosition(sidebar, isOpen ? '20vh' : SIDEBAR_POSITIONS[sidebar.id]);
                 } else if (isDragging) {
                     const currentTop = sidebar.getBoundingClientRect().top;
                     const maxAllowedTop = parseFloat(SIDEBAR_POSITIONS[sidebar.id]) * window.innerHeight / 100;
@@ -567,32 +309,14 @@ function initializeMobileDrag() {
                     }
                 }
             });
-        });
-    }
-
-    // Update desktop click handlers to use consolidated pattern
-    if (!isMobile) {
-        document.querySelectorAll('.sidebar-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                const sidebar = this.parentElement;
-                
-                document.querySelectorAll('.sidebar').forEach(sb => {
-                    if (sb !== sidebar) {
-                        sb.classList.remove('open');
-                    }
-                });
-                
-                sidebar.classList.toggle('open');
-            });
-        });
-    }
+        }
+    });
 }
 
-// Initialize drag functionality when the DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeMobileDrag);
-
-// Add this to your JavaScript section
+// Call initializeClickHandlers and initializeMobileDrag when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    initializeClickHandlers();
+    initializeMobileDrag();
     const aboutToggle = document.querySelector('.about-toggle');
     const aboutContainer = document.querySelector('.about-container');
     const contactToggle = document.querySelector('.contact-toggle');
@@ -813,5 +537,60 @@ fetch('data/conversations.json')
     .catch(error => {
         console.error('Error loading conversation data:', error);
     });
+
+// Update the createNavButton function
+function createNavButton(id, text, viewConfig) {
+    const button = document.createElement('button');
+    button.id = id;
+    button.className = 'nav-button';
+    button.textContent = text;
+    button.style.display = 'none';
+    
+    button.addEventListener('click', () => {
+        map.flyTo(viewConfig.coords, viewConfig.zoom, viewConfig.options);  // Use the options here
+    });
+    
+    document.querySelector('#sidebar-map .sidebar-content').appendChild(button);
+    return button;
+}
+
+// Define bounding boxes for both areas
+const netherlandsBounds = L.latLngBounds(
+    [50.75, 3.2],   // Southwest corner
+    [53.7, 7.22]    // Northeast corner
+);
+
+const capetownBounds = L.latLngBounds(
+    [-34.5, 18.2],  // Southwest corner
+    [-33.5, 18.9]   // Northeast corner
+);
+
+// Update the moveend event handler to use bounds instead of distance
+map.on('moveend', () => {
+    const currentBounds = map.getBounds();
+    
+    // Show Amsterdam button if current view doesn't intersect with Netherlands bounds
+    amsterdamButton.style.display = currentBounds.intersects(netherlandsBounds) 
+        ? 'none' 
+        : 'block';
+    
+    // Show Cape Town button if current view doesn't intersect with Cape Town bounds
+    capetownButton.style.display = currentBounds.intersects(capetownBounds) 
+        ? 'none' 
+        : 'block';
+});
+
+// Update the button click handlers to fit the bounds instead of specific coordinates
+const amsterdamButton = createNavButton('amsterdam-button', 'go to the Netherlands ↑', {
+    coords: netherlandsBounds.getCenter(),
+    zoom: map.getBoundsZoom(netherlandsBounds),
+    options: navFlyConfig
+});
+
+const capetownButton = createNavButton('capetown-button', 'go to South Africa ↓', {
+    coords: capetownBounds.getCenter(),
+    zoom: map.getBoundsZoom(capetownBounds),
+    options: navFlyConfig
+});
 
 
