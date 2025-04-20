@@ -58,18 +58,6 @@
   color: var(--text-color);
 }
 
-/* Text selection styles for all modern browsers including Safari */
-::selection {
-  background-color: var(--selection-color);
-  color: var(--text-color);
-}
-
-/* For Firefox */
-::-moz-selection {
-  background-color: var(--selection-color);
-  color: var(--text-color);
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -508,34 +496,6 @@ body {
   padding-left: 10px;
 }
 
-@media screen and (max-width: 768px) {
-  .prints-gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    padding: 15px;
-  }
-  
-  .print-info {
-    padding: 8px;
-  }
-  
-  .print-info h3 {
-    font-size: 12px;
-  }
-  
-  .print-info p {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .prints-gallery {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 10px;
-  }
-}
-
 /* Exhibition Gallery Styles */
 .hypothesis-container {
   margin-bottom: 40px;
@@ -575,192 +535,6 @@ body {
   0%, 100% { transform: rotate(0deg); }
   15% { transform: rotate(-0.3deg); }
   85% { transform: rotate(0.3deg); }
-}
-
-@media screen and (max-width: 768px) {
-  .exhibition-gallery {
-    gap: 10px;
-  }
-  
-  .hypothesis-container h2 {
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
-}
-
-/* Add these media queries after your existing CSS */
-@media screen and (max-width: 768px) {
-  /* Map adjustments */
-  #map {
-    height: 100vh;
-    width: 100vw;
-    left: 0;
-    margin-top: -18vh;
-  }
-
-  .header-container h1 {
-    font-size: 24px;
-  }
-
-  .header-container p {
-    font-size: 16px;
-    margin-bottom: 0px;
-  }
-
-  .about-text,
-  .contact-text {
-    font-size: 16px;
-    font-family: 'Centra No2' 'medium';
-    max-width: 90%;
-  }
-
-  .about-toggle,
-  .contact-toggle {
-    font-size: 16px;
-    text-decoration: underline;
-  }
-
-  .about-toggle {
-    margin-top: -5px;
-  }
-
-  /* Sidebar adjustments */
-  .sidebar {
-    position: fixed;
-    top: auto;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    padding: 0;
-    padding-bottom: 400px;
-    transition: top 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow-x: hidden;
-    touch-action: none;
-  }
-            
-  #sidebar-exhibition { top: 82vh; }
-  #sidebar-map { top: 75vh; }
-  #sidebar-conversation { top: 68vh; }
-
-  /* Remove hover states */
-  #sidebar-exhibition:not(.open):hover { right: 0; }
-  #sidebar-map:not(.open):hover { right: 0; }
-  #sidebar-conversation:not(.open):hover { right: 0; }
-
-  /* Toggle button adjustments */
-  .sidebar-toggle {
-    position: sticky;
-    top: 0;
-    height: auto;
-    width: 100%;
-    writing-mode: horizontal-tb;
-    transform: none;
-    margin: 0;
-    padding: 18px 20px;
-    display: flex;
-    justify-content: left;
-    z-index: 1002;
-    cursor: pointer;
-    font-size: 17px !important;
-    touch-action: none;
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    background: inherit;
-  }
-
-  
-  .sidebar-content h1 {
-    display: none; /* Hide category headings on mobile */
-  }
-
-  .sidebar {
-    transition: top 0.3s ease-out; /* Smooth animation for opening/closing */
-  }
-
-  /* Project cards adjustments */
-  .project-card {
-    margin-bottom: 20px;
-    max-width: 100%;
-  }
-
-  #sidebar-exhibition .project-card:last-child{
-    margin-bottom: 40vh;
-  }
-  #sidebar-map .project-card:last-child{
-    margin-bottom: 45vh;
-  }
-  #sidebar-conversation .project-card:last-child {
-    margin-bottom: 55vh;
-  }
-
-  /* Gallery adjustments */
-  .gallery {
-    gap: 5px;
-    justify-content: flex-start; /* Ensure items start from the left */
-  }
-
-  .gallery-item {
-    width: 70px;
-    margin-bottom: 5px; /* Smaller margin for mobile */
-  }
-
-  .gallery-item img {
-    height: 70px;
-  }
-
-
-  /* Navigation button adjustments */
-  .nav-button {
-    font-size: 13px;
-    padding: 8px 12px;
-  }
-
-  #amsterdam-button {
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  #capetown-button {
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-
-  .leaflet-control-zoom {
-    display: none; /* Hide zoom controls on mobile */
-  }
-
-  .sidebar-content {
-    padding: 20px;
-    padding-top: 0;
-  }
-}
- 
-
-/* Add styles for smaller phones */
-@media screen and (max-width: 375px) {
-  .sidebar-toggle {
-    font-size: 12px;
-  }
-
-  .gallery-item {
-    width: 60px;
-  }
-
-  .gallery-item img {
-    height: 60px;
-  }
-
-  .prints-gallery {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 10px;
-  }
 }
 
 .popup-content {
@@ -822,5 +596,211 @@ body {
 .site-title:hover {
   font-style: italic;
   color: var(--primary-color);
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  /* Map adjustments */
+  #map {
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    margin-top: -18vh;
+  }
+
+  .header-container h1 {
+    font-size: 24px;
+  }
+
+  .header-container p {
+    font-size: 16px;
+    margin-bottom: 100px;
+  }
+
+  .about-text,
+  .contact-text {
+    font-size: 16px;
+    font-family: 'Centra No2' 'medium';
+    max-width: 90%;
+  }
+
+  .about-toggle,
+  .contact-toggle {
+    font-size: 16px;
+    text-decoration: underline;
+  }
+
+  .about-toggle {
+    margin-top: -5px;
+  }
+
+  .main-content {
+    margin-left: 0em;
+    margin-right: 0em;
+  }
+
+  /* Sidebar adjustments */
+  .sidebar {
+    position: fixed;
+    top: auto;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    padding: 0;
+    padding-bottom: 400px;
+    border-top: 1px solid var(--primary-color);
+    transition: top 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+    touch-action: none;
+  }
+            
+  #sidebar-exhibition { top: 92vh; }
+  #sidebar-map { top: 86vh; }
+  #sidebar-conversation { top: 68vh; }
+
+  /* Remove hover states */
+  #sidebar-exhibition:not(.open):hover { right: 0; }
+  #sidebar-map:not(.open):hover { right: 0; }
+  #sidebar-conversation:not(.open):hover { right: 0; }
+
+  /* Toggle button adjustments */
+  .sidebar-toggle {
+    position: sticky;
+    top: 0;
+    height: auto;
+    width: 100%;
+    writing-mode: horizontal-tb;
+    transform: none;
+    margin: 0;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: left;
+    z-index: 1002;
+    cursor: pointer;
+    font-size: 17px !important;
+    touch-action: none;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    background: inherit;
+  }
+
+  .sidebar-content h1 {
+    display: none; /* Hide category headings on mobile */
+  }
+
+  .sidebar {
+    transition: top 0.3s ease-out; /* Smooth animation for opening/closing */
+  }
+
+  /* Project cards adjustments */
+  .project-card {
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+
+  #sidebar-exhibition .project-card:last-child{
+    margin-bottom: 40vh;
+  }
+  #sidebar-map .project-card:last-child{
+    margin-bottom: 45vh;
+  }
+  #sidebar-conversation .project-card:last-child {
+    margin-bottom: 55vh;
+  }
+
+  /* Gallery adjustments */
+  .gallery {
+    gap: 5px;
+    justify-content: flex-start; /* Ensure items start from the left */
+  }
+
+  .gallery-item {
+    width: 70px;
+    margin-bottom: 5px; /* Smaller margin for mobile */
+  }
+
+  .gallery-item img {
+    height: 70px;
+  }
+
+  /* Navigation button adjustments */
+  .nav-button {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  #amsterdam-button {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #capetown-button {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .leaflet-control-zoom {
+    display: none; /* Hide zoom controls on mobile */
+  }
+
+  .sidebar-content {
+    padding: 20px;
+    padding-top: 0;
+  }
+
+  /* Prints Gallery adjustments */
+  .prints-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .print-info {
+    padding: 8px;
+  }
+  
+  .print-info h3 {
+    font-size: 12px;
+  }
+  
+  .print-info p {
+    font-size: 10px;
+  }
+
+  /* Exhibition Gallery adjustments */
+  .exhibition-gallery {
+    gap: 10px;
+  }
+  
+  .hypothesis-container h2 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+}
+
+/* Small phone styles */
+@media screen and (max-width: 375px) {
+  .sidebar-toggle {
+    font-size: 12px;
+  }
+
+  .gallery-item {
+    width: 60px;
+  }
+
+  .gallery-item img {
+    height: 60px;
+  }
+
+  .prints-gallery {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
 }
 
