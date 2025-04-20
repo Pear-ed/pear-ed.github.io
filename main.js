@@ -146,7 +146,7 @@ const navFlyConfig = {
 const SIDEBAR_POSITIONS = {
     'sidebar-exhibition': '82vh',
     'sidebar-water': '75vh',
-    'sidebar-conversation': '68vh'
+    'sidebar-about': '68vh'
 };
 
 // Helper function to set sidebar position
@@ -362,109 +362,6 @@ function createProjectCard(project) {
     return card;
 }
 
-// Define shared icon configuration
-const sharedIconConfig = {
-    iconSize: [38, 38],
-    iconAnchor: [0, 0],
-    popupAnchor: [19, 0]
-};
-
-// Function to create conversation card
-function createConversationCard(conversation) {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    
-    const categoryColor = categoryColors.conversation;
-    
-    card.innerHTML = `
-        <div id="conversation-${conversation.id}" class="project-details">
-            <div class="conversation-id">${conversation.id}</div>
-            <h2 style="--project-color: ${categoryColor}"><i>${conversation.title}</i></h2>
-            <p>${conversation.description}</p>
-        </div>
-    `;
-
-    // Add click handler to the card
-    card.addEventListener('click', (e) => {
-        const coords = conversation.geometry.coordinates;
-        const currentCenter = map.getCenter();
-        const currentZoom = map.getZoom();
-        const flyConfig = getMapFlyConfig(currentCenter, coords, currentZoom, 15);
-        map.flyTo(coords, 15, flyConfig);
-
-        // Update scroll behavior for mobile
-        if (window.innerWidth <= 768) {
-            const conversationCard = document.getElementById(`conversation-${conversation.id}`);
-            if (conversationCard) {
-                setTimeout(() => {
-                    conversationCard.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center'
-                    });
-                }, 300);
-            }
-        }
-    });
-
-    return card;
-}
-
-// Load and initialize conversations from JSON
-fetch('data/conversations.json')
-    .then(response => response.json())
-    .then(data => {
-        if (!data || !data.conversations) {
-            console.error('No conversations found in data');
-            return;
-        }
-
-        console.log('Loading conversations:', data.conversations.length);
-        
-        data.conversations.forEach(conversation => {
-            console.log('Processing conversation:', conversation.id, conversation.title);
-            
-            // Create custom icon using shared configuration
-            const customIcon = L.icon({
-                ...sharedIconConfig,
-                iconUrl: `img/marker/${conversation.id}_1.png`
-            });
-
-            // Create popup content
-            const popupContent = `
-                <div class='popup-content'>
-                    <div class="popup-id">${conversation.id}</div>
-                    <h3><i>${conversation.title}</i></h3>
-                    <div class="popup-image-container">
-                        <img src="img/marker/${conversation.id}_2.png" alt="${conversation.title}">
-                    </div>
-                </div>
-            `;
-
-            // Create marker with custom icon
-            const marker = L.marker(
-                conversation.geometry.coordinates,
-                { icon: customIcon }
-            ).bindPopup(popupContent);
-
-            // Add marker to cluster group
-            markers.addLayer(marker);
-
-            // Create and add conversation card
-            const projectList = document.querySelector('.conversation-list');
-            if (projectList) {
-                const card = createConversationCard(conversation);
-                projectList.appendChild(card);
-            }
-        });
-
-        console.log('Adding markers layer to map');
-        map.addLayer(markers);
-        console.log('Markers added to map');
-    })
-    .catch(error => {
-        console.error('Error loading conversation data:', error);
-    });
-
 // Reset positions when switching to desktop
 function resetSidebarPositions() {
     if (window.innerWidth > 768) {
@@ -538,7 +435,6 @@ const capetownButton = createNavButton('capetown-button', 'go to South Africa â†
     zoom: map.getBoundsZoom(capetownBounds),
     options: navFlyConfig
 });
-
 
 function initializeMobileDrag() {
     const sidebars = document.querySelectorAll('.sidebar');
@@ -861,5 +757,61 @@ function loadExhibitionImages() {
 document.addEventListener('DOMContentLoaded', () => {
     loadExhibitionImages();
 });
+
+// Define shared icon configuration
+const sharedIconConfig = {
+    iconSize: [38, 38],
+    iconAnchor: [0, 0],
+    popupAnchor: [19, 0]
+};
+
+// Load and initialize conversations from JSON
+fetch('data/conversations.json')
+    .then(response => response.json())
+    .then(data => {
+        if (!data || !data.conversations) {
+            console.error('No conversations found in data');
+            return;
+        }
+
+        console.log('Loading conversations:', data.conversations.length);
+        
+        data.conversations.forEach(conversation => {
+            console.log('Processing conversation:', conversation.id, conversation.title);
+            
+            // Create custom icon using shared configuration
+            const customIcon = L.icon({
+                ...sharedIconConfig,
+                iconUrl: `img/marker/${conversation.id}_1.png`
+            });
+
+            // Create popup content
+            const popupContent = `
+                <div class='popup-content'>
+                    <div class="popup-id">${conversation.id}</div>
+                    <h3><i>${conversation.title}</i></h3>
+                    <div class="popup-image-container">
+                        <img src="img/marker/${conversation.id}_2.png" alt="${conversation.title}">
+                    </div>
+                </div>
+            `;
+
+            // Create marker with custom icon
+            const marker = L.marker(
+                conversation.geometry.coordinates,
+                { icon: customIcon }
+            ).bindPopup(popupContent);
+
+            // Add marker to cluster group
+            markers.addLayer(marker);
+        });
+
+        console.log('Adding markers layer to map');
+        map.addLayer(markers);
+        console.log('Markers added to map');
+    })
+    .catch(error => {
+        console.error('Error loading conversation data:', error);
+    });
 
 
