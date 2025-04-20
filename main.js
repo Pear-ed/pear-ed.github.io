@@ -8,7 +8,7 @@ const lightboxConfig = {
     spinner: true,
     preloading: true,
     enableKeyboard: true,
-    scrollZoom: true,
+    scrollZoom: false,
     close: false,
     overlay: true,
     overlayOpacity: 0.8,
@@ -55,18 +55,6 @@ const mapLayer = L.tileLayer(
     }
 ).addTo(map);
 
-// Color definitions for categories
-const categoryColors = {
-    'exhibition': '#795C5F',    // Base color
-    'print': '#52414C',    // Slightly lighter shade
-    'conversation': '#ED455C'       // Another lighter shade
-};
-
-// Update CSS variables
-document.documentElement.style.setProperty('--exhibition-color', categoryColors.exhibition);
-document.documentElement.style.setProperty('--water-color', categoryColors.print);
-document.documentElement.style.setProperty('--conversation-color', categoryColors.conversation);
-
 
 // Common polygon style function - now takes a color parameter and ID
 function getPolygonStyle(color, projectId) {
@@ -94,7 +82,7 @@ function getMarkerStyle(color, projectId) {
 
 // Create a marker cluster group with custom options
 var markers = L.markerClusterGroup({
-    maxClusterRadius: 40,
+    maxClusterRadius: 30,
     iconCreateFunction: function(cluster) {
         var childCount = cluster.getChildCount();
         return new L.DivIcon({
@@ -508,7 +496,7 @@ function createNavButton(id, text, viewConfig) {
         map.flyTo(viewConfig.coords, viewConfig.zoom, viewConfig.options);  // Use the options here
     });
     
-    document.querySelector('.container').appendChild(button);
+    document.querySelector('#sidebar-map .sidebar-content').appendChild(button);
     return button;
 }
 
@@ -725,7 +713,25 @@ document.addEventListener('DOMContentLoaded', function() {
             contactContainer.classList.toggle('expanded');
         });
     }
-})
+
+    // Initialize navigation buttons
+    const amsterdamButton = createNavButton('amsterdam-button', 'go to the Netherlands ↑', {
+        coords: netherlandsBounds.getCenter(),
+        zoom: map.getBoundsZoom(netherlandsBounds),
+        options: navFlyConfig
+    });
+
+    const capetownButton = createNavButton('capetown-button', 'go to South Africa ↓', {
+        coords: capetownBounds.getCenter(),
+        zoom: map.getBoundsZoom(capetownBounds),
+        options: navFlyConfig
+    });
+
+    // Set initial button visibility
+    const currentBounds = map.getBounds();
+    amsterdamButton.style.display = currentBounds.intersects(netherlandsBounds) ? 'none' : 'block';
+    capetownButton.style.display = currentBounds.intersects(capetownBounds) ? 'none' : 'block';
+});
 
 // Function to load and display prints
 function loadPrints() {
