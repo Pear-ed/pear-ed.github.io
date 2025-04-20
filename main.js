@@ -1,3 +1,27 @@
+// Lightbox Configuration
+const lightboxConfig = {
+    showCounter: false,
+    captions: false,
+    animationSpeed: 0,
+    fadeSpeed: 0,
+    animationSlide: false,
+    spinner: true,
+    preloading: true,
+    enableKeyboard: true,
+    scrollZoom: true,
+    close: false,
+    overlay: true,
+    overlayOpacity: 0.8,
+    disableScroll: false,
+    closeOnOverlayClick: true,
+    docClose: true,
+    nav: true,
+    swipeClose: true,
+    doubleTapZoom: 2,
+    widthRatio: 0.8,
+    heightRatio: 0.8
+};
+
 function createCustomPanes() {
     // Create custom panes for each project, higher number = higher z-index
     for (let i = 1; i <= 20; i++) {
@@ -84,24 +108,6 @@ var markers = L.markerClusterGroup({
     showCoverageOnHover: false,
     zoomToBoundsOnClick: true
 });
-
-// Update the lightbox configuration
-const lightboxConfig = {
-    showCounter: false,
-    captions: false,
-    animationSpeed: 0,
-    fadeSpeed: 0,
-    animationSlide: false,
-    spinner: true,
-    preloading: true,
-    enableKeyboard: true,
-    scrollZoom: true,
-    close: false,
-    overlay: true,
-    overlayOpacity: 0.8,
-    disableScroll: false,
-    closeOnOverlayClick: true,
-};
 
 // Replace the static mapFlyConfig with this function
 function getMapFlyConfig(currentCenter, targetCenter, currentZoom = null, targetZoom = null) {
@@ -545,27 +551,6 @@ const capetownButton = createNavButton('capetown-button', 'go to South Africa â†
     options: navFlyConfig
 });
 
-// Replace the existing welcome overlay creation with this function
-function createWelcomeOverlay() {
-    const overlay = document.createElement('div');
-    overlay.className = 'welcome-overlay';
-    
-    const text = document.createElement('div');
-    text.className = 'welcome-text';
-    text.textContent = 'Click, zoom, move, please!';
-    
-    overlay.appendChild(text);
-    document.body.appendChild(overlay);
-    
-    overlay.addEventListener('click', function() {
-        overlay.style.opacity = '0';
-        setTimeout(() => overlay.remove(), 500);
-    });
-}
-
-// Call it when the DOM is loaded
-document.addEventListener('DOMContentLoaded', createWelcomeOverlay);
-
 
 function initializeMobileDrag() {
     const sidebars = document.querySelectorAll('.sidebar');
@@ -746,11 +731,11 @@ document.addEventListener('DOMContentLoaded', function() {
 function loadPrints() {
     console.log('Starting loadPrints function');
     
-    const printList = document.querySelector('.print-list');
-    console.log('Print list element:', printList);
+    const printsGallery = document.querySelector('.prints-gallery');
+    console.log('Prints gallery element:', printsGallery);
     
-    if (!printList) {
-        console.error('Could not find .print-list element');
+    if (!printsGallery) {
+        console.error('Could not find .prints-gallery element');
         return;
     }
 
@@ -768,10 +753,8 @@ function loadPrints() {
 
             console.log('Loaded prints data:', data.prints);
 
-            // Create a container for the prints
-            const printsContainer = document.createElement('div');
-            printsContainer.className = 'prints-gallery';
-            console.log('Created prints container');
+            // Clear any existing content
+            printsGallery.innerHTML = '';
 
             // Add each print to the gallery
             data.prints.forEach(print => {
@@ -779,30 +762,26 @@ function loadPrints() {
                 printCard.className = 'print-card';
                 printCard.innerHTML = `
                     <div class="print-item">
-                        <img src="${print.image}" alt="${print.title}">
+                        <a href="${print.image}" data-lightbox="prints">
+                            <img src="${print.image}" alt="${print.title}">
+                        </a>
                         <div class="print-info">
                             <h3>${print.title}</h3>
                             <p>${print.edition}</p>
                         </div>
                     </div>
                 `;
-                printsContainer.appendChild(printCard);
+                printsGallery.appendChild(printCard);
             });
 
-            console.log('Added prints to container');
-            console.log('Prints container HTML:', printsContainer.innerHTML);
+            console.log('Added prints to gallery');
+            console.log('Prints gallery HTML:', printsGallery.innerHTML);
 
-            // Add the prints container to the sidebar
-            printList.appendChild(printsContainer);
-            console.log('Added prints container to sidebar');
-            console.log('Print list HTML after adding container:', printList.innerHTML);
-
-            // Initialize SimpleLightbox for the prints gallery
-            new SimpleLightbox({
-                elements: '.prints-gallery .print-item',
-                ...lightboxConfig
-            });
-            console.log('Initialized lightbox');
+            // Add a small delay before initializing lightbox
+            setTimeout(() => {
+                const lightbox = new SimpleLightbox('.prints-gallery a', lightboxConfig);
+                console.log('Initialized lightbox');
+            }, 100);
         })
         .catch(error => {
             console.error('Error loading prints data:', error);
@@ -842,7 +821,7 @@ function loadExhibitionImages() {
         const imgContainer = document.createElement('div');
         imgContainer.className = 'exhibition-item';
         imgContainer.innerHTML = `
-            <a href="${img}" class="gallery-item">
+            <a href="${img}" data-lightbox="exhibition">
                 <img src="${img}" alt="Hypothesis 1 image">
             </a>
         `;
@@ -854,7 +833,7 @@ function loadExhibitionImages() {
         const imgContainer = document.createElement('div');
         imgContainer.className = 'exhibition-item';
         imgContainer.innerHTML = `
-            <a href="${img}" class="gallery-item">
+            <a href="${img}" data-lightbox="exhibition">
                 <img src="${img}" alt="Hypothesis 2 image">
             </a>
         `;
@@ -866,10 +845,10 @@ function loadExhibitionImages() {
     exhibitionList.appendChild(hypothesis2Container);
 
     // Initialize SimpleLightbox for the exhibition galleries
-    new SimpleLightbox({
-        elements: '.exhibition-gallery .gallery-item',
-        ...lightboxConfig
-    });
+    setTimeout(() => {
+        const lightbox = new SimpleLightbox('.exhibition-gallery a', lightboxConfig);
+        console.log('Initialized exhibition lightbox');
+    }, 100);
 }
 
 // Call loadExhibitionImages when the DOM is loaded
