@@ -19,7 +19,11 @@ const lightboxConfig = {
     swipeClose: true,
     doubleTapZoom: 2,
     widthRatio: 0.8,
-    heightRatio: 0.8
+    heightRatio: 0.8,
+    touchNavigation: true,
+    touchEvents: true,
+    touchStart: true,
+    touchEnd: true
 };
 
 function createCustomPanes() {
@@ -431,11 +435,11 @@ function loadExhibitionImages() {
     // Create containers for each hypothesis
     const hypothesis1Container = document.createElement('div');
     hypothesis1Container.className = 'hypothesis-container';
-    hypothesis1Container.innerHTML = '<h2>Hypothesis 1</h2><div class="exhibition-gallery"></div>';
+    hypothesis1Container.innerHTML = `<h2>Hypothesis 1</h2><p class="hypothesis-text">Hypothesis 1 is the debut collaborative project from Cynthia Fan and Hayden Malan. Their shared enquiry into botany, biology and art centres on the guiding question: "What do plants really want?" At once resisting and quoting traditions of flower arranging, the pair's botanical compositions become a medium for spending (more) time with organic matter and listening to the non-human sentient. The plants, shifting and changing over the course of the project, insist their autonomy – some wilt, others send out aerial roots, growth and decay persist.Cynthia Fan is a florist and PhD candidate at The University of Edinburgh's Institute of Molecular Plant Sciences. Hayden Malan is a landscape architect and artist. Together, they share a preoccupation with the sculptural potential of plants as both natural organisms and modular structures.</p><div class="exhibition-gallery"></div>`;
 
     const hypothesis2Container = document.createElement('div');
     hypothesis2Container.className = 'hypothesis-container';
-    hypothesis2Container.innerHTML = '<h2>Hypothesis 2</h2><div class="exhibition-gallery"></div>';
+    hypothesis2Container.innerHTML = `<h2>Hypothesis 2</h2><p class="hypothesis-text">We continue where we left off with Hypothesis 2, a collaboration with our talented and insightful friend, Mishaq Diesel, in the @a4artsfoundation@proto.a4 Goods area. Happening tomorrow (24/02/2023), the conversation will focus on the Firewheel tree (Stenocarpus sinuatus), because when that tree fell in that archetypal forest Mishaq recorded its dying wish. The Firewheel tree's flowers will be collected from a tree 68 metres from Hayden's apartment in Green Point, Cape Town. Mishaq Diesel is a South African composer and experimental musician. Influenced sonically by the likes of Harold Budd and Mokichi Kawaguchi, his work reflects nature's ever-changing tendencies. 'Missim' is his forthcoming multidisciplinary instrumentalist project exploring musical tone as a therapeutic practice.</p><div class="exhibition-gallery"></div>`;
 
     // Get all h1 images
     const h1Images = Array.from({length: 11}, (_, i) => `img/exhibition/h1_${i + 1}.jpg`);

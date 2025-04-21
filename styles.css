@@ -513,6 +513,13 @@ body {
   color: var(--primary-color);
 }
 
+.hypothesis-text {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
 .exhibition-gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
